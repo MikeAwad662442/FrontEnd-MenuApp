@@ -1,0 +1,86 @@
+{
+  "HOME": {
+    "title": "Bienvenue dans {{appName}}",
+    "MainList": "Liste principale",
+    "Events": "Événements"
+  },
+  "MENU": {
+    "home": "Page d'accueil",
+    "menu": "MENU",
+    "Events": "Événements",
+    "cPanel": "Panneau de configuration",
+    "login": "Connexion",
+    "logout": "déconnexion",
+    "followUS": "Suivez-nous",
+    "VersionFree": "Cette version est gratuite",
+    "AboutUS": "À propos de nous"
+  },
+  "Item": {
+    "UpDate": {
+      "Name": "Nom de l'article",
+      "Image": "Image de l'article",
+      "Description": "Description de l'article"
+    },
+    "NoItems": "Bonjour, il n'y a pas encore d'éléments ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
+  },
+  "ItemTypes": {
+    "MainList": "Liste principale",
+    "NweList": "Ajouter une nouvelle Liste",
+    "FixList": "Liste des correctifs",
+    "DeleteLists": "Supprimer toutes les Listes",
+    "UpDate": {
+      "Name": "Nom de la Liste",
+      "Image": "Image de la Liste",
+      "Active": "Liste Active",
+      "Description": "Description de la Liste"
+    },
+    "ERROR": {
+      "Name": "Le nom de la liste est requis",
+      "Image": "L'image de la liste est requise"
+    },
+    "NoItemTypes": "Bonjour, il n'y a pas encore d'ajout de liste principale,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton d'ajout de liste<br />"
+  },
+  "Events": {
+    "Events": "Événements",
+    "NweEvents": "Ajouter un nouvel événement",
+    "FixEvents": "Corriger les événements",
+    "DeleteEvents": "Supprimer tous les événements",
+    "UpDate": {
+      "Name": "Nom de l'événement",
+      "Image": "Image de l'événement",
+      "Active": "Événement actif",
+      "Description": "Description de l'événement"
+    },
+    "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
+  },
+  "Setting": {
+    "Setting": "Paramètre",
+    "Language": {
+      "Name": "Langues",
+      "ActiveLang": "Langue active",
+      "Default": "Langage par défaut",
+      "DefaultLangAPP": "Définir les langues par défaut pour APP",
+      "UsedLangAPP": "Langues utilisées dans l'APP",
+      "language": "Langue",
+      "Active": "actif",
+      "UpLang": "Mettre à jour les langues"
+    },
+    "SocialMedia": {
+      "Name": "Des médias sociaux",
+      "Icon": "Icônes",
+      "Link": "Lien ou numéro",
+      "Active": "Actif",
+      "UpSocial": "Mettre à jour les médias sociaux"
+    }
+  },
+  "Language": {
+    "Arabic": "arabe",
+    "English": "Anglais",
+    "French": "Français"
+  },
+  "Alert": {
+    "UpLanguage": "les langues sont mises à jour",
+    "UpSocialMedia": "les comptes de médias sociaux sont mis à jour",
+    "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />"
+  }
+}

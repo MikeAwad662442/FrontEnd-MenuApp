@@ -1,0 +1,86 @@
+{
+  "HOME": {
+    "title": "Welcome to {{appName}}",
+    "MainList": "Main List",
+    "Events": "Events"
+  },
+  "MENU": {
+    "home": "Home Page",
+    "menu": "MENU",
+    "Events": "Events",
+    "cPanel": "Control Panel",
+    "login": "login",
+    "logout": "logout",
+    "followUS": "Follow US",
+    "VersionFree": "This version is free",
+    "AboutUS": "AboutUS"
+  },
+  "Item": {
+    "UpDate": {
+      "Name": "Name of Item",
+      "Image": "Image of Item",
+      "Description": "Description of Item"
+    },
+    "NoItems": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+  },
+  "ItemTypes": {
+    "MainList": "Main List",
+    "NweList": "Add a New List",
+    "FixList": "Fix List",
+    "DeleteLists": "Delete All Lists",
+    "UpDate": {
+      "Name": "Name of List",
+      "Image": "Image of List",
+      "Active": "Active List",
+      "Description": "Description of List"
+    },
+    "ERROR": {
+      "Name": "Name of List is required",
+      "Image": "Image of List is required"
+    },
+    "NoItemTypes": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+  },
+  "Events": {
+    "Events": "Events",
+    "NweEvents": "Add a New Event",
+    "FixEvents": "Fix Event",
+    "DeleteEvents": "Delete All Events",
+    "UpDate": {
+      "Name": "Name of Event",
+      "Image": "Image of Event",
+      "Active": "Active Event",
+      "Description": "Description of Event"
+    },
+    "NoEvents": "Hi there, there is No Events add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+  },
+  "Setting": {
+    "Setting": "Setting",
+    "Language": {
+      "Name": "Languages",
+      "ActiveLang": "Active Language",
+      "Default": "Default Language",
+      "DefaultLangAPP": "Set default Languages for APP",
+      "UsedLangAPP": "Languages used in the APP",
+      "language": "language",
+      "Active": "active",
+      "UpLang": "Update Languages"
+    },
+    "SocialMedia": {
+      "Name": "Social Media",
+      "Icon": "Icons",
+      "Link": "Link or Number",
+      "Active": "Active",
+      "UpSocial": "Update Social Media"
+    }
+  },
+  "Language": {
+    "Arabic": "Arabic",
+    "English": "English",
+    "French": "French"
+  },
+  "Alert": {
+    "UpLanguage": "the languages is updated",
+    "UpSocialMedia": "the Social Media accounts is updated",
+    "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />"
+  }
+}
