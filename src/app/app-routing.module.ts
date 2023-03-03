@@ -12,57 +12,112 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Global/home/home.module').then((m) => m.HomePageModule),
   },
+  // === Item ===== //
   {
-    path: 'all',
-    loadChildren: () => import('./Items/Item/all/all.module').then( m => m.AllPageModule)
+    path: 'Item',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./Items/Item/all/all.module').then((m) => m.AllPageModule),
+      },
+      {
+        path: ':ItemID',
+        loadChildren: () =>
+          import('./Items/Item/info/info.module').then((m) => m.InfoPageModule),
+      },
+      {
+        path: 'update',
+        loadChildren: () =>
+          import('./Items/Item/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+      {
+        path: 'update/:ItemID',
+        loadChildren: () =>
+          import('./Items/Item/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+    ],
   },
+  // === Item ===== //
+  // === ItemType = //
   {
-    path: 'info',
-    loadChildren: () => import('./Items/Item/info/info.module').then( m => m.InfoPageModule)
+    path: 'ItemType',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./Items/ItemType/all/all.module').then(
+            (m) => m.AllPageModule
+          ),
+      },
+      {
+        path: 'info',
+        loadChildren: () =>
+          import('./Items/ItemType/info/info.module').then(
+            (m) => m.InfoPageModule
+          ),
+      },
+      {
+        path: 'update',
+        loadChildren: () =>
+          import('./Items/ItemType/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+    ],
   },
+  // === ItemType = //
+  // === Events === //
   {
-    path: 'update',
-    loadChildren: () => import('./Items/Item/update/update.module').then( m => m.UpdatePageModule)
+    path: 'events',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./Events/all/all.module').then((m) => m.AllPageModule),
+      },
+      {
+        path: 'info',
+        loadChildren: () =>
+          import('./Events/info/info.module').then((m) => m.InfoPageModule),
+      },
+      {
+        path: 'update',
+        loadChildren: () =>
+          import('./Events/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+    ],
   },
-  {
-    path: 'all',
-    loadChildren: () => import('./Items/ItemType/all/all.module').then( m => m.AllPageModule)
-  },
-  {
-    path: 'info',
-    loadChildren: () => import('./Items/ItemType/info/info.module').then( m => m.InfoPageModule)
-  },
-  {
-    path: 'update',
-    loadChildren: () => import('./Items/ItemType/update/update.module').then( m => m.UpdatePageModule)
-  },
-  {
-    path: 'all',
-    loadChildren: () => import('./Events/all/all.module').then( m => m.AllPageModule)
-  },
-  {
-    path: 'info',
-    loadChildren: () => import('./Events/info/info.module').then( m => m.InfoPageModule)
-  },
-  {
-    path: 'update',
-    loadChildren: () => import('./Events/update/update.module').then( m => m.UpdatePageModule)
-  },
+  // === Events === //
   {
     path: 'language',
-    loadChildren: () => import('./Popover/language/language.module').then( m => m.LanguagePageModule)
+    loadChildren: () =>
+      import('./Popover/language/language.module').then(
+        (m) => m.LanguagePageModule
+      ),
   },
   {
     path: 'cpanel',
-    loadChildren: () => import('./Settings/cpanel/cpanel.module').then( m => m.CpanelPageModule)
+    loadChildren: () =>
+      import('./Settings/cpanel/cpanel.module').then((m) => m.CpanelPageModule),
   },
   {
     path: 'language',
-    loadChildren: () => import('./Settings/language/language.module').then( m => m.LanguagePageModule)
+    loadChildren: () =>
+      import('./Settings/language/language.module').then(
+        (m) => m.LanguagePageModule
+      ),
   },
   {
     path: 'social',
-    loadChildren: () => import('./Settings/social/social.module').then( m => m.SocialPageModule)
+    loadChildren: () =>
+      import('./Settings/social/social.module').then((m) => m.SocialPageModule),
   },
 ];
 

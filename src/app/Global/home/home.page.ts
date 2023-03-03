@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  params = {
+    appName: 'MENU app',
+  };
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
