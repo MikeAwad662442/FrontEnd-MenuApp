@@ -1,18 +1,24 @@
-<ion-app>
+<ion-app
+  [dir]="[dir$ | async]"
+  *ngIf="this.socketService.ifNotConnect() === true; else loading"
+>
+  <!-- <ion-app *ngIf="this.socketService.ifNotConnect() === true; else loading"> -->
   <ion-split-pane contentId="main">
     <!--  the side menu  -->
-    <!-- <ion-menu contentId="main" content-id="main" [side]="dir$"> -->
-    <ion-menu contentId="main" content-id="main">
+    <!-- <ion-menu contentId="main" content-id="main" [side]="menuDir$! | async"> -->
+    <ion-menu contentId="main" content-id="main" side="start">
+      <!-- <ion-menu contentId="main" content-id="main"> -->
       <ion-header>
         <ion-toolbar>
           <ion-avatar slot="start">
             <img src="assets/icon/favicon.png" />
           </ion-avatar>
           <ion-title>Menu</ion-title>
+          <!-- {{ dir$ | async }} -->
           <ion-buttons slot="end">
-            <!-- <ion-button (click)="langPopover($event)">
+            <ion-button (click)="langPopover($event)">
               <ion-icon name="language" slot="icon-only"></ion-icon>
-            </ion-button> -->
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -31,10 +37,10 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-      </ion-content>
-      <!-- Master List -->
-      <!-- Control List -->
-      <ion-content>
+        <!-- </ion-content> -->
+        <!-- Master List -->
+        <!-- Control List -->
+        <!-- <ion-content> -->
         <!-- <ion-header>
         <ion-toolbar>
           <ion-item
@@ -110,3 +116,14 @@
     <ion-router-outlet id="main"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+<!-- If Front not connect to server -->
+<ng-template #loading>
+  <div class="ServerNotConnect">
+    <img src="assets/icon/favicon.png" />
+    <p></p>
+    <ion-text [innerHTML]="'Alert.ServerNotConnect' | translate"></ion-text>
+    <p><br /><br /></p>
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+</ng-template>

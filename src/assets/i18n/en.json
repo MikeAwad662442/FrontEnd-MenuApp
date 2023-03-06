@@ -82,5 +82,9 @@
     "UpLanguage": "the languages is updated",
     "UpSocialMedia": "the Social Media accounts is updated",
     "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />"
-  }
+  },
+     "Arabic": "Arabic",
+    "English": "English",
+    "French": "French"
+
 }

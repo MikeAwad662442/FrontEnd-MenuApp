@@ -18,6 +18,9 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // == NGX Translate == //
+// == Add Popovers === //
+import { LanguagePageModule } from './Popover/language/language.module';
+// == Add Popovers === //
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -35,6 +38,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       isolate: true,
     }),
     // == NGX Translate == //
+    // == Add Popovers === //
+    LanguagePageModule,
+    // == Add Popovers === //
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
