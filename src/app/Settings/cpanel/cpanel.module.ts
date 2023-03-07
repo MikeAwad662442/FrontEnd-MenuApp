@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { CpanelPageRoutingModule } from './cpanel-routing.module';
-
+// === Page === //
 import { CpanelPage } from './cpanel.page';
-
+import { CpanelPageRoutingModule } from './cpanel-routing.module';
+// === Page === //
+// == plugins = //
+import { TranslateModule } from '@ngx-translate/core';
+// == plugins = //
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    CpanelPageRoutingModule
+    CpanelPageRoutingModule,
+    TranslateModule,
   ],
-  declarations: [CpanelPage]
+  declarations: [CpanelPage],
 })
 export class CpanelPageModule {}

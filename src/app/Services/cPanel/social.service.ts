@@ -29,7 +29,7 @@ export class SocialService {
   // ================= //
   //  === get all items from SocialMedia DB === //
   socialMediaGetAll(url: string): Observable<SocialMedia[]> {
-    console.log('this.url:', url);
+    // console.log('this.url:', url);
     return this.http
       .get<SocialMedia[]>(`${url}social`)
       .pipe(catchError(this.expressService.handleError));

@@ -1,8 +1,7 @@
 <ion-app
   [dir]="[dir$ | async]"
-  *ngIf="this.socketService.ifNotConnect() === true; else loading"
+  *ngIf="this.connectServer$.value === true; else loading"
 >
-  <!-- <ion-app *ngIf="this.socketService.ifNotConnect() === true; else loading"> -->
   <ion-split-pane contentId="main">
     <!--  the side menu  -->
     <!-- <ion-menu contentId="main" content-id="main" [side]="menuDir$! | async"> -->

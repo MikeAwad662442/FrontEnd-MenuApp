@@ -34,7 +34,7 @@ export class LanguageService {
 
   constructor(
     private http: HttpClient,
-    private urlService: UrlService,
+    // private urlService: UrlService,
     private socketServer: SocketService,
     private expressService: ExpressService,
     private translate: TranslateService // === Translate Service === //
@@ -46,16 +46,16 @@ export class LanguageService {
   /* === Used in Pages:
    * app.component.ts
    */
-  appLang() {
+  appLang(url: string) {
     // === First Log in to server of APP === /
-    console.log(
-      'First Log in MENU_LANG',
-      localStorage.getItem(MENU_LANG),
-      'First Log in MENU_DIR',
-      localStorage.getItem(MENU_DIR)
-    );
+    // console.log(
+    //   'First Log in MENU_LANG',
+    //   localStorage.getItem(MENU_LANG),
+    //   'First Log in MENU_DIR',
+    //   localStorage.getItem(MENU_DIR)
+    // );
     // === First Log in to server of APP === /
-    const url = this.urlService.url;
+    // const url = this.urlService.url;
     const lang = localStorage.getItem(MENU_LANG);
     const dir = localStorage.getItem(MENU_DIR);
     if (lang === null && dir === null) {
@@ -68,7 +68,6 @@ export class LanguageService {
               this.direction$.next(data.direction); // === Direction of Pages === //
             }
           });
-          this.langUpdate(url, defaultLanguage);
         } else {
           // console.log('Language:Default3', res);
           res.forEach((data: Language) => {

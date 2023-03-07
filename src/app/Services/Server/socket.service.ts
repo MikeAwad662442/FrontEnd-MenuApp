@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Socket, io } from 'socket.io-client';
 import { UrlService } from 'src/app/Services/Server/url.service';
 
@@ -8,6 +9,7 @@ import { UrlService } from 'src/app/Services/Server/url.service';
 export class SocketService {
   socket!: Socket;
   connect!: string;
+  connectServer$ = new BehaviorSubject<boolean>(false);
   constructor(private urlService: UrlService) {}
   async setupSocketConnection() {
     await this.urlService.setupUrlConnection().then(() => {
@@ -15,6 +17,10 @@ export class SocketService {
       this.socket = io(this.urlService.url);
       this.socket.on('connect', () => {
         this.connect = this.socket.id;
+        if (this.connect) {
+          // console.log('socket.connected 2', this.connect); // true
+          this.connectServer$.next(true);
+        }
       });
     });
   }

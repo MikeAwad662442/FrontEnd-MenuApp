@@ -26,6 +26,7 @@ export class AppComponent {
   url: string = this.urlService.url;
   dir$ = new BehaviorSubject<string>('rtl');
   menuDir$ = new BehaviorSubject<string>('start');
+  connectServer$ = new BehaviorSubject<boolean>(false);
   // === SocialMedia === //
   social: SocialMedia[] = []; // === Get SocialMedia as ARRAY
   socialActive: SocialMedia[] = [];
@@ -42,7 +43,7 @@ export class AppComponent {
     private routerURL: ActivatedRoute
   ) {
     this.socketService.setupSocketConnection().then(() => {
-      this.languageService.appLang();
+      this.languageService.appLang(this.url);
       this.direction();
       this.url = this.urlService.url;
       // console.log('First Page URL: ', this.url);
@@ -64,6 +65,10 @@ export class AppComponent {
         this.menuDir$.next('start');
         // console.log('MENU Direction', this.menuDir$.getValue());
       }
+    });
+    this.socketService.connectServer$.subscribe((res) => {
+      this.connectServer$.next(res);
+      // this.connectServer$.value
     });
   }
   // === Get Direction to APP from BehaviorSubject {{direction$}} from Language Server === //
