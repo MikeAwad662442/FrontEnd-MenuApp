@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 // === Services === //
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { UrlService } from 'src/app/Services/Server/url.service';
@@ -23,7 +23,7 @@ export class LanguagePage implements OnInit {
   });
   constructor(
     private fb: FormBuilder,
-    private routerURL: ActivatedRoute,
+    // private routerURL: ActivatedRoute,
     private urlService: UrlService,
     private alertServer: AlertService,
     private languageService: LanguageService
@@ -38,32 +38,28 @@ export class LanguagePage implements OnInit {
   }
   // === get all items from Languages DB === //
   getLanguage() {
-    this.languageService
-      .langGetAll(this.url)
-      // .pipe(take(1))
-      .subscribe((res: Language[]) => {
-        if (res.length !== 0) {
-          this.language = res;
-          this.language.forEach((data: Language) => {
-            if (data.default === true) {
-              this.defaultLang = data.id;
-            }
-            this.lanGuaGes.push(this.arrayFormGroup(data));
-          });
-        } else {
-          this.language = defaultLanguage;
-          this.language.forEach((data: Language) => {
-            if (data.default === true) {
-              this.defaultLang = data.id;
-            }
-            this.lanGuaGes.push(this.arrayFormGroup(data));
-          });
-        }
-
-        this.upLanguage.patchValue({
-          languages: this.lanGuaGes.value,
+    this.languageService.langGetAll(this.url).subscribe((res: Language[]) => {
+      if (res.length !== 0) {
+        this.language = res;
+        this.language.forEach((data: Language) => {
+          if (data.default === true) {
+            this.defaultLang = data.id;
+          }
+          this.lanGuaGes.push(this.arrayFormGroup(data));
         });
+      } else {
+        this.language = defaultLanguage;
+        this.language.forEach((data: Language) => {
+          if (data.default === true) {
+            this.defaultLang = data.id;
+          }
+          this.lanGuaGes.push(this.arrayFormGroup(data));
+        });
+      }
+      this.upLanguage.patchValue({
+        languages: this.lanGuaGes.value,
       });
+    });
   }
   // === get all items from Languages DB === //
   // === Form Array === //

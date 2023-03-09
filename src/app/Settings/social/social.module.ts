@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { SocialPageRoutingModule } from './social-routing.module';
-
+// === Page === //
 import { SocialPage } from './social.page';
-
+import { SocialPageRoutingModule } from './social-routing.module';
+// === Page === //
+// == plugins = //
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //  Insert FORMS
+// == plugins = //
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    SocialPageRoutingModule
+    SocialPageRoutingModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [SocialPage]
+  declarations: [SocialPage],
 })
 export class SocialPageModule {}

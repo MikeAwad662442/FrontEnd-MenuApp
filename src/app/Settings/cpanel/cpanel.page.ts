@@ -16,16 +16,62 @@ import { SocialMedia } from 'src/app/Model/cPanel/social.model';
 })
 export class CpanelPage implements OnInit {
   url: string = this.urlService.url;
+  // === Language === //
+  language!: Language[]; // === Get Language as ARRAY
+  languageActive!: Language[];
+  languageDefault!: string;
+  // === Language === //
+  // === SocialMedia === //
+  social!: SocialMedia[]; // === Get SocialMedia as ARRAY
+  socialActive!: SocialMedia[];
+  // === SocialMedia === //
   constructor(
     private urlService: UrlService,
     private languageService: LanguageService,
     private socialService: SocialService
   ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.allLanguage();
+    await this.allSocialMedia();
+  }
+  // === get all items from Languages DB === //
   async allLanguage() {
+    this.languageActive = [];
     this.languageService
       .langGetAll(this.url)
-      .subscribe((res: Language[]) => {});
+      // .pipe(take(1))
+      .subscribe((res) => {
+        this.language = res;
+        this.language.forEach((data: Language) => {
+          if (data.active === true) {
+            this.languageActive.push(data);
+          }
+          if (data.default === true) {
+            this.languageDefault = data.name;
+          }
+        });
+        // console.log('language', this.language);
+      });
   }
+  // === get all items from Languages DB === //
+  // === get all items from Social Media DB === //
+  async allSocialMedia() {
+    this.socialActive = [];
+    this.socialService
+      // .socialMediaGetAll()
+      .socialMediaGetAll(this.url)
+      // .pipe(take(1))
+      .subscribe((res) => {
+        this.social = res;
+        this.social.forEach((data: SocialMedia) => {
+          if (data.active === true) {
+            this.socialActive.push(data);
+          }
+        });
+        // console.log('social', this.social);
+        // console.log('socialActive', this.socialActive);
+      });
+  }
+  // === get all items from Social Media DB === //
 }

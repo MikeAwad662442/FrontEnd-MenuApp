@@ -7,17 +7,14 @@ import { SocketService } from '../Server/socket.service';
 import { ExpressService } from '../Server/express.service';
 // === Services === //
 // === Models ===== //
-import {
-  SocialMedia,
-  defaultSocialMedia,
-} from 'src/app/Model/cPanel/social.model';
+import { SocialMedia } from 'src/app/Model/cPanel/social.model';
 // === Models ===== //
 @Injectable({
   providedIn: 'root',
 })
 export class SocialService {
-  public socialMedia = new Subject<SocialMedia[]>();
-  public result = new Subject<SocialMedia[]>();
+  socialMedia = new Subject<SocialMedia[]>();
+  result = new Subject<SocialMedia[]>();
   constructor(
     private http: HttpClient,
     private socketServer: SocketService,
