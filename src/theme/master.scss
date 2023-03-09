@@ -1,7 +1,8 @@
-// === IMPORT form other scc === //
-@import "./header.scss"; // ======= ION Header & ION Footer ====== //
+// === IMPORT form other CSS === //
+@import "./header.scss"; // === ION Header & ION Footer === //
 @import "./content.scss";
-// === IMPORT form other scc === //
+@import "./error.scss"; // === All ERROR on pages === //
+// === IMPORT form other CSS === //
 * {
   font-size: 20px;
 }
@@ -10,21 +11,4 @@
 h1,
 h2 {
   text-align: center;
-}
-
-.ServerNotConnect {
-  text-align: center;
-  margin: 100px 10px 0px;
-  justify-items: center;
-  img {
-    height: 200px;
-    width: 200px;
-  }
-  ion-text {
-    font-size: 15px;
-    font-style: italic;
-    margin: 20px;
-    text-align: center;
-    color: #fff;
-  }
 }

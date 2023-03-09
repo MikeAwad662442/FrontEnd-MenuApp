@@ -1,0 +1,30 @@
+.ServerNotConnect {
+  text-align: center;
+  margin: 100px 10px 0px;
+  justify-items: center;
+  img {
+    height: 200px;
+    width: 200px;
+  }
+  ion-text {
+    font-size: 15px;
+    font-style: italic;
+    margin: 20px;
+    text-align: center;
+    color: #fff;
+  }
+}
+
+.noLanguageOnDB {
+  text-align: center;
+  // // margin: 0px 10px 0px;
+  // padding-top: -200px;
+  // // justify-items: center;
+  ion-text {
+    font-size: 15px;
+    font-style: italic;
+    margin: 20px;
+    text-align: center;
+    color: #fff;
+  }
+}

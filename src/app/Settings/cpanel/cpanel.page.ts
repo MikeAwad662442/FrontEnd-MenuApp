@@ -23,4 +23,9 @@ export class CpanelPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+  async allLanguage() {
+    this.languageService
+      .langGetAll(this.url)
+      .subscribe((res: Language[]) => {});
+  }
 }

@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { LanguagePageRoutingModule } from './language-routing.module';
-
+// === Page === //
 import { LanguagePage } from './language.page';
-
+import { LanguagePageRoutingModule } from './language-routing.module';
+// === Page === //
+// == plugins = //
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //  Insert FORMS
+// == plugins = //
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    LanguagePageRoutingModule
+    LanguagePageRoutingModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [LanguagePage]
+  declarations: [LanguagePage],
 })
 export class LanguagePageModule {}

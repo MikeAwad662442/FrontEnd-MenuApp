@@ -1,9 +1,71 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>language</ion-title>
+    <ion-title>{{"Setting.Language.Name" |translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <!-- <h1>upLanguage.value</h1>
+  {{upLanguage.value | json}} -->
+  <form [formGroup]="upLanguage" (ngSubmit)="submitForm()" novalidate>
+    <div formArrayName="languages">
+      <ion-item>
+        <ion-label>{{"Setting.Language.DefaultLangAPP" |translate }}</ion-label>
+      </ion-item>
+      <ion-list>
+        <ion-radio-group
+          [value]="defaultLang"
+          (ionChange)="radioGroupChange($event)"
+        >
+          <ion-item *ngFor="let lan of language">
+            <ion-label>{{lan.name | translate}}</ion-label>
+            <ion-radio name="name" [value]="lan.id"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-item>
+        <ion-label>{{"Setting.Language.UsedLangAPP" |translate }}</ion-label>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6"
+            >{{"Setting.Language.language" |translate }}</ion-col
+          >
+          <ion-col size="6">{{"Setting.Language.Active" |translate }}</ion-col>
+        </ion-row>
+        <ion-row
+          *ngFor="let lan of language; let i = index"
+          [formGroupName]="i"
+        >
+          <ion-col size="6">{{lan.name | translate}}</ion-col>
+          <ion-col size="6">
+            <ion-toggle
+              formControlName="active"
+              [checked]="lan.active"
+            ></ion-toggle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button
+          (click)="submitForm()"
+          type="submit"
+          clear
+          [disabled]="upLanguage.invalid"
+        >
+          <ion-icon name="sync-circle"></ion-icon>
+          <ion-label>{{"Setting.Language.UpLang" |translate }}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

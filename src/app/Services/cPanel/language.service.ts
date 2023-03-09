@@ -47,6 +47,7 @@ export class LanguageService {
    * app.component.ts
    */
   appLang(url: string) {
+    // console.log('this.url:', `${url}`);
     // === First Log in to server of APP === /
     // console.log(
     //   'First Log in MENU_LANG',
@@ -94,9 +95,9 @@ export class LanguageService {
    * Popover / Language
    */
   langGetAll(url: string): Observable<Language[]> {
-    // console.log('this.url:', url);
+    // console.log('this.url:', `${url}language/`);
     return this.http
-      .get<Language[]>(`${url}language`)
+      .get<Language[]>(`${url}language/`)
       .pipe(catchError(this.expressService.handleError));
   }
   // === get all items from Languages DB === //
@@ -105,9 +106,9 @@ export class LanguageService {
    * Settings / Language
    */
   langUpdate(url: string, data: Language[]): Observable<Language[]> {
-    // console.log('this.url:', url);
+    console.log('data Default Language', data);
     return this.http
-      .put<Language[]>(`${url}language`, data)
+      .put<Language[]>(`${url}language/`, data)
       .pipe(catchError(this.expressService.handleError));
   }
   // === Update all items to Languages DB === //

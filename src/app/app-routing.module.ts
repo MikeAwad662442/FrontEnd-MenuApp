@@ -95,29 +95,38 @@ const routes: Routes = [
     ],
   },
   // === Events === //
-  {
-    path: 'language',
-    loadChildren: () =>
-      import('./Popover/language/language.module').then(
-        (m) => m.LanguagePageModule
-      ),
-  },
+  // {
+  //   path: 'language',
+  //   loadChildren: () =>
+  //     import('./Popover/language/language.module').then(
+  //       (m) => m.LanguagePageModule
+  //     ),
+  // },
   {
     path: 'cpanel',
-    loadChildren: () =>
-      import('./Settings/cpanel/cpanel.module').then((m) => m.CpanelPageModule),
-  },
-  {
-    path: 'language',
-    loadChildren: () =>
-      import('./Settings/language/language.module').then(
-        (m) => m.LanguagePageModule
-      ),
-  },
-  {
-    path: 'social',
-    loadChildren: () =>
-      import('./Settings/social/social.module').then((m) => m.SocialPageModule),
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./Settings/cpanel/cpanel.module').then(
+            (m) => m.CpanelPageModule
+          ),
+      },
+      {
+        path: 'language',
+        loadChildren: () =>
+          import('./Settings/language/language.module').then(
+            (m) => m.LanguagePageModule
+          ),
+      },
+      {
+        path: 'social',
+        loadChildren: () =>
+          import('./Settings/social/social.module').then(
+            (m) => m.SocialPageModule
+          ),
+      },
+    ],
   },
 ];
 

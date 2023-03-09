@@ -23,7 +23,7 @@ import { LanguagePage } from 'src/app/Popover/language/language.page';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  url: string = this.urlService.url;
+  url!: string;
   dir$ = new BehaviorSubject<string>('rtl');
   menuDir$ = new BehaviorSubject<string>('start');
   connectServer$ = new BehaviorSubject<boolean>(false);
@@ -43,10 +43,10 @@ export class AppComponent {
     private routerURL: ActivatedRoute
   ) {
     this.socketService.setupSocketConnection().then(() => {
+      this.url = this.urlService.url;
       this.languageService.appLang(this.url);
       this.direction();
-      this.url = this.urlService.url;
-      // console.log('First Page URL: ', this.url);
+      // console.log('First Page URL : ', this.url);
     });
   }
   /**

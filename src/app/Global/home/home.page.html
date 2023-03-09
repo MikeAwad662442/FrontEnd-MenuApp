@@ -7,4 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <div *ngIf="this.newDB === true; else  errorLang"><p>hi</p></div>
+
+  <ng-template #errorLang>
+    <div class="noLanguageOnDB">
+      <ion-text [innerHTML]="'Alert.FIRSTisFIRST' | translate"> </ion-text>
+      <ion-button
+        slot="end"
+        [routerLink]="['/cpanel/language']"
+        color="primary-contrast"
+        fill="“clear”"
+      >
+        <ion-icon color="primary" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ng-template>
+</ion-content>

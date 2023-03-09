@@ -81,7 +81,8 @@
   "Alert": {
     "UpLanguage": "les langues sont mises à jour",
     "UpSocialMedia": "les comptes de médias sociaux sont mis à jour",
-    "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />"
+    "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />",
+    "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP"
   },
       "Arabic": "arabe",
     "English": "Anglais",
