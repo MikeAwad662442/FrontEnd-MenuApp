@@ -1,3 +1,4 @@
+import { Facility } from 'src/app/Model/cPanel/facility.model';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -7,14 +8,18 @@ import { SocketService } from '../Server/socket.service';
 import { ExpressService } from '../Server/express.service';
 // === Services === //
 // === Models ===== //
-import { SocialMedia } from 'src/app/Model/cPanel/social.model';
+import {
+  FullSocialMedia,
+  SocialMedia,
+} from 'src/app/Model/cPanel/social.model';
 // === Models ===== //
 @Injectable({
   providedIn: 'root',
 })
 export class SocialService {
   socialMedia = new Subject<SocialMedia[]>();
-  result = new Subject<SocialMedia[]>();
+  Facility = new Subject<Facility>();
+  // result = new Subject<SocialMedia[]>();
   constructor(
     private http: HttpClient,
     private socketServer: SocketService,
@@ -24,11 +29,17 @@ export class SocialService {
   // ================================================== //
   // === EXPRESS.js == //
   // ================= //
+  getSocialMedia(url: string) {
+    this.socialMediaGetAll(url).subscribe((res: FullSocialMedia) => {
+      this.socialMedia.next(res.cSocialGet);
+      this.Facility.next(res.cFacilityGet);
+    });
+  }
   //  === get all items from SocialMedia DB === //
-  socialMediaGetAll(url: string): Observable<SocialMedia[]> {
+  socialMediaGetAll(url: string): Observable<FullSocialMedia> {
     // console.log('this.url:', url);
     return this.http
-      .get<SocialMedia[]>(`${url}social`)
+      .get<FullSocialMedia>(`${url}social`)
       .pipe(catchError(this.expressService.handleError));
   }
   //  === get all items from SocialMedia DB === //

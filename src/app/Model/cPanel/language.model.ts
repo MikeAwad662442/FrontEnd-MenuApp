@@ -1,3 +1,8 @@
+/**
+ * Export
+ * Language InterFace
+ * Default Language
+ */
 export {
   Language,
   LanguageArray,

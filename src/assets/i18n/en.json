@@ -71,6 +71,21 @@
       "Link": "Link or Number",
       "Active": "Active",
       "UpSocial": "Update Social Media"
+    },
+    "QR": {
+      "wifiName": "Network Name (SSID)",
+      "wifiImage": "Facility LOGO",
+      "wifiPass": "Network Password",
+      "wifiType": "WPA Authentication",
+      "wifiHidden": "Hidden Network",
+      "serverURL": "MENU Server url",
+      "info": {},
+      "ERROR": {
+        "wifiName": "Name must be at least 2 characters long.",
+        "wifiPass": "Password must be at least 8 characters long.",
+        "wifiType": "You must choose the type of connection",
+        "wifiHidden": "Is the network hidden ?"
+      }
     }
   },
   "Language": {
@@ -84,8 +99,7 @@
     "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />",
     "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first"
   },
-     "Arabic": "Arabic",
-    "English": "English",
-    "French": "French"
-
+  "Arabic": "Arabic",
+  "English": "English",
+  "French": "French"
 }

@@ -126,6 +126,25 @@ const routes: Routes = [
             (m) => m.SocialPageModule
           ),
       },
+      {
+        path: 'QR',
+        children: [
+          {
+            path: 'QRadd',
+            loadChildren: () =>
+              import('./Settings/QR/add/add.module').then(
+                (m) => m.AddPageModule
+              ),
+          },
+          {
+            path: 'QRprint',
+            loadChildren: () =>
+              import('./Settings/QR/print/print.module').then(
+                (m) => m.PrintPageModule
+              ),
+          },
+        ],
+      },
     ],
   },
 ];

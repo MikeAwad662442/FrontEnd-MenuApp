@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { SocketService } from 'src/app/Services/Server/socket.service';
@@ -28,8 +28,11 @@ export class AppComponent {
   menuDir$ = new BehaviorSubject<string>('start');
   connectServer$ = new BehaviorSubject<boolean>(false);
   // === SocialMedia === //
-  social: SocialMedia[] = []; // === Get SocialMedia as ARRAY
-  socialActive: SocialMedia[] = [];
+  // social;
+  socialActive = new BehaviorSubject<SocialMedia[]>([]);
+  // socialActive: Observable<SocialMedia[]>;
+
+  // socialActive: SocialMedia[] = [];
   // === SocialMedia === //
   pageArray: MenuArray[] = defaultMenuArray;
   settings: MenuArray[] = defaultMenuArraySettings;
@@ -46,6 +49,7 @@ export class AppComponent {
       this.url = this.urlService.url;
       this.languageService.appLang(this.url);
       this.direction();
+      this.allSocialMedia();
       // console.log('First Page URL : ', this.url);
     });
   }
@@ -74,21 +78,17 @@ export class AppComponent {
   // === Get Direction to APP from BehaviorSubject {{direction$}} from Language Server === //
   // === get all items from Social Media DB === //
   async allSocialMedia() {
-    // this.socialActive = [];
-    this.socialService
-      .socialMediaGetAll(this.urlService.url)
-      // .socialMediaGetAll(this.url)
-      // .pipe(take(1))
-      .subscribe((res) => {
-        this.social = res;
-        this.social.forEach((data: SocialMedia) => {
-          if (data.active === true) {
-            this.socialActive.push(data);
-          }
-        });
-        // console.log('social', this.social);
-        // console.log('socialActive', this.socialActive);
+    this.socialService.getSocialMedia(this.urlService.url);
+    this.socialService.socialMedia.subscribe((res) => {
+      let social: SocialMedia[] = [];
+      res.forEach((data: SocialMedia) => {
+        if (data.active === true) {
+          social.push(data);
+        }
       });
+      this.socialActive.next(social);
+      // console.log(res);
+    });
   }
   // === get all items from Social Media DB === //
 

@@ -42,7 +42,7 @@ export class LanguagePage implements OnInit {
       }
     });
     this.langUS = this.languageService.langUse$.value;
-    console.log('langUS:', this.langUS);
+    // console.log('langUS:', this.langUS);
   }
   langChange(event: Language) {
     // this.languageService.langStorageSetItem(event);

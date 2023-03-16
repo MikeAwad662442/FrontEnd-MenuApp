@@ -1,5 +1,15 @@
-export { SocialMedia, defaultSocialMedia };
+/**
+ * Export
+ * Social Media InterFace
+ * Default Social Media
+ */
+import { Facility } from './facility.model';
+export { FullSocialMedia, SocialMedia, defaultSocialMedia };
 
+interface FullSocialMedia {
+  cSocialGet: [SocialMedia];
+  cFacilityGet: Facility;
+}
 interface SocialMedia {
   id: string;
   icon: string;

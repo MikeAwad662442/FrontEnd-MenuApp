@@ -58,20 +58,15 @@ export class CpanelPage implements OnInit {
   // === get all items from Social Media DB === //
   async allSocialMedia() {
     this.socialActive = [];
-    this.socialService
-      // .socialMediaGetAll()
-      .socialMediaGetAll(this.url)
-      // .pipe(take(1))
-      .subscribe((res) => {
-        this.social = res;
-        this.social.forEach((data: SocialMedia) => {
-          if (data.active === true) {
-            this.socialActive.push(data);
-          }
-        });
-        // console.log('social', this.social);
-        // console.log('socialActive', this.socialActive);
+    this.socialService.getSocialMedia(this.urlService.url);
+    this.socialService.socialMedia.subscribe((res) => {
+      this.social = res;
+      this.social.forEach((data: SocialMedia) => {
+        if (data.active === true) {
+          this.socialActive.push(data);
+        }
       });
+    });
   }
   // === get all items from Social Media DB === //
 }

@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <h1>socialMedia.value</h1>
-  {{socialMedia.value | json}}
+  <!-- <h1>socialMedia.value</h1>
+  {{socialMedia.value | json}} -->
   <form [formGroup]="upSocialMedia" (ngSubmit)="submitForm()" novalidate>
     <ion-grid formArrayName="social">
       <ion-row>
@@ -28,6 +28,7 @@
             [name]="lan.link"
             type="text"
             required
+            class="LTR"
           ></ion-input>
         </ion-col>
         <ion-col size="2">

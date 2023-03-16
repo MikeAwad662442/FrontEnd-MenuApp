@@ -33,29 +33,28 @@ export class SocialPage implements OnInit {
     return this.upSocialMedia.get('social') as FormArray;
   }
   // === Return AS ARRAY === //
-  ngOnInit() {
-    this.getSocialMedia();
+  async ngOnInit() {
+    await this.getSocialMedia();
   }
   // === get all items from Social Media DB === //
-  getSocialMedia() {
-    this.socialService
-      .socialMediaGetAll(this.url)
-      .subscribe((res: SocialMedia[]) => {
-        if (res.length !== 0) {
-          this.social = res;
-          this.social.forEach((data: SocialMedia) => {
-            this.socialMedia.push(this.arrayFormGroup(data));
-          });
-        } else {
-          this.social = defaultSocialMedia;
-          this.social.forEach((data: SocialMedia) => {
-            this.socialMedia.push(this.arrayFormGroup(data));
-          });
-        }
-        this.upSocialMedia.patchValue({
-          social: this.socialMedia.value,
+  async getSocialMedia() {
+    this.socialService.getSocialMedia(this.urlService.url);
+    this.socialService.socialMedia.subscribe((res: SocialMedia[]) => {
+      if (res.length !== 0) {
+        this.social = res;
+        this.social.forEach((data: SocialMedia) => {
+          this.socialMedia.push(this.arrayFormGroup(data));
         });
+      } else {
+        this.social = defaultSocialMedia;
+        this.social.forEach((data: SocialMedia) => {
+          this.socialMedia.push(this.arrayFormGroup(data));
+        });
+      }
+      this.upSocialMedia.patchValue({
+        social: this.socialMedia.value,
       });
+    });
   }
   // === get all items from Social Media DB === //
   // === Form Array === //

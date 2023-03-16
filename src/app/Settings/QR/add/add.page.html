@@ -1,0 +1,181 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>QR</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    class="split2"
+    [formGroup]="qrNetWork"
+    (ngSubmit)="submitForm()"
+    novalidate
+  >
+    <div>
+      <!-- WIFI Network View -->
+      <h1>WIFI</h1>
+      <ngx-qrcode-styling
+        [template]="'arabic'"
+        [data]="'WIFI:S:MGN;P:m@g$n2**%;T:WPA;H:false;'"
+        [image]="
+          'assets/icon/favicon.png'
+        "
+      >
+      </ngx-qrcode-styling>
+      <p>
+        {{'Setting.QR.wifiName' | translate}} : {{qrNetWork.value.wifiName}}
+        <br />
+        {{'Setting.QR.wifiPass' | translate}} : {{qrNetWork.value.wifiPass}} -
+        {{qrNetWork.value.wifiType}}
+        <br />
+        {{'Setting.QR.wifiHidden' | translate}} : {{qrNetWork.value.wifiHidden}}
+      </p>
+      <!-- WIFI Network View -->
+      <!-- WIFI Network Insert -->
+      <!-- Image -->
+      <ion-item>
+        <ion-label position="fixed"
+          >{{'Setting.QR.wifiImage' | translate}} :</ion-label
+        >
+        <ion-input
+          formControlName="wifiImage"
+          name="image"
+          type="file"
+          (change)="onFileChange($event)"
+          required
+        ></ion-input>
+      </ion-item>
+      <!-- Image -->
+      <!-- WIFI Name -->
+      <ion-item>
+        <ion-label position="floating"
+          >{{'Setting.QR.wifiName' | translate}} :</ion-label
+        >
+        <ion-input
+          formControlName="wifiName"
+          name="wifiName"
+          type="text"
+        ></ion-input>
+      </ion-item>
+      <p class="error" *ngIf="!qrNetWork.get('wifiName')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Setting.QR.ERROR.wifiName' | translate}}
+      </p>
+      <!-- WIFI Name -->
+      <!-- WIFI Hidden -->
+      <ion-item>
+        <ion-label position="fixed"
+          >{{'Setting.QR.wifiHidden' | translate}}</ion-label
+        >
+        <label>
+          <input
+            type="radio"
+            name="wifiHidden"
+            formControlName="wifiHidden"
+            [value]="true"
+          />Yes /
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="wifiHidden"
+            formControlName="wifiHidden"
+            [value]="false"
+          />
+          No
+        </label>
+      </ion-item>
+      <p class="error" *ngIf="!qrNetWork.get('wifiHidden')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Setting.QR.ERROR.wifiHidden' | translate}}
+      </p>
+      <!-- WIFI Hidden -->
+      <!-- WIFI Password Type -->
+      <ion-item>
+        <ion-label>{{'Setting.QR.wifiType' | translate}}</ion-label>
+        <ion-select
+          interface="popover"
+          formControlName="wifiType"
+          name="wifiType"
+          placeholder="Select One"
+          slot="end"
+        >
+          <ion-select-option
+            *ngFor="let PassType of wifiPassType "
+            [value]="PassType"
+            >{{PassType}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <p class="error" *ngIf="!qrNetWork.get('wifiType')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Setting.QR.ERROR.wifiType' | translate}}
+      </p>
+      <!-- WIFI Password Type -->
+      <!-- WIFI Password -->
+      <div *ngIf="qrNetWork.value.wifiType !== 'None'">
+        <ion-item>
+          <ion-label position="floating"
+            >{{'Setting.QR.wifiPass' | translate}}</ion-label
+          >
+          <ion-input
+            formControlName="wifiPass"
+            name="wifiPass"
+            type="text"
+          ></ion-input>
+        </ion-item>
+        <p class="error" *ngIf="!qrNetWork.get('wifiPass')?.valid">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+          {{'Setting.QR.ERROR.wifiPass' | translate}}
+        </p>
+      </div>
+      <!-- WIFI Password -->
+      <!-- WIFI Network Insert -->
+    </div>
+    <div>
+      <h1>Menu Server</h1>
+      <ngx-qrcode-styling
+        [template]="'arabic'"
+        [data]="url"
+        [image]="
+          'assets/icon/favicon.png'
+        "
+      >
+      </ngx-qrcode-styling>
+      <p>
+        {{"Setting.QR.serverURL" | translate}} :
+        <span class="LTR">{{qrNetWork.value.serverURL}}</span>
+      </p>
+    </div>
+  </form>
+</ion-content>
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button
+          (click)="submitForm()"
+          type="submit"
+          clear
+          [disabled]="qrNetWork.invalid"
+        >
+          <ion-icon name="sync-outline"></ion-icon>
+          <ion-label>تحديث معلومات الاتصال</ion-label>
+        </ion-tab-button>
+        <ion-tab-button
+          [routerLink]="['/QR/print']"
+          clear
+          [disabled]="qrNetWork.invalid"
+        >
+          <ion-icon name="print-outline"></ion-icon>
+          <ion-label>طباعة</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+<!-- Footer -->
