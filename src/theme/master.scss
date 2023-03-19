@@ -16,12 +16,13 @@ h2 {
 }
 .LTR {
   direction: ltr;
+  text-align: left;
 }
 // ion-split-pane {
 //   width: 300px;
 // }
 ion-menu {
-  --width: 200px;
+  --width: 250px;
 }
 .split2 {
   display: grid;

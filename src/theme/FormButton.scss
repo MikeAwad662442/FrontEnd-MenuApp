@@ -1,12 +1,36 @@
+@import "./variables.scss";
 // === Use Angular
 input.ng-invalid.ng-touched {
   border: red 1px solid;
 }
-// ion-select {
-//   width: 100px;
-// }
+
+form {
+  // === Form ion-card === //
+  .FormCard {
+    text-align: center;
+    max-height: 100%;
+    ion-avatar {
+      margin: 2vmax auto;
+      width: 200px;
+      height: 200px;
+      clear: both;
+      border: 1px solid;
+      box-shadow: 5px 5px 8px #888888;
+      border-radius: 100%;
+    }
+  }
+  // === Form ion-card === //
+  // h1{
+  //   text-align: center;
+  // }
+}
+
 // error massage
 .error {
   color: red;
   font-size: 0.8em;
+}
+// hidden Input Type File
+.file-input {
+  display: none;
 }

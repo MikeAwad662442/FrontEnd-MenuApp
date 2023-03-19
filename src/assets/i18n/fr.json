@@ -63,14 +63,22 @@
       "UsedLangAPP": "Langues utilisées dans l'APP",
       "language": "Langue",
       "Active": "actif",
-      "UpLang": "Mettre à jour les langues"
+      "UpLang": "Mettre à jour les langues",
+      "ERROR": {
+        "FacilityName": "Le nom de l'établissement est requis.",
+        "FacilityImageType": "Le type d'entrée doit être Image."
+      }
     },
     "SocialMedia": {
-      "Name": "Des médias sociaux",
+      "Name": "Informations sur l'établissement",
+      "Personal": "Informations personnelles",
+      "SocialMedia": "Médias sociaux",
+      "FacilityName": "Nom de l'installation",
+      "FacilityImage": "LOGO de l'établissement",
       "Icon": "Icônes",
       "Link": "Lien ou numéro",
       "Active": "Actif",
-      "UpSocial": "Mettre à jour les médias sociaux"
+      "UpSocial": "Mettre à jour"
     }
   },
   "Language": {
@@ -84,7 +92,7 @@
     "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />",
     "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP"
   },
-      "Arabic": "arabe",
-    "English": "Anglais",
-    "French": "Français"
+  "Arabic": "arabe",
+  "English": "Anglais",
+  "French": "Français"
 }

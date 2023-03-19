@@ -8,56 +8,58 @@
 </ion-header>
 
 <ion-content>
-  <!-- Languages -->
-  <ion-list [inset]="true">
-    <h1>{{"Setting.Language.Name" |translate }}</h1>
-    <ion-item>
-      <ion-label>{{"Setting.Language.Default" |translate }}</ion-label>
-      <ion-button slot="end" [routerLink]="['/cpanel/language']">
-        {{languageDefault |translate }}
-        <ion-icon name="sync" slot="end"></ion-icon>
-      </ion-button>
-    </ion-item>
-    <ion-item>
-      <ion-label>{{"Setting.Language.ActiveLang" |translate }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-avatar
-        class="small-avatar"
-        *ngFor="let lan of languageActive"
-        [routerLink]="['/cpanel/language']"
-      >
-        <img src="assets/icon/{{lan.id}}.webp" />
-      </ion-avatar>
-    </ion-item>
-  </ion-list>
-  <!-- Languages -->
-  <!-- SocialMedia -->
-  <ion-list [inset]="true">
-    <h1>{{"Setting.SocialMedia.Name" |translate }}</h1>
-    <ion-item *ngFor="let social of socialActive">
-      <a [href]="social.link" target="_blank" slot="start">
-        <ion-icon [name]="social.icon"></ion-icon>
-      </a>
-      <a
-        class="social-size"
-        *ngIf="social.id === 'whatsapp'"
-        [href]="['https://wa.me/'+social.link]"
-        target="_blank"
-        >{{social.link}}</a
-      >
-      <a
-        class="social-size"
-        *ngIf="social.id !== 'whatsapp'"
-        [href]="social.link"
-        target="_blank"
-        >{{social.link}}</a
-      >
-      <ion-button slot="end" [routerLink]="['/cpanel/social']">
-        <ion-icon name="sync"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+  <div class="split2">
+    <!-- Languages -->
+    <ion-list [inset]="true">
+      <h1>{{"Setting.Language.Name" |translate }}</h1>
+      <ion-item>
+        <ion-label>{{"Setting.Language.Default" |translate }}</ion-label>
+        <ion-button slot="end" [routerLink]="['/cpanel/language']">
+          {{languageDefault |translate }}
+          <ion-icon name="sync" slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{"Setting.Language.ActiveLang" |translate }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-avatar
+          class="small-avatar"
+          *ngFor="let lan of languageActive"
+          [routerLink]="['/cpanel/language']"
+        >
+          <img src="assets/icon/{{lan.id}}.webp" />
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+    <!-- Languages -->
+    <!-- SocialMedia -->
+    <ion-list [inset]="true">
+      <h1>{{"Setting.SocialMedia.Name" |translate }}</h1>
+      <ion-item *ngFor="let social of socialActive">
+        <a [href]="social.link" target="_blank" slot="start">
+          <ion-icon [name]="social.icon"></ion-icon>
+        </a>
+        <a
+          class="social-size"
+          *ngIf="social.id === 'whatsapp'"
+          [href]="['https://wa.me/'+social.link]"
+          target="_blank"
+          >{{social.link}}</a
+        >
+        <a
+          class="social-size"
+          *ngIf="social.id !== 'whatsapp'"
+          [href]="social.link"
+          target="_blank"
+          >{{social.link}}</a
+        >
+        <ion-button slot="end" [routerLink]="['/cpanel/social']">
+          <ion-icon name="sync"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
 
 <ion-footer>

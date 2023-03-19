@@ -8,7 +8,7 @@ export { FullSocialMedia, SocialMedia, defaultSocialMedia };
 
 interface FullSocialMedia {
   cSocialGet: [SocialMedia];
-  cFacilityGet: Facility;
+  cFacilityGet: [Facility];
 }
 interface SocialMedia {
   id: string;

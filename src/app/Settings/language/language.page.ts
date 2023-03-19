@@ -91,7 +91,7 @@ export class LanguagePage implements OnInit {
   // === Send Update DATA to Server === //
   submitForm() {
     const res: Language[] = this.upLanguage.get('languages')?.value;
-    // console.log('languages value', res);
+    console.log('languages value', res);
     res.forEach((data: Language) => {
       if (data.default === true) {
         this.languageService.saveLanguage(data.direction, data.id);

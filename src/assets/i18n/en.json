@@ -66,15 +66,22 @@
       "UpLang": "Update Languages"
     },
     "SocialMedia": {
-      "Name": "Social Media",
+      "Name": "Facility Info",
+      "Personal": "Personal Info",
+      "SocialMedia": "Social Media",
+      "FacilityName": "Facility Name",
+      "FacilityImage": "Facility LOGO",
       "Icon": "Icons",
       "Link": "Link or Number",
       "Active": "Active",
-      "UpSocial": "Update Social Media"
+      "UpSocial": "Update",
+      "ERROR": {
+        "FacilityName": "Facility name is required.",
+        "FacilityImageType": "The Input Type must to be Image."
+      }
     },
     "QR": {
       "wifiName": "Network Name (SSID)",
-      "wifiImage": "Facility LOGO",
       "wifiPass": "Network Password",
       "wifiType": "WPA Authentication",
       "wifiHidden": "Hidden Network",
