@@ -32,11 +32,16 @@ ion-menu {
   text-align: center;
   div {
     background-color: var(--ion-color-step-50);
+
     p {
       direction: ltr;
       text-align: left;
       margin-left: 20px;
     }
+  }
+  ion-list {
+    margin: 0 !important;
+    padding: 5px !important;
   }
   @media screen and (max-width: 760px) {
     grid-template-columns: repeat(1, 1fr);

@@ -65,7 +65,7 @@ export class SocialPage implements OnInit {
     // === get Facility Info === //
     this.socialService.Facility.subscribe((res: Facility[]) => {
       if (res.length !== 0) {
-        console.log('Facility ::', res);
+        // console.log('Facility ::', res);
         res.forEach((data: Facility) => {
           this.FacilityInfo.patchValue({
             upFacility: {
@@ -180,7 +180,7 @@ export class SocialPage implements OnInit {
         if (res === true) {
           this.alertServer.showAlert('Alert.UpSocialMedia', '/cpanel');
         }
-        console.log('IF everything work well', res);
+        // console.log('IF everything work well', res);
       });
   }
   // === Send Update DATA to Server === //

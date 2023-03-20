@@ -8,6 +8,7 @@ import { SocialService } from 'src/app/Services/cPanel/social.service';
 // === Models ===== //
 import { Language } from 'src/app/Model/cPanel/language.model';
 import { SocialMedia } from 'src/app/Model/cPanel/social.model';
+import { Facility } from 'src/app/Model/cPanel/facility.model';
 // === Models ===== //
 @Component({
   selector: 'app-cpanel',
@@ -23,8 +24,12 @@ export class CpanelPage implements OnInit {
   // === Language === //
   // === SocialMedia === //
   social!: SocialMedia[]; // === Get SocialMedia as ARRAY
-  socialActive!: SocialMedia[];
+  socialActive: SocialMedia[] = [];
   // === SocialMedia === //
+  // === Facility INFO === //
+  FacilityName: string = 'MENU App';
+  imageSrc = './assets/icon/favicon.png';
+  // === Facility INFO === //
   constructor(
     private urlService: UrlService,
     private languageService: LanguageService,
@@ -57,9 +62,17 @@ export class CpanelPage implements OnInit {
   // === get all items from Languages DB === //
   // === get all items from Social Media DB === //
   async allSocialMedia() {
-    this.socialActive = [];
     this.socialService.getSocialMedia(this.urlService.url);
-    this.socialService.socialMedia.subscribe((res) => {
+    // === get Facility Info === //
+    this.socialService.Facility.subscribe((res: Facility[]) => {
+      res.forEach((data: Facility) => {
+        this.imageSrc = data.image;
+        this.FacilityName = data.name;
+      });
+    });
+    // === get Facility Info === //
+    // === get Social Media === //
+    this.socialService.socialMedia.subscribe((res: SocialMedia[]) => {
       this.social = res;
       this.social.forEach((data: SocialMedia) => {
         if (data.active === true) {
@@ -67,6 +80,17 @@ export class CpanelPage implements OnInit {
         }
       });
     });
+    // === get Social Media === //
+    // this.socialActive = [];
+    // this.socialService.getSocialMedia(this.urlService.url);
+    // this.socialService.socialMedia.subscribe((res) => {
+    //   this.social = res;
+    //   this.social.forEach((data: SocialMedia) => {
+    //     if (data.active === true) {
+    //       this.socialActive.push(data);
+    //     }
+    //   });
+    // });
   }
   // === get all items from Social Media DB === //
 }
