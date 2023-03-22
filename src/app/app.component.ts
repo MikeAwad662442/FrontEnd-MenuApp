@@ -79,7 +79,7 @@ export class AppComponent {
   // === get all items from Social Media DB === //
   async allSocialMedia() {
     this.socialService.getSocialMedia(this.urlService.url);
-    this.socialService.socialMedia.subscribe((res) => {
+    this.socialService.socialMedia$.subscribe((res) => {
       let social: SocialMedia[] = [];
       res.forEach((data: SocialMedia) => {
         if (data.active === true) {

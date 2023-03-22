@@ -97,7 +97,7 @@ export class LanguageService {
   langGetAll(url: string): Observable<Language[]> {
     // console.log('this.url:', `${url}language/`);
     return this.http
-      .get<Language[]>(`${url}language/`)
+      .get<Language[]>(`${url}/language/`)
       .pipe(catchError(this.expressService.handleError));
   }
   // === get all items from Languages DB === //
@@ -108,7 +108,7 @@ export class LanguageService {
   langUpdate(url: string, data: Language[]): Observable<Language[]> {
     console.log('data Default Language', data);
     return this.http
-      .put<Language[]>(`${url}language/`, data)
+      .put<Language[]>(`${url}/language/`, data)
       .pipe(catchError(this.expressService.handleError));
   }
   // === Update all items to Languages DB === //
@@ -119,7 +119,7 @@ export class LanguageService {
   langActive(url: string): Observable<Language[]> {
     // console.log('this.url:', url);
     return this.http
-      .get<Language[]>(`${url}language/langActive`)
+      .get<Language[]>(`${url}/language/langActive`)
       .pipe(catchError(this.expressService.handleError));
   }
   // ================= //

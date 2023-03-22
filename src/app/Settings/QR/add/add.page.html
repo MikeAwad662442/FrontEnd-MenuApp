@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content>
+  <!-- <h1>QR.value</h1>
+  {{qrNetWork.value | json}} -->
   <form
     class="split2"
     [formGroup]="qrNetWork"
@@ -17,38 +19,28 @@
     <div>
       <!-- WIFI Network View -->
       <h1>WIFI</h1>
-      <ngx-qrcode-styling
-        [template]="'arabic'"
-        [data]="'WIFI:S:MGN;P:m@g$n2**%;T:WPA;H:false;'"
-        [image]="
-          'assets/icon/favicon.png'
-        "
-      >
-      </ngx-qrcode-styling>
-      <p>
-        {{'Setting.QR.wifiName' | translate}} : {{qrNetWork.value.wifiName}}
-        <br />
-        {{'Setting.QR.wifiPass' | translate}} : {{qrNetWork.value.wifiPass}} -
-        {{qrNetWork.value.wifiType}}
-        <br />
-        {{'Setting.QR.wifiHidden' | translate}} : {{qrNetWork.value.wifiHidden}}
-      </p>
+      <ngx-qrcode-styling #wifiQR></ngx-qrcode-styling>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5">{{'Setting.QR.wifiName' | translate}} : </ion-col>
+          <ion-col size="7" class="LTR">{{qrNetWork.value.wifiName}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5"> {{'Setting.QR.wifiPass' | translate}} : </ion-col>
+          <ion-col size="7" class="LTR"
+            >{{qrNetWork.value.wifiPass}} /
+            {{qrNetWork.value.wifiType}}</ion-col
+          >
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            {{'Setting.QR.wifiHidden' | translate}} :
+          </ion-col>
+          <ion-col size="7" class="LTR">{{qrNetWork.value.wifiHidden}}</ion-col>
+        </ion-row>
+      </ion-grid>
       <!-- WIFI Network View -->
       <!-- WIFI Network Insert -->
-      <!-- Image -->
-      <ion-item>
-        <ion-label position="fixed"
-          >{{'Setting.QR.wifiImage' | translate}} :</ion-label
-        >
-        <ion-input
-          formControlName="wifiImage"
-          name="image"
-          type="file"
-          (change)="onFileChange($event)"
-          required
-        ></ion-input>
-      </ion-item>
-      <!-- Image -->
       <!-- WIFI Name -->
       <ion-item>
         <ion-label position="floating"
@@ -58,6 +50,7 @@
           formControlName="wifiName"
           name="wifiName"
           type="text"
+          class="LTR"
         ></ion-input>
       </ion-item>
       <p class="error" *ngIf="!qrNetWork.get('wifiName')?.valid">
@@ -125,6 +118,7 @@
             formControlName="wifiPass"
             name="wifiPass"
             type="text"
+            class="LTR"
           ></ion-input>
         </ion-item>
         <p class="error" *ngIf="!qrNetWork.get('wifiPass')?.valid">
@@ -137,14 +131,7 @@
     </div>
     <div>
       <h1>Menu Server</h1>
-      <ngx-qrcode-styling
-        [template]="'arabic'"
-        [data]="url"
-        [image]="
-          'assets/icon/favicon.png'
-        "
-      >
-      </ngx-qrcode-styling>
+      <ngx-qrcode-styling #serverQR> </ngx-qrcode-styling>
       <p>
         {{"Setting.QR.serverURL" | translate}} :
         <span class="LTR">{{qrNetWork.value.serverURL}}</span>
@@ -164,15 +151,15 @@
           [disabled]="qrNetWork.invalid"
         >
           <ion-icon name="sync-outline"></ion-icon>
-          <ion-label>تحديث معلومات الاتصال</ion-label>
+          <ion-label>{{"Setting.QR.UpQR" | translate}}</ion-label>
         </ion-tab-button>
         <ion-tab-button
-          [routerLink]="['/QR/print']"
+          [routerLink]="['/cpanel/QR/QRprint']"
           clear
           [disabled]="qrNetWork.invalid"
         >
           <ion-icon name="print-outline"></ion-icon>
-          <ion-label>طباعة</ion-label>
+          <ion-label>{{"Setting.QR.print" | translate}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

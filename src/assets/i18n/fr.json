@@ -63,7 +63,7 @@
       "UsedLangAPP": "Langues utilisées dans l'APP",
       "language": "Langue",
       "Active": "actif",
-      "UpLang": "Mettre à jour les langues",
+      "UpLang": "Mettre à jour",
       "ERROR": {
         "FacilityName": "Le nom de l'établissement est requis.",
         "FacilityImageType": "Le type d'entrée doit être Image."
@@ -79,6 +79,22 @@
       "Link": "Lien ou numéro",
       "Active": "Actif",
       "UpSocial": "Mettre à jour"
+    },
+        "QR": {
+      "wifiName": "Nom du réseau (SSID)",
+      "wifiPass": "Mot de passe réseau",
+      "wifiType": "Authentification WPA",
+      "wifiHidden": "Réseau caché",
+      "serverURL": "MENU URL du serveur",
+      "UpQR": "Mettre à jour",
+      "print":"Imprimer",
+      "info": {},
+      "ERROR": {
+        "wifiName": "Le nom doit comporter au moins 2 caractères.",
+        "wifiPass": "Le mot de passe doit comporter au moins 8 caractères.",
+        "wifiType": "Vous devez choisir le type de connexion",
+        "wifiHidden": "Le réseau est-il masqué ?"
+      }
     }
   },
   "Language": {

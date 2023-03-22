@@ -63,7 +63,7 @@
       "UsedLangAPP": "اللغات المستخدمة في التطبيق",
       "language": "اللغة",
       "Active": "فعال",
-      "UpLang": "تحديث قائمة اللغات"
+      "UpLang": "تحديث"
     },
     "SocialMedia": {
       "Name": "معلومات المنشأة",
@@ -86,6 +86,8 @@
       "wifiType": "نوع تشفير الشبكة",
       "wifiHidden": "الشبكة المخفية",
       "serverURL": "MENU Server url",
+      "UpQR": "تحديث",
+      "print":"طباعة",
       "info": {},
       "ERROR": {
         "wifiName": "يجب أن يتكون الاسم من حرفين على الأقل.",

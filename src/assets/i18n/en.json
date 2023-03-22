@@ -63,7 +63,7 @@
       "UsedLangAPP": "Languages used in the APP",
       "language": "language",
       "Active": "active",
-      "UpLang": "Update Languages"
+      "UpLang": "Update"
     },
     "SocialMedia": {
       "Name": "Facility Info",
@@ -86,6 +86,8 @@
       "wifiType": "WPA Authentication",
       "wifiHidden": "Hidden Network",
       "serverURL": "MENU Server url",
+      "UpQR": "Update",
+      "print":"Print",
       "info": {},
       "ERROR": {
         "wifiName": "Name must be at least 2 characters long.",

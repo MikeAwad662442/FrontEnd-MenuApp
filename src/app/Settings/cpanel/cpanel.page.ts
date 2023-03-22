@@ -16,7 +16,10 @@ import { Facility } from 'src/app/Model/cPanel/facility.model';
   styleUrls: ['./cpanel.page.scss'],
 })
 export class CpanelPage implements OnInit {
+  // === URL === //
   url: string = this.urlService.url;
+  imageURL: string = this.url + '/gallery/';
+  // === URL === //
   // === Language === //
   language!: Language[]; // === Get Language as ARRAY
   languageActive!: Language[];
@@ -64,7 +67,7 @@ export class CpanelPage implements OnInit {
   async allSocialMedia() {
     this.socialService.getSocialMedia(this.urlService.url);
     // === get Facility Info === //
-    this.socialService.Facility.subscribe((res: Facility[]) => {
+    this.socialService.Facility$.subscribe((res: Facility[]) => {
       res.forEach((data: Facility) => {
         this.imageSrc = data.image;
         this.FacilityName = data.name;
@@ -72,7 +75,7 @@ export class CpanelPage implements OnInit {
     });
     // === get Facility Info === //
     // === get Social Media === //
-    this.socialService.socialMedia.subscribe((res: SocialMedia[]) => {
+    this.socialService.socialMedia$.subscribe((res: SocialMedia[]) => {
       this.social = res;
       this.social.forEach((data: SocialMedia) => {
         if (data.active === true) {

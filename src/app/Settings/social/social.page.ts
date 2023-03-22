@@ -20,6 +20,7 @@ import {
 })
 export class SocialPage implements OnInit {
   url: string = this.urlService.url;
+  imageURL: string = this.url + '/gallery/';
   social!: SocialMedia[]; // === Get SocialMedia as ARRAY
   defaultIMG: any = 'assets/icon/favicon.png';
   // === to get Filses Info === //
@@ -63,7 +64,7 @@ export class SocialPage implements OnInit {
   async getSocialMedia() {
     this.socialService.getSocialMedia(this.urlService.url);
     // === get Facility Info === //
-    this.socialService.Facility.subscribe((res: Facility[]) => {
+    this.socialService.Facility$.subscribe((res: Facility[]) => {
       if (res.length !== 0) {
         // console.log('Facility ::', res);
         res.forEach((data: Facility) => {
@@ -80,7 +81,7 @@ export class SocialPage implements OnInit {
     });
     // === get Facility Info === //
     // === get Social Media === //
-    this.socialService.socialMedia.subscribe((res: SocialMedia[]) => {
+    this.socialService.socialMedia$.subscribe((res: SocialMedia[]) => {
       if (res.length !== 0) {
         this.social = res;
         this.social.forEach((data: SocialMedia) => {

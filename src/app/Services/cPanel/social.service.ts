@@ -17,8 +17,8 @@ import {
   providedIn: 'root',
 })
 export class SocialService {
-  socialMedia = new Subject<SocialMedia[]>();
-  Facility = new Subject<Facility[]>();
+  socialMedia$ = new Subject<SocialMedia[]>();
+  Facility$ = new Subject<Facility[]>();
   // result = new Subject<SocialMedia[]>();
   constructor(
     private http: HttpClient,
@@ -31,15 +31,15 @@ export class SocialService {
   // ================= //
   getSocialMedia(url: string) {
     this.socialMediaGetAll(url).subscribe((res: FullSocialMedia) => {
-      this.socialMedia.next(res.cSocialGet);
-      this.Facility.next(res.cFacilityGet);
+      this.socialMedia$.next(res.cSocialGet);
+      this.Facility$.next(res.cFacilityGet);
     });
   }
   //  === get all items from SocialMedia DB === //
   socialMediaGetAll(url: string): Observable<FullSocialMedia> {
     // console.log('this.url:', url);
     return this.http
-      .get<FullSocialMedia>(`${url}social/`)
+      .get<FullSocialMedia>(`${url}/social/`)
       .pipe(catchError(this.expressService.handleError));
   }
   //  === get all items from SocialMedia DB === //
@@ -47,7 +47,7 @@ export class SocialService {
   socialMediaUpdate(url: string, data: any): Observable<FullSocialMedia> {
     // console.log('this.url:', url);
     return this.http
-      .put<FullSocialMedia>(`${url}social/`, data)
+      .put<FullSocialMedia>(`${url}/social/`, data)
       .pipe(catchError(this.expressService.handleError));
   }
   //  === Update all items to SocialMedia DB === //

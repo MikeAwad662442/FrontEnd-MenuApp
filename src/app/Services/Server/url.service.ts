@@ -19,7 +19,7 @@ export class UrlService {
       .then((res) => res.json())
       .then((json) => {
         this.serverIp = json;
-        this.url = `http://${this.serverIp.ip}:${this.serverIp.port}/`;
+        this.url = `http://${this.serverIp.ip}:${this.serverIp.port}`;
       });
     // console.log('UrlService URL:', this.url);
     return this.url;

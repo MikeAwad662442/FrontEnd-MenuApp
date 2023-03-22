@@ -5,29 +5,28 @@
 import { Facility } from './facility.model';
 export { QR, FullQR };
 // ===== QR ===== //
-
+interface FullQR {
+  cQR_Get: [QR];
+  cFacilityGet: [Facility];
+}
 // WIFI:
 // T:   ['None', 'WEP', 'WPA', 'WPA2'] ;
 // S:   MyNetworkName;
 // P:  ThisIsMyPassword;
 // H:   true/false    network SSID is hidden
 // ;
-interface FullQR {
-  cQR_Get: QR;
-  cFacilityGet: Facility;
-}
 interface QR {
-  cFacilityGet: [Facility];
-  QRwifi: {
-    wifiName: string;
-    wifiImage: string;
-    wifiPass: string;
-    wifiType: string;
-    wifiHidden: boolean;
-  };
-  QRserver: {
-    serverURL: string;
-  };
+  id: any;
+  // QRwifi: {
+  wifiName: string;
+  // wifiImage: string;
+  wifiPass: string;
+  wifiType: string;
+  wifiHidden: boolean;
+  // };
+  // QRserver: {
+  serverURL: string;
+  // };
 }
 // WIFI:S:MGN;P:m@g$n2**%;T:WPA;H:false;
 /**

@@ -22,7 +22,9 @@
       <ion-card class="FormCard">
         <ion-avatar *ngIf="FacilityInfo.value.upFacility.imgType === 'image' ">
           <!-- <ion-avatar> -->
-          <img [src]="imageSrc || url + FacilityInfo.value.upFacility.image" />
+          <img
+            [src]="imageSrc || imageURL + FacilityInfo.value.upFacility.image"
+          />
         </ion-avatar>
         <ion-card-header>
           <ion-card-subtitle

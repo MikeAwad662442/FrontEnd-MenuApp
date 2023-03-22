@@ -17,7 +17,10 @@ import { Facility } from 'src/app/Model/cPanel/facility.model';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  // === URL === //
   url: string = this.urlService.url;
+  imageURL: string = this.url + '/gallery/';
+  // === URL === //
   newDB: boolean = false;
   imageSrc: string = './assets/icon/favicon.png';
   params = {
@@ -41,7 +44,7 @@ export class HomePage implements OnInit {
       if (res.length !== 0) {
         this.newDB = true;
         this.socialService.getSocialMedia(this.urlService.url);
-        this.socialService.Facility.subscribe((res: Facility[]) => {
+        this.socialService.Facility$.subscribe((res: Facility[]) => {
           res.forEach((data: Facility) => {
             this.imageSrc = data.image;
             this.params = {
