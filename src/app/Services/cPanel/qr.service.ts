@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 // === Services === //
@@ -16,6 +16,8 @@ import { Facility } from 'src/app/Model/cPanel/facility.model';
 export class QrService {
   cFacilityGet$ = new Subject<Facility[]>();
   cQR_Get$ = new Subject<QR[]>();
+  // cFacilityGet$ = new BehaviorSubject<Facility[]>([]);
+  // cQR_Get$ = new BehaviorSubject<QR[]>([]);
   constructor(
     private http: HttpClient,
     private socketServer: SocketService,

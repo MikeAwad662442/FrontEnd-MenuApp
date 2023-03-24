@@ -14,7 +14,6 @@ import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
     AddPageRoutingModule,
     TranslateModule,

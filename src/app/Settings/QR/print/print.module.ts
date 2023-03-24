@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { PrintPageRoutingModule } from './print-routing.module';
-
+// === Page === //
 import { PrintPage } from './print.page';
-
+import { PrintPageRoutingModule } from './print-routing.module';
+// === Page === //
+// == plugins = //
+import { TranslateModule } from '@ngx-translate/core';
+import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
+// == plugins = //
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     IonicModule,
-    PrintPageRoutingModule
+    PrintPageRoutingModule,
+    TranslateModule,
+    NgxQrcodeStylingModule,
   ],
-  declarations: [PrintPage]
+  declarations: [PrintPage],
 })
 export class PrintPageModule {}

@@ -1,0 +1,16 @@
+ion-content {
+  ion-header {
+    margin: 5px;
+    border: solid 1px;
+    height: 300px;
+
+    div {
+      justify-content: center;
+      text-align: center;
+      ngx-qrcode-styling {
+        // width: 20% !important;
+        // height: 20% !important;
+      }
+    }
+  }
+}

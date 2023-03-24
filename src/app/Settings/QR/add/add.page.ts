@@ -1,21 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  NgxQrcodeStylingComponent,
-  NgxQrcodeStylingService,
-  Options,
-} from 'ngx-qrcode-styling';
+import { NgxQrcodeStylingComponent, Options } from 'ngx-qrcode-styling';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { QrService } from 'src/app/Services/cPanel/qr.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
-import { SocialService } from 'src/app/Services/cPanel/social.service';
 // === Services === //
 // === Models ===== //
 import { QR } from 'src/app/Model/cPanel/qr.model';
 import { Facility } from 'src/app/Model/cPanel/facility.model';
-import { BehaviorSubject, Subject } from 'rxjs';
-
 // === Models ===== //
 @Component({
   selector: 'app-add',
@@ -46,7 +39,7 @@ export class AddPage implements OnInit {
   urlValue!: string; // === MENU Server QR Code === //
   wifiPassType = ['None', 'WEP', 'WPA', 'WPA2'];
   wifiImage!: string;
-  // wifiImage$ = new BehaviorSubject<string>('');
+  // === WIFI && SERVER === //
   // === Form Group === //
   qrNetWork: FormGroup = this.fb.group({
     //   interface QR {
@@ -69,10 +62,8 @@ export class AddPage implements OnInit {
   // === WIFI && SERVER === //
   constructor(
     private fb: FormBuilder,
-    // private routerURL: ActivatedRoute,
     private urlService: UrlService,
     private qrService: QrService,
-    private socialService: SocialService,
     private alertServer: AlertService
   ) {}
 
@@ -89,10 +80,11 @@ export class AddPage implements OnInit {
     this.qrService.cFacilityGet$.subscribe((res: Facility[]) => {
       res.forEach((data: Facility) => {
         this.wifiImage = this.imageURL + data.image;
-        // this.wifiImage$.next(this.imageURL + data.image);
       });
       // console.log('this.wifiImage ::', this.wifiImage);
     });
+    // === get Facility Info === //
+    // === get WIFI Info ======= //
     this.qrService.cQR_Get$.subscribe((res: QR[]) => {
       res.forEach((data: QR) => {
         this.qrNetWork.patchValue({
@@ -106,7 +98,7 @@ export class AddPage implements OnInit {
         // console.log('cQR_Get ::', data);
       });
     });
-
+    // === get WIFI Info ======= //
     this.qrNetWork.valueChanges.subscribe((res) => this.onValueChanged(res));
     this.onValueChanged();
   }
@@ -150,6 +142,9 @@ export class AddPage implements OnInit {
     const newForm = this.qrNetWork.value;
     console.log('newForm ::', newForm);
     this.qrService.qrUpdate(this.url, newForm).subscribe((res: any) => {
+      if (res === true) {
+        this.alertServer.showAlert('Alert.QRwifiServer', '/cpanel');
+      }
       console.log('IF everything work well', res);
     });
   }

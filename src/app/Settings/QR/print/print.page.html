@@ -1,9 +1,76 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>print</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="(wifiImage$|async); else loading">
+  <ion-header class="split2">
+    <div>
+      <!-- WIFI Network View -->
+      <h1>WIFI</h1>
+      <ngx-qrcode-styling
+        [template]="'arabic'"
+        [width]="150"
+        [height]="150"
+        [data]="wifiValue"
+        [image]="wifiImage"
+      >
+        ></ngx-qrcode-styling
+      >
+      <!-- <ion-grid>
+        <ion-row>
+          <ion-col size="5">{{'Setting.QR.wifiName' | translate}} : </ion-col>
+          <ion-col size="7" class="LTR">{{qrNetWork.value.wifiName}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="5"> {{'Setting.QR.wifiPass' | translate}} : </ion-col>
+          <ion-col size="7" class="LTR"
+            >{{qrNetWork.value.wifiPass}} /
+            {{qrNetWork.value.wifiType}}</ion-col
+          >
+        </ion-row>
+        <ion-row>
+          <ion-col size="5">
+            {{'Setting.QR.wifiHidden' | translate}} :
+          </ion-col>
+          <ion-col size="7" class="LTR">{{qrNetWork.value.wifiHidden}}</ion-col>
+        </ion-row>
+      </ion-grid> -->
+      <!-- WIFI Network View -->
+    </div>
+    <div>
+      <!-- Menu Server View -->
+      <h1>Menu Server</h1>
+      <ngx-qrcode-styling
+        [template]="'arabic'"
+        [width]="150"
+        [height]="150"
+        [margin]="0"
+        [data]="urlValue"
+        [image]="imageSrc"
+      >
+        ></ngx-qrcode-styling
+      >
+      <p>
+        {{"Setting.QR.serverURL" | translate}} :
+        <span class="LTR">{{urlValue}}</span>
+      </p>
+      <!-- Menu Server View -->
+    </div>
+  </ion-header>
+  <div></div>
 </ion-content>
+
+<!-- If QR not add -->
+<ng-template #loading>
+  <div>
+    <p><br /><br /></p>
+    <!-- <img src="assets/icon/favicon.png" /> -->
+    <p><br /><br /></p>
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+</ng-template>
