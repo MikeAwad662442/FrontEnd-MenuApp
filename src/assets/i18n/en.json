@@ -87,8 +87,10 @@
       "wifiHidden": "Hidden Network",
       "serverURL": "MENU Server url",
       "UpQR": "Update",
-      "print":"Print",
-      "info": {},
+      "print": "Print",
+      "PrintPage": {
+"Info": "Please choose the method of printing the QR,<br />where it can be printed on an A4 page, and then 10 sets can be printed together, or by a thermal printer, and then only one copy will be printed"
+      },
       "ERROR": {
         "wifiName": "Name must be at least 2 characters long.",
         "wifiPass": "Password must be at least 8 characters long.",
@@ -107,7 +109,8 @@
     "UpSocialMedia": "the Social Media accounts is updated",
     "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />",
     "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first",
-    "QRwifiServer": "the QR info is Update"
+    "QRwifiServer": "the QR info is Update",
+    "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase"
   },
   "Arabic": "Arabic",
   "English": "English",

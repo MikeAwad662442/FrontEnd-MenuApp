@@ -84,16 +84,6 @@ export class CpanelPage implements OnInit {
       });
     });
     // === get Social Media === //
-    // this.socialActive = [];
-    // this.socialService.getSocialMedia(this.urlService.url);
-    // this.socialService.socialMedia.subscribe((res) => {
-    //   this.social = res;
-    //   this.social.forEach((data: SocialMedia) => {
-    //     if (data.active === true) {
-    //       this.socialActive.push(data);
-    //     }
-    //   });
-    // });
   }
   // === get all items from Social Media DB === //
 }

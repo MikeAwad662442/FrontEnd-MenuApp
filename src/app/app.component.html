@@ -29,7 +29,7 @@
             <ion-item
               routerDirection="root"
               [routerLink]="[pages.url]"
-              lines="none"
+              lines="full"
               detail="false"
             >
               <ion-icon [name]="pages.icon" slot="start"></ion-icon>
@@ -87,7 +87,6 @@
         <h4>{{ "MENU.followUS" | translate }}</h4>
         <ion-buttons>
           <ion-button *ngFor="let social of socialActive | async">
-            <!-- <ion-button *ngFor="let social of socialActive"> -->
             <a
               *ngIf="social.id === 'whatsapp'"
               [href]="['https://wa.me/' + social.link]"

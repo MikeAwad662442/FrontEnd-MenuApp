@@ -69,4 +69,19 @@ ion-footer {
 }
 // ========================= //
 // ======= ION Footer ====== //
+// ======= ION MENU ======== //
+// ========================= //
+ion-menu {
+  ion-footer {
+    margin-bottom: 10px;
+    ion-buttons {
+      ion-icon {
+        font-size: 1.5em;
+      }
+      justify-content: center;
+    }
+  }
+}
+// ========================= //
+// ======= ION MENU ======== //
 // ========================= //

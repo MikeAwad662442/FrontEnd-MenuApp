@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxQrcodeStylingComponent, Options } from 'ngx-qrcode-styling';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
@@ -9,7 +11,7 @@ import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Models ===== //
 import { QR } from 'src/app/Model/cPanel/qr.model';
 import { Facility } from 'src/app/Model/cPanel/facility.model';
-import { Subject } from 'rxjs';
+
 // === Models ===== //
 
 @Component({
@@ -38,7 +40,7 @@ export class PrintPage implements OnInit {
   // === URL === //
   // === WIFI && SERVER === //
   wifiImage$ = new Subject<string>();
-  FullWifi: string[] = []
+  FullWifi!: QR[];
   wifiValue!: string; // === WIFI QR Code === //
   urlValue!: string; // === MENU Server QR Code === //
   wifiImage!: string;
@@ -46,7 +48,9 @@ export class PrintPage implements OnInit {
   constructor(
     private urlService: UrlService,
     private qrService: QrService,
-    private alertServer: AlertService
+    private alertServer: AlertService,
+    private actionSheetCtrl: ActionSheetController,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {
@@ -67,7 +71,8 @@ export class PrintPage implements OnInit {
     // === get WIFI Info ======= //
     this.qrService.cQR_Get$.subscribe(async (res: QR[]) => {
       console.log('cQR_Get ::', res);
-      res.forEach((data: QR) => {
+      this.FullWifi = res;
+      this.FullWifi.forEach((data: QR) => {
         this.wifiValue =
           'WIFI:S:' +
           data.wifiName +
@@ -78,48 +83,21 @@ export class PrintPage implements OnInit {
           ';H:' +
           data.wifiHidden +
           ';;';
+        // === Check if URL in DB === URL of Server === //
+        console.log('this.url ::', this.url);
+        console.log('data.serverURL ::', data.serverURL);
+        if (data.serverURL === this.url) {
+          this.urlValue = this.url;
+        } else {
+          this.alertServer.showAlert('Alert.QRurlServer', '/cpanel/QR/QRadd');
+        }
+        // === Check if URL in DB === URL of Server === //
       });
     });
     // // === get WIFI Info ======= //
-    this.urlValue = this.url;
   }
-  // async QRviwe() {
-  //   console.log('cQR_Get 1::', this.wifiValue);
-  //   console.log('this.wifiImage 1::', this.wifiImage);
-  //   if (this.wifiValue !== undefined) {
-  //     console.log('cQR_Get 2 ::', this.wifiValue);
-  //     console.log('this.wifiImage 2 ::', this.wifiImage);
-  //     this.wifiQR.update(this.config, {
-  //       data: this.wifiValue,
-  //       image: this.wifiImage,
-  //     });
-  //     this.serverQR.update(this.config, {
-  //       data: this.urlValue,
-  //       image: this.imageSrc,
-  //     });
-  //   }
-  // }
-  // async QRviwe(
-  //   wifiValue: string,
-  //   wifiImage: string,
-  //   urlValue: string,
-  //   imageSrc: string
-  // ) {
-  //   console.log('cQR_Get 1::', this.wifiValue);
-  //   console.log('this.wifiImage 1::', this.wifiImage);
-  //   if (this.wifiValue !== undefined) {
-  //     console.log('cQR_Get 2 ::', wifiValue);
-  //     console.log('this.wifiImage 2 ::', wifiImage);
-  //     this.wifiQR.update(this.config, {
-  //       data: wifiValue,
-  //       image: wifiImage,
-  //     });
-  //     this.serverQR.update(this.config, {
-  //       data: urlValue,
-  //       image: imageSrc,
-  //     });
-  //   }
-  // }
-
   // === get WIFI Server && MENU Server && Facility image === //
+  async radioGroupChange(event: any) {
+    console.log(event);
+  }
 }

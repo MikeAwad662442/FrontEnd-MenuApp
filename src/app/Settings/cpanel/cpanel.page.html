@@ -23,7 +23,7 @@
       <h1>{{"Setting.Language.Name" |translate }}</h1>
       <ion-item>
         <ion-label>{{"Setting.Language.Default" |translate }}</ion-label>
-        <ion-button slot="end" [routerLink]="['/cpanel/language']">
+        <ion-button fill="clear" slot="end" [routerLink]="['/cpanel/language']">
           {{languageDefault |translate }}
           <ion-icon name="sync" slot="end"></ion-icon>
         </ion-button>
@@ -47,7 +47,7 @@
       <h1>{{"Setting.SocialMedia.SocialMedia" |translate }}</h1>
       <ion-item *ngFor="let social of socialActive">
         <a [href]="social.link" target="_blank" slot="start">
-          <ion-icon [name]="social.icon"></ion-icon>
+          <ion-icon [name]="social.icon" size="large"></ion-icon>
         </a>
         <a
           class="social-size"
@@ -63,7 +63,7 @@
           target="_blank"
           >{{social.link}}</a
         >
-        <ion-button slot="end" [routerLink]="['/cpanel/social']">
+        <ion-button fill="clear" slot="end" [routerLink]="['/cpanel/social']">
           <ion-icon name="sync"></ion-icon>
         </ion-button>
       </ion-item>

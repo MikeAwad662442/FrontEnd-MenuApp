@@ -107,7 +107,8 @@
     "UpSocialMedia": "les comptes de médias sociaux sont mis à jour",
     "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />",
     "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP",
-    "QRwifiServer": "les informations QR sont mises à jour"
+    "QRwifiServer": "les informations QR sont mises à jour",
+    "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR"
   },
   "Arabic": "arabe",
   "English": "Anglais",

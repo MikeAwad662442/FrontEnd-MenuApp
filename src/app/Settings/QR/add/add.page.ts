@@ -72,9 +72,6 @@ export class AddPage implements OnInit {
   }
   // === get WIFI Server && MENU Server && Facility image === //
   async getQR() {
-    this.qrNetWork.patchValue({
-      serverURL: this.url,
-    });
     // === get Facility Info === //
     this.qrService.getQRdb(this.url);
     this.qrService.cFacilityGet$.subscribe((res: Facility[]) => {
@@ -93,9 +90,19 @@ export class AddPage implements OnInit {
           wifiType: data.wifiType,
           wifiPass: data.wifiPass,
           wifiHidden: data.wifiHidden,
-          serverURL: data.serverURL,
+          // serverURL: data.serverURL,
         });
         // console.log('cQR_Get ::', data);
+        if (data.serverURL === this.url) {
+          this.qrNetWork.patchValue({
+            serverURL: data.serverURL,
+          });
+        } else {
+          this.alertServer.errorAlertIMG('Alert.QRurlServer');
+          this.qrNetWork.patchValue({
+            serverURL: this.url,
+          });
+        }
       });
     });
     // === get WIFI Info ======= //
@@ -117,7 +124,7 @@ export class AddPage implements OnInit {
       this.qrNetWork.get('wifiHidden')?.value +
       ';;';
     this.urlValue = this.qrNetWork.get('serverURL')?.value;
-    console.log('this.wifiImage ::', this.wifiImage);
+    // console.log('this.wifiImage ::', this.wifiImage);
     // === add VALUE & IMAGE => QR === //
     /**
      * يجب أستخدام حلة التحديث لكي يأخذ المعطيات
@@ -145,7 +152,7 @@ export class AddPage implements OnInit {
       if (res === true) {
         this.alertServer.showAlert('Alert.QRwifiServer', '/cpanel');
       }
-      console.log('IF everything work well', res);
+      // console.log('IF everything work well', res);
     });
   }
 }
