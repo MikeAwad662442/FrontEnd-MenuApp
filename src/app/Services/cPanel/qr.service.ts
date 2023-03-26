@@ -23,7 +23,7 @@ export class QrService {
     private socketServer: SocketService,
     private expressService: ExpressService
   ) {}
-  getQRdb(url: string) {
+  async getQRdb(url: string) {
     this.qrGetAll(url).subscribe((res: FullQR) => {
       this.cFacilityGet$.next(res.cFacilityGet); // ===
       this.cQR_Get$.next(res.cQR_Get);

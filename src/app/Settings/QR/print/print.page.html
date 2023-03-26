@@ -8,75 +8,64 @@
 </ion-header>
 <!-- <ion-content> </ion-content> -->
 <ion-content *ngIf="(wifiImage$|async); else loading">
-  <p [innerHTML]="'Setting.QR.PrintPage.Info' | translate"></p>
-  <!-- <ion-list> -->
-  <ion-radio-group
-    value="A4"
-    (ionChange)="radioGroupChange($event)"
-    class="PrintBar"
-  >
-    <ion-item lines="none">
-      <ion-icon name="document-outline"></ion-icon>
-      <ion-label> A4 Page </ion-label>
-      <ion-radio value="A4"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="receipt-outline"></ion-icon>
-      <ion-label> Thermal printer </ion-label>
-      <ion-radio value="8cm"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-  <!-- </ion-list> -->
-  <div class="PrintPage">
-    <!-- <div class="PrintBar"> -->
-    <!-- Pages Steyl -->
-    <!-- <ion-buttons>
-        <ion-button (click)="PagesActionSheetCtrl()">
-          <ion-icon name="document-outline" size="large"></ion-icon>
-        </ion-button>
-
-        <ion-button>
-          <ion-icon
-            name="document-outline"
-            size="large"
-            class="transform"
-          ></ion-icon>
-        </ion-button>
-        <ion-button>
-          <ion-icon name="grid-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div> -->
-    <div class="PrintBody">
-      <div>
+  <!-- The heder of Page -->
+  <div class="hederPrint">
+    <p [innerHTML]="'Setting.QR.PrintPage.Info' | translate"></p>
+    <!-- <ion-list> -->
+    <ion-radio-group
+      [value]="PagePrint"
+      (ionChange)="radioGroupChange($event)"
+      class="split2"
+      #ionRadio
+    >
+      <ion-item>
+        <ion-icon slot="start" name="document-outline"></ion-icon>
+        <ion-label> A4 Page </ion-label>
+        <ion-radio mode="md" value="A4"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="receipt-outline"></ion-icon>
+        <ion-label> Thermal printer </ion-label>
+        <ion-radio mode="md" value="8cm"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </div>
+  <!-- The heder of Page -->
+  <!-- A4 Page -->
+  <div *ngIf="PagePrint === 'A4'" class="PageA4">
+    <div class="PrintBody" *ngFor="let _ of [].constructor(10)">
+      <div class="wifi">
         <!-- WIFI Network View -->
         <h1>WIFI</h1>
-        <ngx-qrcode-styling
-          [margin]="0"
-          [template]="'arabic'"
-          [data]="wifiValue"
-          [image]="wifiImage"
-        >
-          ></ngx-qrcode-styling
-        >
+        <div class="border">
+          <ngx-qrcode-styling
+            [margin]="0"
+            [template]="'arabic'"
+            [data]="wifiValue"
+            [image]="wifiImage"
+          >
+          </ngx-qrcode-styling>
+        </div>
         <ion-grid *ngFor="let QR of FullWifi">
           <ion-row>
-            <ion-col size="5">{{'Setting.QR.wifiName' | translate}} : </ion-col>
-            <ion-col size="7" class="LTR">{{QR.wifiName}}</ion-col>
+            <ion-col size="4" class="font"
+              >{{'Setting.QR.wifiName' | translate}} :
+            </ion-col>
+            <ion-col size="6" class="LTR">{{QR.wifiName}}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="5">
+            <ion-col size="4" class="font">
               {{'Setting.QR.wifiPass' | translate}} :
             </ion-col>
-            <ion-col size="7" class="LTR"
+            <ion-col size="6" class="LTR"
               >{{QR.wifiPass}} / {{QR.wifiType}}</ion-col
             >
           </ion-row>
           <ion-row>
-            <ion-col size="5">
+            <ion-col size="4" class="font">
               {{'Setting.QR.wifiHidden' | translate}} :
             </ion-col>
-            <ion-col size="7" class="LTR">{{QR.wifiHidden}}</ion-col>
+            <ion-col size="6" class="LTR">{{QR.wifiHidden}}</ion-col>
           </ion-row>
         </ion-grid>
         <!-- WIFI Network View -->
@@ -84,15 +73,16 @@
       <div>
         <!-- Menu Server View -->
         <h1>Menu Server</h1>
-        <ngx-qrcode-styling
-          [template]="'arabic'"
-          [margin]="0"
-          [data]="urlValue"
-          [image]="imageSrc"
-        >
-          ></ngx-qrcode-styling
-        >
+        <div class="border">
+          <ngx-qrcode-styling
+            [template]="'arabic'"
+            [margin]="0"
+            [data]="urlValue"
+            [image]="imageSrc"
+          ></ngx-qrcode-styling>
+        </div>
         <p>
+          <br />
           {{"Setting.QR.serverURL" | translate}} :
           <span class="LTR">{{urlValue}}</span>
         </p>
@@ -100,17 +90,77 @@
       </div>
     </div>
   </div>
+  <!-- A4 Page -->
+  <!-- 8cm Page -->
+  <div *ngIf="PagePrint === '8cm'" class="Page8cm">
+    <div class="PrintBody">
+      <div class="wifi">
+        <!-- WIFI Network View -->
+        <h1>WIFI</h1>
+        <div class="border">
+          <ngx-qrcode-styling
+            [margin]="0"
+            [template]="'arabic'"
+            [data]="wifiValue"
+            [image]="wifiImage"
+          >
+          </ngx-qrcode-styling>
+        </div>
+
+        <ion-grid *ngFor="let QR of FullWifi">
+          <ion-row>
+            <ion-col size="4" class="font"
+              >{{'Setting.QR.wifiName' | translate}} :
+            </ion-col>
+            <ion-col size="6" class="LTR">{{QR.wifiName}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="font">
+              {{'Setting.QR.wifiPass' | translate}} :
+            </ion-col>
+            <ion-col size="6" class="LTR"
+              >{{QR.wifiPass}} / {{QR.wifiType}}</ion-col
+            >
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="font">
+              {{'Setting.QR.wifiHidden' | translate}} :
+            </ion-col>
+            <ion-col size="6" class="LTR">{{QR.wifiHidden}}</ion-col>
+          </ion-row>
+        </ion-grid>
+        <!-- WIFI Network View -->
+      </div>
+      <div>
+        <!-- Menu Server View -->
+        <h1>Menu Server</h1>
+        <div class="border">
+          <ngx-qrcode-styling
+            [template]="'arabic'"
+            [margin]="0"
+            [data]="urlValue"
+            [image]="imageSrc"
+          >
+          </ngx-qrcode-styling>
+        </div>
+
+        <p>
+          <br />
+          {{"Setting.QR.serverURL" | translate}} :
+          <span class="LTR">{{urlValue}}</span>
+        </p>
+        <!-- Menu Server View -->
+      </div>
+    </div>
+  </div>
+  <!-- 8cm Page -->
 </ion-content>
 <!-- Footer -->
 <ion-footer>
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar>
-        <ion-tab-button>
-          <!-- [routerLink]="['/cpanel/QR/QRprint']"
-          clear
-          [disabled]="qrNetWork.invalid"
-        > -->
+        <ion-tab-button (click)="print()">
           <ion-icon name="print-outline"></ion-icon>
           <ion-label>{{"Setting.QR.print" | translate}}</ion-label>
         </ion-tab-button>
@@ -121,10 +171,7 @@
 <!-- Footer -->
 <!-- If QR not add -->
 <ng-template #loading>
-  <div>
-    <p><br /><br /></p>
-    <!-- <img src="assets/icon/favicon.png" /> -->
-    <p><br /><br /></p>
+  <div class="ServerNotConnect">
     <ion-spinner color="primary"></ion-spinner>
   </div>
 </ng-template>

@@ -54,3 +54,12 @@ ion-icon {
   color: var(--ion-color-primary);
 }
 // === All ICONS in the APP === //
+
+ion-content {
+  --offset-bottom: auto !important;
+  --overflow: hidden;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

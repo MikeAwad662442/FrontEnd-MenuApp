@@ -1,80 +1,189 @@
-// =========== QR ========== //
-// ========================= //
-// .QrAdd {
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   gap: 20px;
-//   margin: 20px;
-//   text-align: center;
-//   div {
-//     background-color: var(--ion-color-step-50);
-//     p {
-//       direction: ltr;
-//       text-align: left;
-//       margin-left: 20px;
-//     }
-//   }
-//   @media screen and (max-width: 760px) {
-//     grid-template-columns: repeat(1, 1fr);
-//   }
-// }
-
-.QRall {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 50px;
-  margin: 50px;
+// @import "../../../../global.scss";
+/**
+The Page well Split 2 Part :
+Part 1 : the ICON that control Page
+  * Page seize A4 / rol
+*/
+p {
+  margin: 0px 15px;
   text-align: center;
-  .QRprint {
-    background-color: var(--ion-color-step-50);
-    padding: 20px;
+}
+.PrintBar {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 0px auto;
+  text-align: center;
+  ion-item {
     text-align: center;
+    justify-content: center;
+    ion-radio {
+      text-align: center;
+      justify-content: center;
+    }
   }
 }
 
+.font {
+  font-size: 0.8em;
+}
+// === A4 Page === //
+.PageA4 {
+  display: grid;
+  gap: 0px;
+  margin: 20px;
+  background-color: #ffffff;
+  grid-template-columns: repeat(2, 1fr);
+  zoom: 70%;
+  .PrintBody {
+    // GRID
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    // GRID
+    // background-color: #ffffff;
+    border: 1px solid #000;
+    color: #000;
+    zoom: 70%;
+    justify-content: center;
+    text-align: center;
+    .wifi {
+      // padding-right: 15px;
+      border-right: 1px solid #000;
+    }
+    .border {
+      margin: 5px 35px;
+      border: 1px solid #000;
+      border-radius: 5%;
+      padding: 10px;
+    }
+  }
+  .Page8cm {
+    display: none;
+  }
+}
+// === A4 Page === //
+// === 8cm Page === //
+.Page8cm {
+  width: 8cm;
+  display: grid;
+  gap: 10px;
+  margin: 5px auto;
+  grid-template-columns: repeat(1, 1fr);
+  background-color: #ffffff;
+  .PrintBody {
+    // GRID
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    // GRID
+    color: #000;
+    zoom: 80%;
+    justify-content: center;
+    .wifi {
+      padding-bottom: 15px;
+      border-bottom: 2px solid #000;
+    }
+    .border {
+      margin: 5px 25px;
+      border: 1px solid #000;
+      border-radius: 5%;
+      padding: 10px;
+    }
+  }
+  .PageA4 {
+    display: none;
+  }
+}
+// === 8cm Page === //
+
+// === Print Page === //
 @media print {
+  pages {
+    size: A4;
+    margin-top: 4in;
+  }
   * {
-    direction: ltr;
+    // direction: ltr;
     --background: var(--ion-color-secondary) !important;
     background: var(--ion-color-secondary) !important;
     color: var(--ion-color-tertiary);
-    font-size: 8pt;
+    font-size: 14pt;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     margin: 1pt;
   }
-  .QRall {
+  ion-header,
+  ion-footer,
+  ion-menu,
+  .hederPrint {
+    display: none;
+  }
+  // === A4 Page === //
+  .PageA4 {
+    font-size: 1em;
+
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 10pt;
-    // margin: 50px;
-    // text-align: center;
-    // justify-items: center;
-    margin: 3pt;
-    .QRprint {
-      width: 95%;
-      border: 1px solid var(--ion-color-tertiary);
-      text-align: left;
-      h1 {
-        // text-align: left;
-        font-style: italic;
-        font-size: 14pt;
-        margin: 0;
+    gap: 0px;
+    background-color: #ffffff;
+    grid-template-columns: repeat(2, 1fr);
+    zoom: 80%;
+    .PrintBody {
+      // GRID
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      // GRID
+      // background-color: #ffffff;
+      border: 1px solid #000;
+      color: #000;
+      // zoom: 70%;
+      justify-content: center;
+      text-align: center;
+      .wifi {
+        // padding-right: 15px;
+        border-right: 1px solid #000;
       }
-      // qrcode {
-      //   width: 80px;
-      //   height: 80px;
-      // }
-      p {
-        margin: 0;
-        padding: 0;
+      .border {
+        margin: 5px 35px;
+        border: 1px solid #000;
+        border-radius: 5%;
+        padding: 10px;
       }
     }
+    .Page8cm {
+      display: none;
+    }
   }
-  // ion-menu,
-  // ion-header,
-  // ion-footer,
-  // ion-menu,
-  // form {
-  //   display: none;
-  // }
+  // === A4 Page === //
+  // === 8cm Page === //
+  .Page8cm {
+    display: grid;
+    gap: 5px;
+    // margin: 5px auto;
+    grid-template-columns: repeat(1, 1fr);
+    zoom: 80%;
+    // background-color: #ffffff;
+    .PrintBody {
+      // GRID
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      // GRID
+      color: #000;
+      // zoom: 80%;
+      justify-content: center;
+      .wifi {
+        padding-bottom: 15px;
+        border-bottom: 2px solid #000;
+      }
+      .border {
+        margin: 5px 25px;
+        border: 1px solid #000;
+        border-radius: 5%;
+        padding: 10px;
+      }
+    }
+    .PageA4 {
+      display: none;
+    }
+  }
+  // === 8cm Page === //
 }
+// === Print Page === //

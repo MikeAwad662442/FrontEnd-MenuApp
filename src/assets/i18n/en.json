@@ -89,7 +89,7 @@
       "UpQR": "Update",
       "print": "Print",
       "PrintPage": {
-"Info": "Please choose the method of printing the QR,<br />where it can be printed on an A4 page, and then 10 sets can be printed together, or by a thermal printer, and then only one copy will be printed"
+        "Info": "Please choose the method of printing the QR,<br />where it can be printed on an A4 page, and then 10 sets can be printed together,  <br /> or by a thermal printer, and then only one copy will be printed"
       },
       "ERROR": {
         "wifiName": "Name must be at least 2 characters long.",
