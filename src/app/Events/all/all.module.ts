@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { AllPageRoutingModule } from './all-routing.module';
-
+// === Page === //
 import { AllPage } from './all.page';
+import { AllPageRoutingModule } from './all-routing.module';
+// == plugins = //
+import { TranslateModule } from '@ngx-translate/core';
+// == plugins = //
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AllPageRoutingModule
-  ],
-  declarations: [AllPage]
+  imports: [CommonModule, IonicModule, AllPageRoutingModule, TranslateModule],
+  declarations: [AllPage],
 })
 export class AllPageModule {}

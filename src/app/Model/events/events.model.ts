@@ -17,7 +17,7 @@ interface Events {
   image: string;
   imgType: string;
   active: boolean;
-  info: [AllLanguage];
+  info: AllLanguage;
 }
 // interface AllLanguage {
 //   language: string;

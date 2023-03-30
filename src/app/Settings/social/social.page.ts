@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 // === Services === //
-import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { SocialService } from 'src/app/Services/cPanel/social.service';
+import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Services === //
 // === Models ===== //
 import { Facility } from 'src/app/Model/cPanel/facility.model';
@@ -19,15 +19,13 @@ import {
   styleUrls: ['./social.page.scss'],
 })
 export class SocialPage implements OnInit {
+  // === URL === //
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
+  // === URL === //
   social!: SocialMedia[]; // === Get SocialMedia as ARRAY
   defaultIMG: any = 'assets/icon/favicon.png';
-  // === to get Filses Info === //
-  imageSrc: any;
-  fileType!: string;
-  file!: File;
-  // === to get Filses Info === //
+  // === *** FORM *** === //
   // Group All Form in Facility Info Form === //
   FacilityInfo: FormGroup = this.fb.group({
     // === Facility Form === //
@@ -45,7 +43,22 @@ export class SocialPage implements OnInit {
     // === Social Media Form === //
   });
   // Group All Form in Facility Info Form === //
-
+  // === Form Array === //
+  arrayFormGroup(data: SocialMedia): FormGroup {
+    return this.fb.group({
+      id: [data.id],
+      icon: [data.icon],
+      link: [data.link],
+      active: [data.active],
+    });
+  }
+  // === Form Array === //
+  // === to get Filses Info === //
+  imageSrc: any;
+  fileType!: string;
+  file!: File;
+  // === to get Filses Info === //
+  // === *** FORM *** === //
   constructor(
     private fb: FormBuilder,
     private urlService: UrlService,
@@ -102,16 +115,7 @@ export class SocialPage implements OnInit {
     // === get Social Media === //
   }
   // === get all items from Social Media DB === //
-  // === Form Array === //
-  arrayFormGroup(data: SocialMedia): FormGroup {
-    return this.fb.group({
-      id: [data.id],
-      icon: [data.icon],
-      link: [data.link],
-      active: [data.active],
-    });
-  }
-  // === Form Array === //
+
   // === Get / Images || Videos / From UpLodFile === //
   async onFileChange(event: any) {
     this.file = event.target.files[0]; // === to get File info in Angular
@@ -153,8 +157,8 @@ export class SocialPage implements OnInit {
      * If there is a picture,
      * it is preferable to send the information separately
      */
-    // === Form Data to Send Value === //
     // console.log(this.FacilityInfo.get('upFacility.id')?.value);
+    // === Form Data to Send Value === //
     if (this.FacilityInfo.get('upFacility.id')?.value !== null) {
       newForm.append(
         'FacilityID',
@@ -180,8 +184,8 @@ export class SocialPage implements OnInit {
       .subscribe((res: any) => {
         if (res === true) {
           this.alertServer.showAlert('Alert.UpSocialMedia', '/cpanel');
+          console.log('IF everything work well ::', res);
         }
-        // console.log('IF everything work well', res);
       });
   }
   // === Send Update DATA to Server === //

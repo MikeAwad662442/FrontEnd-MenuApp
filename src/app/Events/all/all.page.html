@@ -1,9 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>all</ion-title>
+    <ion-title>{{"Events.Events" |translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class="null" *ngIf="eventsAll === undefined">
+    <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
+    <ion-button fill="clear" [routerLink]="['/events/update']">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
+    </ion-button>
+  </div>
+  <div *ngIf="eventsAll !== undefined">
+    <div class="FullMenu" *ngFor="let eventsAll of eventsAll">
+      <div class="CardIon" [routerLink]="['/events',eventsAll.id]">
+        <video
+          [src]="url +eventsAll.image"
+          *ngIf="eventsAll?.imgType === 'video'"
+          height="200"
+          muted
+          controls
+        ></video>
+        <ion-avatar *ngIf="eventsAll?.imgType === 'image'">
+          <img [src]="imageURL+eventsAll.image" />
+        </ion-avatar>
+        <!-- <div *ngFor="let info of eventsAll?.info ">
+          <h1>{{info}}</h1> -->
+        <h1>{{eventsAll?.info?.name}}</h1>
+        <!-- <p>{{eventsAll?.info.description}}</p> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
 </ion-content>
+<ion-footer>
+  <!-- <ion-toolbar *ngIf="autAll"> -->
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button [routerLink]="['/events/update']">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
+        </ion-tab-button>
+        <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
+        <ion-tab-button>
+          <ion-icon name="trash-outline"></ion-icon>
+          <ion-label>{{ "Events.DeleteEvents" | translate}}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

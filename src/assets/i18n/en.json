@@ -63,7 +63,11 @@
       "UsedLangAPP": "Languages used in the APP",
       "language": "language",
       "Active": "active",
-      "UpLang": "Update"
+      "UpLang": "Update",
+            "ERROR": {
+        "FacilityName": "Facility Name is required.",
+        "FacilityImageType": "The input type must be Image."
+      }
     },
     "SocialMedia": {
       "Name": "Facility Info",
@@ -110,7 +114,9 @@
     "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />",
     "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first",
     "QRwifiServer": "the QR info is Update",
-    "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase"
+    "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase",
+    "EventNew": "the New Event Have been added",
+    "EventUpdate": "the Event Have been Update"
   },
   "Arabic": "Arabic",
   "English": "English",

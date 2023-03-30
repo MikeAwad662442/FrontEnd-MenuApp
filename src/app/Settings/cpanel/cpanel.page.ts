@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
@@ -10,6 +9,7 @@ import { Language } from 'src/app/Model/cPanel/language.model';
 import { SocialMedia } from 'src/app/Model/cPanel/social.model';
 import { Facility } from 'src/app/Model/cPanel/facility.model';
 // === Models ===== //
+
 @Component({
   selector: 'app-cpanel',
   templateUrl: './cpanel.page.html',

@@ -88,7 +88,9 @@
       "serverURL": "MENU URL du serveur",
       "UpQR": "Mettre à jour",
       "print":"Imprimer",
-      "info": {},
+      "PrintPage": {
+        "Info": "Veuillez choisir la méthode d'impression du QR,<br />où il peut être imprimé sur une page A4, puis 10 ensembles peuvent être imprimés ensemble, <br /> ou par une imprimante thermique, puis uniquement un exemplaire sera imprimé"
+      },
       "ERROR": {
         "wifiName": "Le nom doit comporter au moins 2 caractères.",
         "wifiPass": "Le mot de passe doit comporter au moins 8 caractères.",
@@ -108,7 +110,9 @@
     "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />",
     "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP",
     "QRwifiServer": "les informations QR sont mises à jour",
-    "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR"
+    "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR",
+    "EventNew": "le nouvel événement a été ajouté",
+    "EventUpdate": "l'événement a été mis à jour"
   },
   "Arabic": "arabe",
   "English": "Anglais",
