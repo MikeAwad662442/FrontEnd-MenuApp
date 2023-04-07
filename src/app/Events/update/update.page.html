@@ -21,7 +21,7 @@
     <div>
       <ion-card>
         <video
-          [src]="imageSrc || imageURL + eventUpDate.value.image"
+          [src]="imageURL + eventUpDate.value.image || imageSrc"
           *ngIf="eventUpDate.value.imgType === 'video' "
           height="200"
           controls
@@ -29,19 +29,13 @@
           muted
         ></video>
         <ion-avatar *ngIf="eventUpDate.value.imgType === 'image' ">
-          <img [src]="imageSrc || imageURL + eventUpDate.value.image" />
+          <img [src]="imageURL + eventUpDate.value.image || imageSrc" />
         </ion-avatar>
-        <!-- <ion-card-header>
-        <ion-card-subtitle>{{eventUpDate.value.name}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        {{eventUpDate.value.description}}
-      </ion-card-content> -->
       </ion-card>
       <!-- Card Info -->
       <!-- Image -->
       <ion-item>
-        <ion-label> {{"Events.UpDate.Image" | translate}} </ion-label>
+        <ion-label> {{"Events.UpDatePage.Image" | translate}} </ion-label>
         <input
           name="image"
           type="file"
@@ -49,70 +43,64 @@
           #UploadFile
           class="file-input"
         />
-        <ion-button fill="clear" (click)="UploadFile.click()">
+        <ion-button slot="end" fill="clear" (click)="UploadFile.click()">
           <ion-icon name="image-outline" size="large"></ion-icon>
         </ion-button>
       </ion-item>
       <p class="error" *ngIf="!eventUpDate.get('image')?.valid">
-        <!-- <p class="error" *ngIf="!eventUpDate.get('image')?.errors.required"> -->
         <ion-icon name="alert-circle-outline"></ion-icon>
-        {{'Setting.SocialMedia.ERROR.FacilityImageType' | translate}}
+        {{'Events.ERROR.ImageType' | translate}}
       </p>
       <!-- Image -->
       <!-- active -->
       <ion-item>
-        <ion-label> {{"Events.UpDate.Active" | translate}} </ion-label>
+        <!-- <ion-label> {{"Events.UpDate.Active" | translate}} </ion-label> -->
         <ion-toggle
           formControlName="active"
           [checked]="eventUpDate.value.active"
-        ></ion-toggle>
+          >{{"Events.UpDatePage.Active" | translate}}
+        </ion-toggle>
       </ion-item>
       <!-- active -->
     </div>
     <!-- Information by Languages -->
     <div formArrayName="infoArray">
-      <!-- <div *ngFor="let info of langActive; let i = index" [formGroupName]="i"> -->
-      <div
-        *ngFor="let info of eventUpDate.get('infoArray')['controls']; let i = index"
-        [formGroupName]="i"
-      >
+      <p class="error" *ngIf="!eventUpDate.get('infoArray')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Events.ERROR.EventName' | translate}}
+        <br /><br /><br />
+      </p>
+      <div *ngFor="let info of langActive; let i = index" [formGroupName]="i">
         <!-- Language -->
-        <ion-avatar slot="start">
-          <img src="assets/icon/{{info.id}}.webp" />
-        </ion-avatar>
-        <!-- Language -->
+
         <!-- Name -->
         <ion-item>
-          <ion-label> {{"ItemTypes.UpDate.Name" | translate}} </ion-label>
+          <ion-avatar slot="start">
+            <img src="assets/icon/{{info.id}}.webp" />
+          </ion-avatar>
+          <!-- Language -->
+          <!-- <ion-label> {{"ItemTypes.UpDate.Name" | translate}} </ion-label> -->
           <ion-input
+            [label]="'ItemTypes.UpDate.Name' | translate"
             formControlName="name"
             [name]="info.name"
             type="text"
           ></ion-input>
         </ion-item>
-        <p
-          class="error"
-          *ngIf="!eventUpDate.get('infoArray.{{i}}.name')?.valid"
-        >
-          <ion-icon name="alert-circle-outline"></ion-icon>
-          {{'Setting.QR.ERROR.wifiName' | translate}}
-        </p>
         <!-- Name -->
         <!-- Description -->
         <ion-item>
           <ion-label>
             {{"ItemTypes.UpDate.Description" | translate}}
           </ion-label>
-          <!-- <ion-textarea
-              formControlName="description"
-              [name]="info.description"
-              type="text"
-            ></ion-textarea> -->
-          <ion-textarea
-            formControlName="description"
-            type="text"
-          ></ion-textarea>
         </ion-item>
+        <div>
+          <quill-editor
+            [modules]="modules"
+            formControlName="description"
+          ></quill-editor>
+        </div>
+
         <!-- Description -->
       </div>
       <!-- </div> -->
@@ -124,14 +112,13 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar>
-        <!-- <ion-tab-button
+        <ion-tab-button
           (click)="submitForm()"
           type="submit"
           clear
           [disabled]="eventUpDate.invalid"
-        > -->
-        <ion-tab-button (click)="submitForm()" type="submit" clear>
-          <ion-icon name="options" size="large"></ion-icon>
+        >
+          <ion-icon name="sync-outline" size="large"></ion-icon>
           <ion-label>{{"Setting.SocialMedia.UpSocial" |translate }}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>

@@ -106,7 +106,7 @@ export class LanguageService {
    * Settings / Language
    */
   langUpdate(url: string, data: Language[]): Observable<Language[]> {
-    console.log('data Default Language', data);
+    // console.log('data Default Language', data);
     return this.http
       .put<Language[]>(`${url}/language/`, data)
       .pipe(catchError(this.expressService.handleError));

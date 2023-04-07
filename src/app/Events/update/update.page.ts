@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { EventsService } from 'src/app/Services/events/events.service';
@@ -8,6 +9,7 @@ import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Services === //
 // === Models ===== //
 import { AllLanguage, Language } from 'src/app/Model/cPanel/language.model';
+import { Events } from 'src/app/Model/events/events.model';
 
 // === Models ===== //
 @Component({
@@ -22,6 +24,9 @@ export class UpdatePage implements OnInit {
   // === URL === //
   imageSrc: any = './assets/icon/favicon.png';
   // === Events === //
+  eventID: any;
+  event!: Events;
+  langActive!: Language[];
   // === *** FORM *** === //
   // === Form Group === //
   eventUpDate: FormGroup = this.fb.group({
@@ -35,9 +40,12 @@ export class UpdatePage implements OnInit {
   // === Form Array === //
   arrayFormGroup(langID: string, data?: AllLanguage): FormGroup {
     return this.fb.group({
-      lang: [langID, [Validators.required]],
-      name: [null, [Validators.required, Validators.minLength(2)]],
-      description: [null],
+      lang: [langID || data?.lang, [Validators.required]],
+      name: [
+        null || data?.name,
+        [Validators.required, Validators.minLength(2)],
+      ],
+      description: [null || data?.description],
     });
   }
   // === Form Array === //
@@ -45,10 +53,37 @@ export class UpdatePage implements OnInit {
   fileType!: string;
   file!: File;
   // === to get Filses Info === //
+  // === TEXT Editor === //
+  modules = {
+    toolbar: [
+      // ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+      ['bold', 'italic', 'underline', { header: 1 }, { header: 2 }], // toggled buttons
+      // ['blockquote', 'code-block'],
+
+      // [{ header: 1 }, { header: 2 }], // custom button values
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      // [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+      // [{ direction: 'rtl' }], // text direction
+
+      // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
+      // [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+      // [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      // [{ font: [] }],
+      // [{ align: [] }],
+
+      // ['clean'], // remove formatting button
+
+      // ['link', 'image', 'video'], // link and image, video
+    ],
+  };
+  // === TEXT Editor === //
   // === *** FORM *** === //
-  langActive!: Language[];
+
   constructor(
     private fb: FormBuilder,
+    private routerURL: ActivatedRoute,
     private urlService: UrlService,
     private eventsService: EventsService,
     private languageService: LanguageService,
@@ -57,12 +92,44 @@ export class UpdatePage implements OnInit {
   // === Return AS ARRAY === //
   get infoArray(): FormArray {
     // === Name Description array === //
-    return this.eventUpDate.get('infoArray') as FormArray;
+    return this.eventUpDate.controls['infoArray'] as FormArray;
   }
   // === Return AS ARRAY === /
   ngOnInit() {
-    this.eventGetActiveLang();
+    this.routerURL.paramMap.subscribe((res) => {
+      this.eventID = res.get('EventID');
+      console.log('eventID ::', this.eventID);
+      if (this.eventID !== null) {
+        this.eventsService
+          .eventUpdateID(this.url, this.eventID)
+          .subscribe((res: Events) => {
+            // this.event = res;
+            this.eventUpdateByID(res);
+            // console.log('event Update ::', this.event);
+          });
+      } else {
+        this.eventGetActiveLang();
+      }
+    });
   }
+  // === Get event Update By ID === //
+  eventUpdateByID(data: Events) {
+    this.eventUpDate.patchValue({
+      id: data.id,
+      image: data.image,
+      imgType: data.imgType,
+      active: data.active,
+    });
+    data.info.forEach((data: AllLanguage) => {
+      console.log(data);
+      // this.infoArray.removeAt(0);
+      this.infoArray.push(this.arrayFormGroup(data.lang, data));
+    });
+    this.eventUpDate.patchValue({
+      infoArray: this.infoArray.value,
+    });
+  }
+  // === Get event Update By ID === //
   // === Get Active Language === //
   eventGetActiveLang() {
     this.languageService.langActive(this.url).subscribe((res) => {
@@ -136,14 +203,14 @@ export class UpdatePage implements OnInit {
       JSON.stringify(this.eventUpDate.get('infoArray')?.value)
     ); // === Language Group === //
     // === Form Data to Send Value === //
-    // this.eventsService.EventsUpdate(this.url, newForm).subscribe((res: any) => {
-    //   if (res === true) {
-    //     this.alertServer.showAlert('Alert.EventNew', '/events');
-    //     console.log('IF everything work well ::', res);
-    //   }
-    // });
+    this.eventsService.EventsUpdate(this.url, newForm).subscribe((res: any) => {
+      if (res === true) {
+        this.alertServer.showAlert('Alert.EventNew', '/events');
+        console.log('IF everything work well ::', res);
+      }
+    });
     // this.alertServer.showAlert('Alert.EventNew', '/events');
-    console.log('IF everything work well ::', this.eventUpDate);
+    // console.log('IF everything work well ::', this.eventUpDate);
     // console.log('IF everything work well ::', res);
   }
 }

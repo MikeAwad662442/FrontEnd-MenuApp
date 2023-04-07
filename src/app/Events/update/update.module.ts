@@ -8,6 +8,7 @@ import { UpdatePageRoutingModule } from './update-routing.module';
 // == plugins = //
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //  Insert FORMS
+import { QuillModule } from 'ngx-quill';
 // == plugins = //
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; //  Insert FO
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
+    QuillModule,
   ],
   declarations: [UpdatePage],
 })

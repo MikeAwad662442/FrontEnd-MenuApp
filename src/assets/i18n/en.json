@@ -43,13 +43,19 @@
   "Events": {
     "Events": "Events",
     "NweEvents": "Add a New Event",
-    "FixEvents": "Fix Event",
     "DeleteEvents": "Delete All Events",
-    "UpDate": {
+    "UpEvent": "Update",
+    "NewEvent": "New",
+    "DeleteEvent": "Delete",
+    "UpDatePage": {
       "Name": "Name of Event",
       "Image": "Image of Event",
       "Active": "Active Event",
       "Description": "Description of Event"
+    },
+    "ERROR": {
+      "ImageType": "you can insert Image or Video",
+      "EventName": "Name must be at least 2 characters long."
     },
     "NoEvents": "Hi there, there is No Events add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
   },
@@ -64,7 +70,7 @@
       "language": "language",
       "Active": "active",
       "UpLang": "Update",
-            "ERROR": {
+      "ERROR": {
         "FacilityName": "Facility Name is required.",
         "FacilityImageType": "The input type must be Image."
       }

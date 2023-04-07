@@ -81,16 +81,23 @@ const routes: Routes = [
           import('./Events/all/all.module').then((m) => m.AllPageModule),
       },
       {
-        path: 'info',
-        loadChildren: () =>
-          import('./Events/info/info.module').then((m) => m.InfoPageModule),
-      },
-      {
         path: 'update',
         loadChildren: () =>
           import('./Events/update/update.module').then(
             (m) => m.UpdatePageModule
           ),
+      },
+      {
+        path: 'update/:EventID',
+        loadChildren: () =>
+          import('./Events/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+      {
+        path: 'info/:EventID',
+        loadChildren: () =>
+          import('./Events/info/info.module').then((m) => m.InfoPageModule),
       },
     ],
   },

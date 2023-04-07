@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 // === Page === //
 import { AllPage } from './all.page';
 import { AllPageRoutingModule } from './all-routing.module';
+// === Page === //
 // == plugins = //
 import { TranslateModule } from '@ngx-translate/core';
 // == plugins = //

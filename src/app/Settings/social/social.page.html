@@ -16,6 +16,7 @@
     (ngSubmit)="submitForm()"
     novalidate
   >
+    <!-- FORM Facility-->
     <div formGroupName="upFacility">
       <h1>{{"Setting.SocialMedia.Personal" |translate }}</h1>
       <!-- Card Info -->
@@ -36,10 +37,13 @@
       <!-- Card Info -->
       <!-- Facility Name -->
       <ion-item>
-        <ion-label position="floating"
-          >{{'Setting.SocialMedia.FacilityName' | translate}}:</ion-label
-        >
-        <ion-input formControlName="name" name="name" type="text"></ion-input>
+        <ion-input
+          labelPlacement="floating"
+          [label]="'Setting.SocialMedia.FacilityName' | translate"
+          formControlName="name"
+          name="name"
+          type="text"
+        ></ion-input>
       </ion-item>
       <p class="error" *ngIf="!FacilityInfo.get('upFacility.name')?.valid">
         <ion-icon name="alert-circle-outline"></ion-icon>
@@ -48,7 +52,7 @@
       <!-- Facility Name -->
       <!-- Image -->
       <ion-item>
-        <ion-label position="fixed"
+        <ion-label
           >{{'Setting.SocialMedia.FacilityImage' | translate}} :</ion-label
         >
         <input
@@ -59,7 +63,7 @@
           #UploadFile
           class="file-input"
         />
-        <ion-button fill="clear" (click)="UploadFile.click()">
+        <ion-button slot="end" fill="clear" (click)="UploadFile.click()">
           <ion-icon name="image-outline" size="large"></ion-icon>
         </ion-button>
       </ion-item>
@@ -69,7 +73,8 @@
       </p>
       <!-- Image -->
     </div>
-
+    <!-- FORM Facility-->
+    <!-- FORM Social Media-->
     <div formGroupName="upSocialMedia">
       <h1>{{"Setting.SocialMedia.SocialMedia" |translate }}</h1>
       <ion-grid formArrayName="social">
@@ -86,6 +91,7 @@
           </ion-col>
           <ion-col size="8">
             <ion-input
+              label=""
               placeholder="Enter text"
               formControlName="link"
               [name]="lan.link"
@@ -96,6 +102,7 @@
           </ion-col>
           <ion-col size="2">
             <ion-toggle
+              aria-label=""
               formControlName="active"
               [checked]="lan.active"
             ></ion-toggle>
@@ -104,6 +111,7 @@
       </ion-grid>
     </div>
   </form>
+  <!-- FORM Social Media-->
 </ion-content>
 <ion-footer>
   <ion-toolbar>
@@ -115,7 +123,7 @@
           clear
           [disabled]="FacilityInfo.invalid"
         >
-          <ion-icon name="options" size="large"></ion-icon>
+          <ion-icon name="sync-outline" size="large"></ion-icon>
           <ion-label>{{"Setting.SocialMedia.UpSocial" |translate }}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>

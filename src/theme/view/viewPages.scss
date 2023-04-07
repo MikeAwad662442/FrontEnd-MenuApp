@@ -1,0 +1,73 @@
+// @use "./../master.scss";
+/**
+* Events + ItemType + Items
+*
+*/
+
+.pageAll {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px;
+  text-align: center;
+  ion-card {
+    --color: var(--ion-color-primary);
+    text-align: center;
+    video,
+    ion-avatar {
+      margin: 2vmax auto;
+      clear: both;
+      padding: 5px;
+      height: 150px;
+    }
+
+    video {
+      max-width: 100%;
+    }
+    ion-avatar {
+      width: 150px;
+      box-shadow: 4px 4px 6px #888888;
+      border-radius: 100%;
+    }
+  }
+
+  @media screen and (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    ion-avatar {
+      width: 100px !important;
+      height: 100px !important;
+    }
+  }
+}
+
+.pageInfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 20px;
+  text-align: center;
+  ion-card-header {
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+  ion-card-content {
+    grid-column: 2/4;
+  }
+
+  video,
+  ion-avatar {
+    grid-column: 1/2;
+    margin: 2vmax auto;
+    clear: both;
+    max-width: 100%;
+  }
+}
+.blur {
+  filter: blur(5px);
+}
+quill-view {
+  p {
+    color: #fff;
+  }
+}

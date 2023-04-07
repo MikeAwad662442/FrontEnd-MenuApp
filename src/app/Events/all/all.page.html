@@ -8,6 +8,30 @@
 </ion-header>
 
 <ion-content>
+  <!-- data was send from db Server -->
+  <div class="pageAll" *ngIf="eventsAll !== undefined">
+    <ion-card
+      button="true"
+      [routerLink]="['/events/info/',events.id]"
+      *ngFor="let events of eventsAll"
+      [ngClass]="events.active !== true ? 'blur': ''"
+    >
+      <video
+        [src]="imageURL +events.image"
+        *ngIf="events?.imgType === 'video'"
+        muted
+        controls
+      ></video>
+      <ion-avatar *ngIf="events?.imgType === 'image'">
+        <img [src]="imageURL+events.image" />
+      </ion-avatar>
+      <ion-card-content *ngFor="let info  of events.info">
+        {{info.name}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <!-- data was send from db Server -->
+  <!-- No data was send from db Server -->
   <div class="null" *ngIf="eventsAll === undefined">
     <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
     <ion-button fill="clear" [routerLink]="['/events/update']">
@@ -15,27 +39,7 @@
       <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
     </ion-button>
   </div>
-  <div *ngIf="eventsAll !== undefined">
-    <div class="FullMenu" *ngFor="let eventsAll of eventsAll">
-      <div class="CardIon" [routerLink]="['/events',eventsAll.id]">
-        <video
-          [src]="url +eventsAll.image"
-          *ngIf="eventsAll?.imgType === 'video'"
-          height="200"
-          muted
-          controls
-        ></video>
-        <ion-avatar *ngIf="eventsAll?.imgType === 'image'">
-          <img [src]="imageURL+eventsAll.image" />
-        </ion-avatar>
-        <!-- <div *ngFor="let info of eventsAll?.info ">
-          <h1>{{info}}</h1> -->
-        <h1>{{eventsAll?.info?.name}}</h1>
-        <!-- <p>{{eventsAll?.info.description}}</p> -->
-        <!-- </div> -->
-      </div>
-    </div>
-  </div>
+  <!-- No data was send from db Server -->
 </ion-content>
 <ion-footer>
   <!-- <ion-toolbar *ngIf="autAll"> -->

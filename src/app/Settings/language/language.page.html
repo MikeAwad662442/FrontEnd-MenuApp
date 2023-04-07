@@ -23,8 +23,9 @@
           (ionChange)="radioGroupChange($event)"
         >
           <ion-item *ngFor="let lan of language">
-            <ion-label>{{lan.name | translate}}</ion-label>
-            <ion-radio name="name" [value]="lan.id"></ion-radio>
+            <ion-radio name="name" [value]="lan.id" justify="space-between"
+              >{{lan.name | translate}}</ion-radio
+            >
           </ion-item>
         </ion-radio-group>
       </ion-list>
@@ -44,13 +45,9 @@
           *ngFor="let lan of language; let i = index"
           [formGroupName]="i"
         >
-          <ion-label slot="start">{{lan.name | translate}}</ion-label>
-
-          <ion-toggle
-            slot="end"
-            formControlName="active"
-            [checked]="lan.active"
-          ></ion-toggle>
+          <ion-toggle formControlName="active" [checked]="lan.active"
+            >{{lan.name | translate}}</ion-toggle
+          >
         </ion-item>
       </ion-list>
     </div>
@@ -66,7 +63,7 @@
           clear
           [disabled]="upLanguage.invalid"
         >
-          <ion-icon name="sync-circle"></ion-icon>
+          <ion-icon name="sync-outline"></ion-icon>
           <ion-label>{{"Setting.Language.UpLang" |translate }}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>

@@ -24,7 +24,7 @@ export class SocialPage implements OnInit {
   imageURL: string = this.url + '/gallery/';
   // === URL === //
   social!: SocialMedia[]; // === Get SocialMedia as ARRAY
-  defaultIMG: any = 'assets/icon/favicon.png';
+  imageSrc: any = 'assets/icon/favicon.png';
   // === *** FORM *** === //
   // Group All Form in Facility Info Form === //
   FacilityInfo: FormGroup = this.fb.group({
@@ -54,7 +54,7 @@ export class SocialPage implements OnInit {
   }
   // === Form Array === //
   // === to get Filses Info === //
-  imageSrc: any;
+  // imageSrc: any;
   fileType!: string;
   file!: File;
   // === to get Filses Info === //

@@ -4,7 +4,21 @@
 @import "./error.scss"; // === All ERROR on pages === //
 @import "./cPanel/qr.scss"; // === QR === //
 @import "./FormButton.scss"; // === All Form & Buttons Style === //
+// === View Pages
+@import "./view/viewPages.scss"; // === Events + ItemType + Items === //
 // === IMPORT form other CSS === //
+// === All Avatar === //
+@mixin avatar {
+  margin: 2vmax auto;
+  width: 200px;
+  height: 200px;
+  clear: both;
+  border: 1px solid;
+  box-shadow: 5px 5px 8px #888888;
+  border-radius: 100%;
+}
+// === All Avatar === //
+
 * {
   font-size: 16px;
 }

@@ -31,6 +31,7 @@ export class CpanelPage implements OnInit {
   // === SocialMedia === //
   // === Facility INFO === //
   FacilityName: string = 'MENU App';
+  FacilityImage!: string;
   imageSrc = './assets/icon/favicon.png';
   // === Facility INFO === //
   constructor(
@@ -69,7 +70,7 @@ export class CpanelPage implements OnInit {
     // === get Facility Info === //
     this.socialService.Facility$.subscribe((res: Facility[]) => {
       res.forEach((data: Facility) => {
-        this.imageSrc = data.image;
+        this.FacilityImage = data.image;
         this.FacilityName = data.name;
       });
     });

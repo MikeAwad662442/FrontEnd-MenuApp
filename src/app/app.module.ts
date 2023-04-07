@@ -21,6 +21,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // == Add Popovers === //
 import { LanguagePageModule } from './Popover/language/language.module';
 // == Add Popovers === //
+// == TEXT Editor ==== //
+import { QuillModule } from 'ngx-quill';
+// == TEXT Editor ==== //
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -41,6 +44,9 @@ import { LanguagePageModule } from './Popover/language/language.module';
     // == Add Popovers === //
     LanguagePageModule,
     // == Add Popovers === //
+    // == TEXT Editor ==== //
+    QuillModule.forRoot(),
+    // == TEXT Editor ==== //
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

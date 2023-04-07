@@ -26,3 +26,15 @@
 @import "~@ionic/angular/css/flex-utils.css";
 // === My CSS Style === //
 @import "./theme/master.scss";
+
+// === CSS for TEXT Editor ngx-quill === //
+
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+// @import "~quill/dist/quill.bubble.css";
+
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+// === CSS for TEXT Editor ngx-quill === //

@@ -62,7 +62,7 @@ const defaultLanguage: Language[] = [
 ];
 // === The Default Languages in API === //
 interface AllLanguage {
-  language: string;
+  lang: string;
   name: string;
   description: string;
 }
