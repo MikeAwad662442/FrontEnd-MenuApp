@@ -31,7 +31,7 @@ export class InfoPage implements OnInit {
     private languageService: LanguageService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe((res) => {
       const lang = res;

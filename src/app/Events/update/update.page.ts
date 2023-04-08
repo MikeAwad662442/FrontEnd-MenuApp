@@ -9,7 +9,7 @@ import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Services === //
 // === Models ===== //
 import { AllLanguage, Language } from 'src/app/Model/cPanel/language.model';
-import { Events } from 'src/app/Model/events/events.model';
+import { Events, EventsLanguage } from 'src/app/Model/events/events.model';
 
 // === Models ===== //
 @Component({
@@ -22,11 +22,10 @@ export class UpdatePage implements OnInit {
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
   // === URL === //
-  imageSrc: any = './assets/icon/favicon.png';
   // === Events === //
   eventID: any;
   event!: Events;
-  langActive!: Language[];
+  langActive!: EventsLanguage[];
   // === *** FORM *** === //
   // === Form Group === //
   eventUpDate: FormGroup = this.fb.group({
@@ -34,52 +33,45 @@ export class UpdatePage implements OnInit {
     image: ['', Validators.required],
     imgType: [''],
     active: [null],
-    infoArray: this.fb.array<AllLanguage>([]),
+    infoArray: this.fb.array<EventsLanguage>([]),
   });
   // === Form Group === //
   // === Form Array === //
-  arrayFormGroup(langID: string, data?: AllLanguage): FormGroup {
+  arrayFormGroup(
+    id?: any,
+    lang?: string,
+    name?: string,
+    description?: string
+  ): FormGroup {
     return this.fb.group({
-      lang: [langID || data?.lang, [Validators.required]],
-      name: [
-        null || data?.name,
-        [Validators.required, Validators.minLength(2)],
-      ],
-      description: [null || data?.description],
+      id: [id],
+      lang: [lang, [Validators.required]],
+      name: [name, [Validators.required, Validators.minLength(2)]],
+      description: [description],
     });
   }
+  // === Return AS ARRAY === //
+  get infoArrays(): FormArray {
+    // === Name Description array === //
+    return this.eventUpDate.get('infoArray') as FormArray;
+  }
+  // === Return AS ARRAY === /
   // === Form Array === //
+  // === *** FORM *** === //
   // === to get Filses Info === //
+  imageSrc: any; //  imageSrc: any = './assets/icon/favicon.png';
   fileType!: string;
   file!: File;
   // === to get Filses Info === //
-  // === TEXT Editor === //
+  // === Quill TEXT Editor === //
   modules = {
     toolbar: [
-      // ['bold', 'italic', 'underline', 'strike'], // toggled buttons
       ['bold', 'italic', 'underline', { header: 1 }, { header: 2 }], // toggled buttons
-      // ['blockquote', 'code-block'],
-
-      // [{ header: 1 }, { header: 2 }], // custom button values
       [{ list: 'ordered' }, { list: 'bullet' }],
-      // [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
-      [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
-      // [{ direction: 'rtl' }], // text direction
-
-      // [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
-      // [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-      // [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-      // [{ font: [] }],
-      // [{ align: [] }],
-
-      // ['clean'], // remove formatting button
-
-      // ['link', 'image', 'video'], // link and image, video
+      [{ indent: '-1' }, { indent: '+1' }, { direction: 'rtl' }], // outdent/indent
     ],
   };
-  // === TEXT Editor === //
-  // === *** FORM *** === //
+  // === Quill TEXT Editor === //
 
   constructor(
     private fb: FormBuilder,
@@ -89,16 +81,11 @@ export class UpdatePage implements OnInit {
     private languageService: LanguageService,
     private alertServer: AlertService
   ) {}
-  // === Return AS ARRAY === //
-  get infoArray(): FormArray {
-    // === Name Description array === //
-    return this.eventUpDate.controls['infoArray'] as FormArray;
-  }
-  // === Return AS ARRAY === /
-  ngOnInit() {
+
+  async ngOnInit() {
     this.routerURL.paramMap.subscribe((res) => {
       this.eventID = res.get('EventID');
-      console.log('eventID ::', this.eventID);
+      // console.log('eventID ::', this.eventID);
       if (this.eventID !== null) {
         this.eventsService
           .eventUpdateID(this.url, this.eventID)
@@ -114,36 +101,33 @@ export class UpdatePage implements OnInit {
   }
   // === Get event Update By ID === //
   eventUpdateByID(data: Events) {
+    // console.log('data1 ::', data);
+    this.imageSrc = this.imageURL + data.image;
     this.eventUpDate.patchValue({
       id: data.id,
       image: data.image,
       imgType: data.imgType,
       active: data.active,
+      infoArray: data.info,
     });
-    data.info.forEach((data: AllLanguage) => {
-      console.log(data);
-      // this.infoArray.removeAt(0);
-      this.infoArray.push(this.arrayFormGroup(data.lang, data));
-    });
-    this.eventUpDate.patchValue({
-      infoArray: this.infoArray.value,
+    data.info.forEach((data: EventsLanguage) => {
+      this.infoArrays.push(
+        this.arrayFormGroup(data.id, data.lang, data.name, data.description)
+      );
     });
   }
   // === Get event Update By ID === //
   // === Get Active Language === //
   eventGetActiveLang() {
     this.languageService.langActive(this.url).subscribe((res) => {
-      this.langActive = res;
-      this.langActive.forEach((data: Language) => {
+      res.forEach((data: Language) => {
         const langID: string = data.id;
-        this.infoArray.push(this.arrayFormGroup(langID));
-        // console.log('res:', data);
-        // console.log('infoArray:', this.eventUpDate.value);
+        this.infoArrays.push(this.arrayFormGroup(null, langID));
       });
     });
-    this.eventUpDate.patchValue({
-      infoArray: this.infoArray.value,
-    });
+    // this.eventUpDate.patchValue({
+    //   infoArray: this.infoArrays.value,
+    // });
     // console.log('infoArray:', this.eventUpDate.value);
     // console.log('langActive:', this.langActive);
   }
@@ -203,12 +187,14 @@ export class UpdatePage implements OnInit {
       JSON.stringify(this.eventUpDate.get('infoArray')?.value)
     ); // === Language Group === //
     // === Form Data to Send Value === //
-    this.eventsService.EventsUpdate(this.url, newForm).subscribe((res: any) => {
-      if (res === true) {
-        this.alertServer.showAlert('Alert.EventNew', '/events');
-        console.log('IF everything work well ::', res);
-      }
-    });
+    this.eventsService
+      .EventsUpdate(this.url, this.eventID, newForm)
+      .subscribe((res: any) => {
+        if (res === true) {
+          this.alertServer.showAlert('Alert.EventNew', '/events');
+          console.log('IF everything work well ::', res);
+        }
+      });
     // this.alertServer.showAlert('Alert.EventNew', '/events');
     // console.log('IF everything work well ::', this.eventUpDate);
     // console.log('IF everything work well ::', res);

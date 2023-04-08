@@ -72,10 +72,16 @@ export class EventsService {
   }
   // === Get Event from DB by ID === //
   //  === Update all items to Events DB === //
-  EventsUpdate(url: string, data: any): Observable<Events> {
-    // console.log('this.url:', url);
+  EventsUpdate(url: string, ID: string, data: any): Observable<Events> {
+    let link: string;
+    console.log('Event ID ::', ID);
+    if (ID !== null) {
+      link = `${url}/events/Update/:${ID}`;
+    } else {
+      link = `${url}/events/Update/`;
+    }
     return this.http
-      .put<Events>(`${url}/events/Update/`, data)
+      .put<Events>(link, data)
       .pipe(catchError(this.expressService.handleError));
   }
   //  === Update all items to Events DB === //

@@ -21,7 +21,7 @@
     <div>
       <ion-card>
         <video
-          [src]="imageURL + eventUpDate.value.image || imageSrc"
+          [src]="imageSrc"
           *ngIf="eventUpDate.value.imgType === 'video' "
           height="200"
           controls
@@ -29,7 +29,7 @@
           muted
         ></video>
         <ion-avatar *ngIf="eventUpDate.value.imgType === 'image' ">
-          <img [src]="imageURL + eventUpDate.value.image || imageSrc" />
+          <img [src]="imageSrc" />
         </ion-avatar>
       </ion-card>
       <!-- Card Info -->
@@ -54,7 +54,6 @@
       <!-- Image -->
       <!-- active -->
       <ion-item>
-        <!-- <ion-label> {{"Events.UpDate.Active" | translate}} </ion-label> -->
         <ion-toggle
           formControlName="active"
           [checked]="eventUpDate.value.active"
@@ -70,20 +69,24 @@
         {{'Events.ERROR.EventName' | translate}}
         <br /><br /><br />
       </p>
-      <div *ngFor="let info of langActive; let i = index" [formGroupName]="i">
+      <!-- <div *ngFor="let info of langActive; let i = index" [formGroupName]="i"> -->
+      <div
+        *ngFor="let info of infoArrays.controls; let i = index"
+        [formGroupName]="i"
+      >
         <!-- Language -->
 
         <!-- Name -->
         <ion-item>
           <ion-avatar slot="start">
-            <img src="assets/icon/{{info.id}}.webp" />
+            <img src="assets/icon/{{info.value.lang}}.webp" />
           </ion-avatar>
           <!-- Language -->
           <!-- <ion-label> {{"ItemTypes.UpDate.Name" | translate}} </ion-label> -->
           <ion-input
             [label]="'ItemTypes.UpDate.Name' | translate"
             formControlName="name"
-            [name]="info.name"
+            [name]="info.value.name"
             type="text"
           ></ion-input>
         </ion-item>

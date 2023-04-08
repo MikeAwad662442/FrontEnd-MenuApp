@@ -5,8 +5,7 @@ import { EventsService } from 'src/app/Services/events/events.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 // === Services === //
 // === Models ===== //
-import { Events, FullEvents } from 'src/app/Model/events/events.model';
-import { Language } from 'src/app/Model/cPanel/language.model';
+import { Events } from 'src/app/Model/events/events.model';
 // === Models ===== //
 
 @Component({

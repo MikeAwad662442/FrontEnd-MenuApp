@@ -52,24 +52,26 @@ export class SocialPage implements OnInit {
       active: [data.active],
     });
   }
+  // === Return AS ARRAY === //
+  get socialMedia(): FormArray {
+    return this.FacilityInfo.get('upSocialMedia.social') as FormArray;
+  }
+  // === Return AS ARRAY === //
   // === Form Array === //
+  // === *** FORM *** === //
   // === to get Filses Info === //
   // imageSrc: any;
   fileType!: string;
   file!: File;
   // === to get Filses Info === //
-  // === *** FORM *** === //
+
   constructor(
     private fb: FormBuilder,
     private urlService: UrlService,
     private socialService: SocialService,
     private alertServer: AlertService
   ) {}
-  // === Return AS ARRAY === //
-  get socialMedia(): FormArray {
-    return this.FacilityInfo.get('upSocialMedia.social') as FormArray;
-  }
-  // === Return AS ARRAY === //
+
   async ngOnInit() {
     await this.getSocialMedia();
   }

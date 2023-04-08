@@ -43,7 +43,7 @@ interface Events {
   image: string;
   imgType: string;
   active: boolean;
-  info: [AllLanguage];
+  info: [EventsLanguage];
 }
 // same interface usd in Server Said
 interface EventsLanguage {
