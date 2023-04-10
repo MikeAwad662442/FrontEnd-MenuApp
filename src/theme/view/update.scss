@@ -1,0 +1,51 @@
+.PageUpdate {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 20px;
+  text-align: center;
+  div {
+    background-color: var(--ion-color-step-50);
+    p {
+      direction: ltr;
+      text-align: left;
+      margin-left: 20px;
+    }
+    ion-card {
+      text-align: center;
+      video,
+      ion-avatar {
+        margin: 2vmax auto;
+        clear: both;
+        padding: 5px;
+        height: 150px;
+      }
+
+      video {
+        max-width: 100%;
+      }
+      ion-avatar {
+        width: 150px;
+        box-shadow: 4px 4px 6px #888888;
+        border-radius: 100%;
+      }
+    }
+  }
+  .Language {
+    p {
+      margin: 10px auto;
+    }
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 10px;
+    .ql-toolbar {
+      .ql-formats {
+        margin: 0px;
+      }
+    }
+  }
+  @media screen and (max-width: 760px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

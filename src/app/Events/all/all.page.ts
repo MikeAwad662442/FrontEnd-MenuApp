@@ -32,6 +32,18 @@ export class AllPage implements OnInit {
     this.languageService.langUse$.subscribe((res) => {
       const lang = res;
       // console.log('New Lang ::', lang);
+      this.eventsService.refreshEvents$.subscribe((res) => {
+        // === Get All Events from Server === //
+        this.eventsService
+          .eventsGetAll(this.url, lang)
+          .subscribe((res: Events[]) => {
+            if (res.length > 0) {
+              this.eventsAll = res;
+              // console.log('eventsAll ::', this.eventsAll);
+            }
+          });
+        // === Get All Events from Server === //
+      });
       // === Get All Events from Server === //
       this.eventsService
         .eventsGetAll(this.url, lang)
@@ -44,13 +56,4 @@ export class AllPage implements OnInit {
       // === Get All Events from Server === //
     });
   }
-  // async GetAllEvents(lang: string) {
-  //   this.eventsService
-  //     .eventsGetAll(this.url, lang)
-  //     .subscribe((res: Events[]) => {
-  //       if (res.length > 0) {
-  //         this.eventsAll = res;
-  //       }
-  //     });
-  // }
 }

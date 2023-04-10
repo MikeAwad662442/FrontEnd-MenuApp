@@ -66,7 +66,8 @@ export class UpdatePage implements OnInit {
   // === Quill TEXT Editor === //
   modules = {
     toolbar: [
-      ['bold', 'italic', 'underline', { header: 1 }, { header: 2 }], // toggled buttons
+      ['bold', 'italic', 'underline'], // toggled buttons
+      [{ header: 1 }, { header: 2 }],
       [{ list: 'ordered' }, { list: 'bullet' }],
       [{ indent: '-1' }, { indent: '+1' }, { direction: 'rtl' }], // outdent/indent
     ],
@@ -85,12 +86,10 @@ export class UpdatePage implements OnInit {
   async ngOnInit() {
     this.routerURL.paramMap.subscribe((res) => {
       this.eventID = res.get('EventID');
-      // console.log('eventID ::', this.eventID);
       if (this.eventID !== null) {
         this.eventsService
           .eventUpdateID(this.url, this.eventID)
           .subscribe((res: Events) => {
-            // this.event = res;
             this.eventUpdateByID(res);
             // console.log('event Update ::', this.event);
           });
@@ -125,11 +124,6 @@ export class UpdatePage implements OnInit {
         this.infoArrays.push(this.arrayFormGroup(null, langID));
       });
     });
-    // this.eventUpDate.patchValue({
-    //   infoArray: this.infoArrays.value,
-    // });
-    // console.log('infoArray:', this.eventUpDate.value);
-    // console.log('langActive:', this.langActive);
   }
   // === Get Active Language === //
   // === Get / Images || Videos / From UpLodFile === //
@@ -192,11 +186,9 @@ export class UpdatePage implements OnInit {
       .subscribe((res: any) => {
         if (res === true) {
           this.alertServer.showAlert('Alert.EventNew', '/events');
-          console.log('IF everything work well ::', res);
+          // console.log('IF everything work well ::', res);
+          this.eventsService.refreshEvents$.next(true);
         }
       });
-    // this.alertServer.showAlert('Alert.EventNew', '/events');
-    // console.log('IF everything work well ::', this.eventUpDate);
-    // console.log('IF everything work well ::', res);
   }
 }

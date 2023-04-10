@@ -1,9 +1,61 @@
-// @use "./../master.scss";
+// if Item Not Active
+.blur {
+  filter: blur(5px);
+}
 /**
-* Events + ItemType + Items
-*
-*/
+* Events
+**/
+.EventsPageAll {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px;
+  text-align: center;
+  ion-card {
+    --color: var(--ion-color-primary);
+    text-align: center;
+    margin: 0px;
+    video,
+    img {
+      margin: 2vmax auto;
+      clear: both;
+      padding: 5px;
+      height: 150px;
+      max-width: 100%;
+    }
+  }
 
+  @media screen and (max-width: 760px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.EventsPageInfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 20px;
+  text-align: center;
+  ion-card-header {
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+  ion-card-content {
+    grid-column: 2/4;
+  }
+
+  video,
+  img {
+    grid-column: 1/2;
+    margin: 2vmax;
+    clear: both;
+    max-width: 100%;
+  }
+}
+
+/**
+* ItemType + Items
+**/
 .pageAll {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -61,13 +113,5 @@
     margin: 2vmax auto;
     clear: both;
     max-width: 100%;
-  }
-}
-.blur {
-  filter: blur(5px);
-}
-quill-view {
-  p {
-    color: #fff;
   }
 }

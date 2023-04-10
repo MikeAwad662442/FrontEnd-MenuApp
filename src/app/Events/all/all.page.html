@@ -9,7 +9,7 @@
 
 <ion-content>
   <!-- data was send from db Server -->
-  <div class="pageAll" *ngIf="eventsAll !== undefined">
+  <div class="EventsPageAll" *ngIf="eventsAll !== undefined">
     <ion-card
       button="true"
       [routerLink]="['/events/info/',events.id]"
@@ -22,9 +22,7 @@
         muted
         controls
       ></video>
-      <ion-avatar *ngIf="events?.imgType === 'image'">
-        <img [src]="imageURL+events.image" />
-      </ion-avatar>
+      <img *ngIf="events?.imgType === 'image'" [src]="imageURL+events.image" />
       <ion-card-content *ngFor="let info  of events.info">
         {{info.name}}
       </ion-card-content>

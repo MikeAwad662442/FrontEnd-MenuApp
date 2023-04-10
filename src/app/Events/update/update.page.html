@@ -8,12 +8,12 @@
 </ion-header>
 
 <ion-content>
-  <h1>Event value</h1>
-  {{eventUpDate.value | json}}
+  <!-- <h1>Event value</h1>
+  {{eventUpDate.value | json}} -->
   <!-- Card Info -->
 
   <form
-    class="split2"
+    class="PageUpdate"
     [formGroup]="eventUpDate"
     (ngSubmit)="submitForm()"
     novalidate
@@ -25,7 +25,6 @@
           *ngIf="eventUpDate.value.imgType === 'video' "
           height="200"
           controls
-          autoplay
           muted
         ></video>
         <ion-avatar *ngIf="eventUpDate.value.imgType === 'image' ">
@@ -63,11 +62,10 @@
       <!-- active -->
     </div>
     <!-- Information by Languages -->
-    <div formArrayName="infoArray">
+    <div class="Language" formArrayName="infoArray">
       <p class="error" *ngIf="!eventUpDate.get('infoArray')?.valid">
         <ion-icon name="alert-circle-outline"></ion-icon>
         {{'Events.ERROR.EventName' | translate}}
-        <br /><br /><br />
       </p>
       <!-- <div *ngFor="let info of langActive; let i = index" [formGroupName]="i"> -->
       <div
