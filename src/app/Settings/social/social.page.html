@@ -23,9 +23,7 @@
       <ion-card class="FormCard">
         <ion-avatar *ngIf="FacilityInfo.value.upFacility.imgType === 'image' ">
           <!-- <ion-avatar> -->
-          <img
-            [src]="imageSrc || imageURL + FacilityInfo.value.upFacility.image"
-          />
+          <img [src]="imageSrc" />
         </ion-avatar>
         <ion-card-header>
           <ion-card-subtitle
@@ -85,16 +83,19 @@
             >{{"Setting.SocialMedia.Active" |translate }}</ion-col
           >
         </ion-row>
-        <ion-row *ngFor="let lan of social; let i = index" [formGroupName]="i">
+        <ion-row
+          *ngFor="let lan of socialMediaS.controls; let i = index"
+          [formGroupName]="i"
+        >
           <ion-col size="2">
-            <ion-icon [name]="lan.icon" size="large"></ion-icon>
+            <ion-icon [name]="lan.value.icon" size="large"></ion-icon>
           </ion-col>
           <ion-col size="8">
             <ion-input
               label=""
               placeholder="Enter text"
               formControlName="link"
-              [name]="lan.link"
+              [name]="lan.value.link"
               type="text"
               required
               class="LTR"
@@ -104,7 +105,7 @@
             <ion-toggle
               aria-label=""
               formControlName="active"
-              [checked]="lan.active"
+              [checked]="lan.value.active"
             ></ion-toggle>
           </ion-col>
         </ion-row>

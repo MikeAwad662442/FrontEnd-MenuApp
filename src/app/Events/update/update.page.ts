@@ -24,8 +24,6 @@ export class UpdatePage implements OnInit {
   // === URL === //
   // === Events === //
   eventID: any;
-  event!: Events;
-  langActive!: EventsLanguage[];
   // === *** FORM *** === //
   // === Form Group === //
   eventUpDate: FormGroup = this.fb.group({
@@ -51,7 +49,7 @@ export class UpdatePage implements OnInit {
     });
   }
   // === Return AS ARRAY === //
-  get infoArrays(): FormArray {
+  get infoArrayS(): FormArray {
     // === Name Description array === //
     return this.eventUpDate.get('infoArray') as FormArray;
   }
@@ -59,7 +57,7 @@ export class UpdatePage implements OnInit {
   // === Form Array === //
   // === *** FORM *** === //
   // === to get Filses Info === //
-  imageSrc: any; //  imageSrc: any = './assets/icon/favicon.png';
+  imageSrc: any; // './assets/icon/favicon.png';
   fileType!: string;
   file!: File;
   // === to get Filses Info === //
@@ -110,7 +108,7 @@ export class UpdatePage implements OnInit {
       infoArray: data.info,
     });
     data.info.forEach((data: EventsLanguage) => {
-      this.infoArrays.push(
+      this.infoArrayS.push(
         this.arrayFormGroup(data.id, data.lang, data.name, data.description)
       );
     });
@@ -121,7 +119,7 @@ export class UpdatePage implements OnInit {
     this.languageService.langActive(this.url).subscribe((res) => {
       res.forEach((data: Language) => {
         const langID: string = data.id;
-        this.infoArrays.push(this.arrayFormGroup(null, langID));
+        this.infoArrayS.push(this.arrayFormGroup(null, langID));
       });
     });
   }

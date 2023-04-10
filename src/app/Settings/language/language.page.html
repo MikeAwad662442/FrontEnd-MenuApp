@@ -22,9 +22,12 @@
           [value]="defaultLang"
           (ionChange)="radioGroupChange($event)"
         >
-          <ion-item *ngFor="let lan of language">
-            <ion-radio name="name" [value]="lan.id" justify="space-between"
-              >{{lan.name | translate}}</ion-radio
+          <ion-item *ngFor="let lan of lanGuaGeS.controls">
+            <ion-radio
+              name="name"
+              [value]="lan.value.id"
+              justify="space-between"
+              >{{lan.value.name | translate}}</ion-radio
             >
           </ion-item>
         </ion-radio-group>
@@ -42,11 +45,11 @@
           >
         </ion-item>
         <ion-item
-          *ngFor="let lan of language; let i = index"
+          *ngFor="let lan of lanGuaGeS.controls; let i = index"
           [formGroupName]="i"
         >
-          <ion-toggle formControlName="active" [checked]="lan.active"
-            >{{lan.name | translate}}</ion-toggle
+          <ion-toggle formControlName="active" [checked]="lan.value.active"
+            >{{lan.value.name | translate}}</ion-toggle
           >
         </ion-item>
       </ion-list>

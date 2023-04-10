@@ -23,8 +23,6 @@ export class SocialPage implements OnInit {
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
   // === URL === //
-  social!: SocialMedia[]; // === Get SocialMedia as ARRAY
-  imageSrc: any = 'assets/icon/favicon.png';
   // === *** FORM *** === //
   // Group All Form in Facility Info Form === //
   FacilityInfo: FormGroup = this.fb.group({
@@ -53,14 +51,14 @@ export class SocialPage implements OnInit {
     });
   }
   // === Return AS ARRAY === //
-  get socialMedia(): FormArray {
+  get socialMediaS(): FormArray {
     return this.FacilityInfo.get('upSocialMedia.social') as FormArray;
   }
   // === Return AS ARRAY === //
   // === Form Array === //
   // === *** FORM *** === //
   // === to get Filses Info === //
-  // imageSrc: any;
+  imageSrc: any; // './assets/icon/favicon.png';
   fileType!: string;
   file!: File;
   // === to get Filses Info === //
@@ -83,6 +81,7 @@ export class SocialPage implements OnInit {
       if (res.length !== 0) {
         // console.log('Facility ::', res);
         res.forEach((data: Facility) => {
+          this.imageSrc = this.imageURL + data.image;
           this.FacilityInfo.patchValue({
             upFacility: {
               id: data.id,
@@ -98,19 +97,17 @@ export class SocialPage implements OnInit {
     // === get Social Media === //
     this.socialService.socialMedia$.subscribe((res: SocialMedia[]) => {
       if (res.length !== 0) {
-        this.social = res;
-        this.social.forEach((data: SocialMedia) => {
-          this.socialMedia.push(this.arrayFormGroup(data));
+        res.forEach((data: SocialMedia) => {
+          this.socialMediaS.push(this.arrayFormGroup(data));
         });
       } else {
-        this.social = defaultSocialMedia;
-        this.social.forEach((data: SocialMedia) => {
-          this.socialMedia.push(this.arrayFormGroup(data));
+        defaultSocialMedia.forEach((data: SocialMedia) => {
+          this.socialMediaS.push(this.arrayFormGroup(data));
         });
       }
       this.FacilityInfo.patchValue({
         upSocialMedia: {
-          social: this.socialMedia.value,
+          social: this.socialMediaS.value,
         },
       });
     });

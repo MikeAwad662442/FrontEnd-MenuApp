@@ -16,7 +16,6 @@ import { Language, defaultLanguage } from 'src/app/Model/cPanel/language.model';
 })
 export class LanguagePage implements OnInit {
   url: string = this.urlService.url;
-  language!: Language[]; // === Get Language as ARRAY
   defaultLang!: string; // === Get Default Language
   upLanguage: FormGroup = this.fb.group({
     languages: this.fb.array<Language>([]),
@@ -29,7 +28,7 @@ export class LanguagePage implements OnInit {
     private languageService: LanguageService
   ) {}
   // === Return AS ARRAY === //
-  get lanGuaGes(): FormArray {
+  get lanGuaGeS(): FormArray {
     return this.upLanguage.get('languages') as FormArray;
   }
   // === Return AS ARRAY === /
@@ -40,24 +39,22 @@ export class LanguagePage implements OnInit {
   getLanguage() {
     this.languageService.langGetAll(this.url).subscribe((res: Language[]) => {
       if (res.length !== 0) {
-        this.language = res;
-        this.language.forEach((data: Language) => {
+        res.forEach((data: Language) => {
           if (data.default === true) {
             this.defaultLang = data.id;
           }
-          this.lanGuaGes.push(this.arrayFormGroup(data));
+          this.lanGuaGeS.push(this.arrayFormGroup(data));
         });
       } else {
-        this.language = defaultLanguage;
-        this.language.forEach((data: Language) => {
+        defaultLanguage.forEach((data: Language) => {
           if (data.default === true) {
             this.defaultLang = data.id;
           }
-          this.lanGuaGes.push(this.arrayFormGroup(data));
+          this.lanGuaGeS.push(this.arrayFormGroup(data));
         });
       }
       this.upLanguage.patchValue({
-        languages: this.lanGuaGes.value,
+        languages: this.lanGuaGeS.value,
       });
     });
   }
@@ -75,7 +72,7 @@ export class LanguagePage implements OnInit {
   // === Form Array === //
   // === Receive Changes From Radio button === //
   radioGroupChange(event: any) {
-    const newDef = this.lanGuaGes.value;
+    const newDef = this.lanGuaGeS.value;
     const defaultID = event.detail.value;
     const newValue = newDef.map((e: Language) => {
       if (e.id === defaultID) {
@@ -85,7 +82,7 @@ export class LanguagePage implements OnInit {
       }
       return e;
     });
-    this.lanGuaGes.setValue(newValue);
+    this.lanGuaGeS.setValue(newValue);
   }
   // === Receive Changes From Radio button === //
   // === Send Update DATA to Server === //
