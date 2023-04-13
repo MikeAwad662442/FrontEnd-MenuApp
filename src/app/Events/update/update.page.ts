@@ -24,6 +24,13 @@ export class UpdatePage implements OnInit {
   // === URL === //
   // === Events === //
   eventID: any;
+  /**
+   * get Active Languages & Active Event Language
+   * to find if there are not the same
+   **/
+  ActiveLang!: Language[];
+  ActiveEvent!: Events;
+
   // === *** FORM *** === //
   // === Form Group === //
   eventUpDate: FormGroup = this.fb.group({
@@ -88,42 +95,104 @@ export class UpdatePage implements OnInit {
         this.eventsService
           .eventUpdateID(this.url, this.eventID)
           .subscribe((res: Events) => {
-            this.eventUpdateByID(res);
-            // console.log('event Update ::', this.event);
+            this.ActiveEvent = res;
           });
-      } else {
-        this.eventGetActiveLang();
       }
+      this.languageService.langActive(this.url).subscribe((res) => {
+        this.ActiveLang = res;
+      });
     });
+    /**
+     * This method is wrong, but it works for now
+     **/
+    setTimeout(() => {
+      this.eventUpdate();
+    }, 1000);
+    /**
+     * This method is wrong, but it works for now
+     **/
+    // this.eventGetActiveLang();
   }
-  // === Get event Update By ID === //
-  eventUpdateByID(data: Events) {
-    // console.log('data1 ::', data);
-    this.imageSrc = this.imageURL + data.image;
-    this.eventUpDate.patchValue({
-      id: data.id,
-      image: data.image,
-      imgType: data.imgType,
-      active: data.active,
-      infoArray: data.info,
-    });
-    data.info.forEach((data: EventsLanguage) => {
-      this.infoArrayS.push(
-        this.arrayFormGroup(data.id, data.lang, data.name, data.description)
-      );
-    });
-  }
-  // === Get event Update By ID === //
-  // === Get Active Language === //
-  eventGetActiveLang() {
-    this.languageService.langActive(this.url).subscribe((res) => {
-      res.forEach((data: Language) => {
+  async eventUpdate() {
+    if (this.ActiveEvent === undefined) {
+      // === Get Active Language === //
+      this.ActiveLang.forEach((data: Language) => {
         const langID: string = data.id;
         this.infoArrayS.push(this.arrayFormGroup(null, langID));
       });
-    });
+      // === Get Active Language === //
+    } else if (this.ActiveLang.length > this.ActiveEvent.info.length) {
+      this.imageSrc = this.imageURL + this.ActiveEvent.image;
+      this.eventUpDate.patchValue({
+        id: this.ActiveEvent.id,
+        image: this.ActiveEvent.image,
+        imgType: this.ActiveEvent.imgType,
+        active: this.ActiveEvent.active,
+      });
+      for (var i = 0; i < this.ActiveLang.length; i++) {
+        console.log(this.ActiveEvent.info[i]);
+        console.log(this.ActiveLang[i].id);
+        if (
+          this.ActiveEvent.info[i] === undefined ||
+          this.ActiveLang[i].id !== this.ActiveEvent.info[i].lang
+        ) {
+          const data = this.ActiveLang[i].id;
+          console.log(data);
+          this.infoArrayS.push(this.arrayFormGroup(null, data));
+        } else {
+          const data = this.ActiveEvent.info[i];
+          this.infoArrayS.push(
+            this.arrayFormGroup(data.id, data.lang, data.name, data.description)
+          );
+        }
+      }
+    } else {
+      // === Get event Update By ID === //
+      this.imageSrc = this.imageURL + this.ActiveEvent.image;
+      this.eventUpDate.patchValue({
+        id: this.ActiveEvent.id,
+        image: this.ActiveEvent.image,
+        imgType: this.ActiveEvent.imgType,
+        active: this.ActiveEvent.active,
+      });
+      this.ActiveEvent.info.forEach((data: EventsLanguage) => {
+        this.infoArrayS.push(
+          this.arrayFormGroup(data.id, data.lang, data.name, data.description)
+        );
+      });
+      // === Get event Update By ID === //
+    }
+    console.log('ActiveLang ::', this.ActiveLang);
+    console.log('ActiveEvent ::', this.ActiveEvent.info);
   }
-  // === Get Active Language === //
+  // // === Get event Update By ID === //
+  // eventUpdateByID(data: Events) {
+  //   // console.log('data1 ::', data);
+  //   this.imageSrc = this.imageURL + data.image;
+  //   this.eventUpDate.patchValue({
+  //     id: data.id,
+  //     image: data.image,
+  //     imgType: data.imgType,
+  //     active: data.active,
+  //     infoArray: data.info,
+  //   });
+  //   data.info.forEach((data: EventsLanguage) => {
+  //     this.infoArrayS.push(
+  //       this.arrayFormGroup(data.id, data.lang, data.name, data.description)
+  //     );
+  //   });
+  // }
+  // // === Get event Update By ID === //
+  // // === Get Active Language === //
+  // eventGetActiveLang() {
+  //   this.languageService.langActive(this.url).subscribe((res) => {
+  //     res.forEach((data: Language) => {
+  //       const langID: string = data.id;
+  //       this.infoArrayS.push(this.arrayFormGroup(null, langID));
+  //     });
+  //   });
+  // }
+  // // === Get Active Language === //
   // === Get / Images || Videos / From UpLodFile === //
   async onFileChange(event: any) {
     this.file = event.target.files[0]; // === to get File info in Angular

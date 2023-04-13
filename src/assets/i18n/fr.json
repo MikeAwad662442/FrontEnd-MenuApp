@@ -43,13 +43,19 @@
   "Events": {
     "Events": "Événements",
     "NweEvents": "Ajouter un nouvel événement",
-    "FixEvents": "Corriger les événements",
     "DeleteEvents": "Supprimer tous les événements",
-    "UpDate": {
+    "UpEvent": "Mettre à jour",
+    "NewEvent": "Supprimer",
+    "DeleteEvent": "Delete",
+    "UpDatePage": {
       "Name": "Nom de l'événement",
       "Image": "Image de l'événement",
       "Active": "Événement actif",
       "Description": "Description de l'événement"
+    },
+    "ERROR": {
+      "ImageType": "vous pouvez insérer une image ou une vidéo",
+      "EventName": "Le nom doit comporter au moins 2 caractères."
     },
     "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
   },
@@ -80,14 +86,14 @@
       "Active": "Actif",
       "UpSocial": "Mettre à jour"
     },
-        "QR": {
+    "QR": {
       "wifiName": "Nom du réseau (SSID)",
       "wifiPass": "Mot de passe réseau",
       "wifiType": "Authentification WPA",
       "wifiHidden": "Réseau caché",
       "serverURL": "MENU URL du serveur",
       "UpQR": "Mettre à jour",
-      "print":"Imprimer",
+      "print": "Imprimer",
       "PrintPage": {
         "Info": "Veuillez choisir la méthode d'impression du QR,<br />où il peut être imprimé sur une page A4, puis 10 ensembles peuvent être imprimés ensemble, <br /> ou par une imprimante thermique, puis uniquement un exemplaire sera imprimé"
       },

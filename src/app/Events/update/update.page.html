@@ -8,8 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <!-- <h1>Event value</h1>
-  {{eventUpDate.value | json}} -->
+  <h1>Event value</h1>
+  <p class="LTR">{{eventUpDate.value | json}}</p>
+
   <!-- Card Info -->
 
   <form
@@ -27,9 +28,7 @@
           controls
           muted
         ></video>
-        <ion-avatar *ngIf="eventUpDate.value.imgType === 'image' ">
-          <img [src]="imageSrc" />
-        </ion-avatar>
+        <img *ngIf="eventUpDate.value.imgType === 'image' " [src]="imageSrc" />
       </ion-card>
       <!-- Card Info -->
       <!-- Image -->
@@ -67,7 +66,6 @@
         <ion-icon name="alert-circle-outline"></ion-icon>
         {{'Events.ERROR.EventName' | translate}}
       </p>
-      <!-- <div *ngFor="let info of langActive; let i = index" [formGroupName]="i"> -->
       <div
         *ngFor="let info of infoArrayS.controls; let i = index"
         [formGroupName]="i"
