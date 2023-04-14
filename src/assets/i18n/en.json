@@ -44,6 +44,7 @@
     "Events": "Events",
     "NweEvents": "Add a New Event",
     "DeleteEvents": "Delete All Events",
+    "OrderList": "Order List",
     "UpEvent": "Update",
     "NewEvent": "New",
     "DeleteEvent": "Delete",

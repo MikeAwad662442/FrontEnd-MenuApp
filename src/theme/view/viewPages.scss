@@ -2,6 +2,21 @@
 .blur {
   filter: blur(5px);
 }
+.OrderList {
+  margin: 5vmax;
+  ion-list {
+    .thumbnail {
+      video,
+      img {
+        margin: 2vmax auto;
+        padding: 5px;
+        height: 100px;
+        width: 100px;
+      }
+    }
+  }
+}
+
 /**
 * Events
 **/

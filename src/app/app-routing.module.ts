@@ -99,6 +99,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Events/info/info.module').then((m) => m.InfoPageModule),
       },
+      {
+        path: 'orderList',
+        loadChildren: () =>
+          import('./Events/order-list/order-list.module').then(
+            (m) => m.OrderListPageModule
+          ),
+      },
     ],
   },
   // === Events === //
