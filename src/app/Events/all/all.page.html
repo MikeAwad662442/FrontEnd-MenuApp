@@ -49,7 +49,7 @@
           <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
         </ion-tab-button>
         <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
-        <ion-tab-button>
+        <ion-tab-button (click)="DeleteEvents()">
           <ion-icon name="trash-outline"></ion-icon>
           <ion-label>{{ "Events.DeleteEvents" | translate}}</ion-label>
         </ion-tab-button>

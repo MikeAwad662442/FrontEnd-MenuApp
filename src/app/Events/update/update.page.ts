@@ -93,7 +93,7 @@ export class UpdatePage implements OnInit {
       this.eventID = res.get('EventID');
       if (this.eventID !== null) {
         this.eventsService
-          .eventUpdateID(this.url, this.eventID)
+          .EventUpdateID(this.url, this.eventID)
           .subscribe((res: Events) => {
             this.ActiveEvent = res;
           });
@@ -130,8 +130,8 @@ export class UpdatePage implements OnInit {
         active: this.ActiveEvent.active,
       });
       for (var i = 0; i < this.ActiveLang.length; i++) {
-        console.log(this.ActiveEvent.info[i]);
-        console.log(this.ActiveLang[i].id);
+        // console.log(this.ActiveEvent.info[i]);
+        // console.log(this.ActiveLang[i].id);
         if (
           this.ActiveEvent.info[i] === undefined ||
           this.ActiveLang[i].id !== this.ActiveEvent.info[i].lang
@@ -165,34 +165,7 @@ export class UpdatePage implements OnInit {
     console.log('ActiveLang ::', this.ActiveLang);
     console.log('ActiveEvent ::', this.ActiveEvent.info);
   }
-  // // === Get event Update By ID === //
-  // eventUpdateByID(data: Events) {
-  //   // console.log('data1 ::', data);
-  //   this.imageSrc = this.imageURL + data.image;
-  //   this.eventUpDate.patchValue({
-  //     id: data.id,
-  //     image: data.image,
-  //     imgType: data.imgType,
-  //     active: data.active,
-  //     infoArray: data.info,
-  //   });
-  //   data.info.forEach((data: EventsLanguage) => {
-  //     this.infoArrayS.push(
-  //       this.arrayFormGroup(data.id, data.lang, data.name, data.description)
-  //     );
-  //   });
-  // }
-  // // === Get event Update By ID === //
-  // // === Get Active Language === //
-  // eventGetActiveLang() {
-  //   this.languageService.langActive(this.url).subscribe((res) => {
-  //     res.forEach((data: Language) => {
-  //       const langID: string = data.id;
-  //       this.infoArrayS.push(this.arrayFormGroup(null, langID));
-  //     });
-  //   });
-  // }
-  // // === Get Active Language === //
+
   // === Get / Images || Videos / From UpLodFile === //
   async onFileChange(event: any) {
     this.file = event.target.files[0]; // === to get File info in Angular
@@ -254,7 +227,7 @@ export class UpdatePage implements OnInit {
         if (res === true) {
           this.alertServer.showAlert('Alert.EventNew', '/events');
           // console.log('IF everything work well ::', res);
-          this.eventsService.refreshEvents$.next(true);
+          this.eventsService.refreshEvents$.next(res);
         }
       });
   }

@@ -35,7 +35,7 @@ export class OrderListPage implements OnInit {
       this.eventsService.refreshEvents$.subscribe((res) => {
         // === Get All Events from Server === //
         this.eventsService
-          .eventsGetAll(this.url, lang)
+          .EventsGetAll(this.url, lang)
           .subscribe((res: Events[]) => {
             if (res.length > 0) {
               this.eventsAll = res;
@@ -46,7 +46,7 @@ export class OrderListPage implements OnInit {
       });
       // === Get All Events from Server === //
       this.eventsService
-        .eventsGetAll(this.url, lang)
+        .EventsGetAll(this.url, lang)
         .subscribe((res: Events[]) => {
           if (res.length > 0) {
             this.eventsAll = res;

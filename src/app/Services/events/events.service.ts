@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, catchError, tap } from 'rxjs';
 // === Services === //
@@ -7,7 +7,7 @@ import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { ExpressService } from 'src/app/Services/Server/express.service';
 // === Services === //
 // === Models ===== //
-import { Events, FullEvents } from 'src/app/Model/events/events.model';
+import { Events } from 'src/app/Model/events/events.model';
 // === Models ===== //
 
 @Injectable({
@@ -29,7 +29,7 @@ export class EventsService {
    * events
    */
   // === Get all Events from DB === //
-  eventsGetAll(url: string, lang: string): Observable<Events[]> {
+  EventsGetAll(url: string, lang: string): Observable<Events[]> {
     return this.http
       .get<Events[]>(`${url}/events/view/${lang}`)
       .pipe(catchError(this.expressService.handleError));
@@ -39,7 +39,7 @@ export class EventsService {
   /* === Used in Pages:
    * events
    */
-  eventGet(url: string, lang: string, eventID: string): Observable<Events> {
+  EventGet(url: string, lang: string, eventID: string): Observable<Events> {
     // const lang = this.languageService.langUse$.value;
     // console.log(lang);
     return this.http
@@ -51,17 +51,17 @@ export class EventsService {
    * Update event
    */
   // === Get Event from DB by ID === //
-  eventUpdateID(url: string, eventID: string): Observable<Events> {
+  EventUpdateID(url: string, eventID: string): Observable<Events> {
     return this.http
       .get<Events>(`${url}/events/Update/${eventID}`)
       .pipe(catchError(this.expressService.handleError));
   }
   // === Get Event from DB by ID === //
-  //  === Update all items to Events DB === //
+  // === Update Events DB === //
   EventsUpdate(url: string, ID: string, data: any): Observable<Events> {
     let link: string;
     if (ID !== null) {
-      link = `${url}/events/Update/:${ID}`;
+      link = `${url}/events/Update/${ID}`;
     } else {
       link = `${url}/events/Update/`;
     }
@@ -69,5 +69,19 @@ export class EventsService {
       .put<Events>(link, data)
       .pipe(catchError(this.expressService.handleError));
   }
-  //  === Update all items to Events DB === //
+  // === Update Events DB === //
+  // === Delete Events DB === //
+  EventsDelete(url: string, ID?: string): Observable<Events> {
+    console.log('Event ID ::', ID);
+    let link: string;
+    if (ID !== undefined) {
+      link = `${url}/events/Update/${ID}`;
+    } else {
+      link = `${url}/events/Update/`;
+    }
+    return this.http
+      .delete<Events>(link)
+      .pipe(catchError(this.expressService.handleError));
+  }
+  // === Delete Events DB === //
 }

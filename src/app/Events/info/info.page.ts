@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { EventsService } from 'src/app/Services/events/events.service';
+import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Services === //
 // === Models ===== //
 import { Events } from 'src/app/Model/events/events.model';
@@ -28,7 +29,8 @@ export class InfoPage implements OnInit {
     private routerURL: ActivatedRoute,
     private urlService: UrlService,
     private eventsService: EventsService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private alertServer: AlertService
   ) {}
 
   async ngOnInit() {
@@ -40,7 +42,7 @@ export class InfoPage implements OnInit {
         this.eventID = res.get('EventID');
         // console.log('eventID ::', this.eventID);
         this.eventsService
-          .eventGet(this.url, lang, this.eventID)
+          .EventGet(this.url, lang, this.eventID)
           .subscribe((res: Events) => {
             this.event = res;
             // console.log('this.event ::', this.event);
@@ -49,7 +51,7 @@ export class InfoPage implements OnInit {
       // === Get Event by ID === //
       // === Get All Events from Server === //
       this.eventsService
-        .eventsGetAll(this.url, lang)
+        .EventsGetAll(this.url, lang)
         .subscribe((res: Events[]) => {
           if (res.length > 0) {
             this.eventsAll = res;
@@ -58,12 +60,17 @@ export class InfoPage implements OnInit {
       // === Get All Events from Server === //
     });
   }
-  // GetEvent(lang: string, eventID: string) {
-  //   this.eventsService
-  //     .eventGet(this.url, lang, eventID)
-  //     .subscribe((res: Events) => {
-  //       this.event = res;
-  //       console.log('this.event ::', this.event);
-  //     });
-  // }
+  // === Delete Event By ID === //
+  DeleteEventID() {
+    this.eventsService
+      .EventsDelete(this.url, this.eventID)
+      .subscribe((res: any) => {
+        if (res === true) {
+          this.alertServer.showAlert('Alert.EventNew', '/events');
+          // console.log('IF everything work well ::', res);
+          this.eventsService.refreshEvents$.next(res);
+        }
+      });
+  }
+  // === Delete Event By ID === //
 }
