@@ -63,8 +63,8 @@ export class AllPage implements OnInit {
   DeleteEvents() {
     this.eventsService.EventsDelete(this.url).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.EventNew', '/events');
-        // console.log('IF everything work well ::', res);
+        this.alertServer.showAlert('Alert.Event.DeleteAll', '/events');
+        console.log('IF everything work well ::', res);
         this.eventsService.refreshEvents$.next(res);
       }
     });

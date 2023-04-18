@@ -49,3 +49,15 @@
   </div>
   <!-- No data was send from db Server -->
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="submitOrder()" type="submit">
+          <ion-icon name="sync-outline" size="large"></ion-icon>
+          <ion-label>{{"Setting.SocialMedia.UpSocial" |translate }}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

@@ -94,8 +94,8 @@ export class LanguagePage implements OnInit {
         this.languageService.saveLanguage(data.direction, data.id);
       }
     });
-    this.languageService.langUpdate(this.url, res).subscribe((e: any) => {
-      if (e === true) {
+    this.languageService.langUpdate(this.url, res).subscribe((res: any) => {
+      if (res === true) {
         // this.alertServer.showAlert('the language update', '/cpanel');
         this.alertServer.showAlert('Alert.UpLanguage', '/cpanel');
       }

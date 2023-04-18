@@ -84,4 +84,11 @@ export class EventsService {
       .pipe(catchError(this.expressService.handleError));
   }
   // === Delete Events DB === //
+  // === Update Order List === //
+  EventsOrderList(url: string, data: Events[]): Observable<Events> {
+    return this.http
+      .put<Events>(`${url}/events/OrderList`, data)
+      .pipe(catchError(this.expressService.handleError));
+  }
+  // === Update Order List === //
 }

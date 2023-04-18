@@ -40,6 +40,7 @@ interface FullEvents {
  */
 interface Events {
   id: any;
+  listNum: any;
   image: string;
   imgType: string;
   active: boolean;

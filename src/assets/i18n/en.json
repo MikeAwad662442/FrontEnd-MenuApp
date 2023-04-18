@@ -122,8 +122,12 @@
     "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first",
     "QRwifiServer": "the QR info is Update",
     "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase",
-    "EventNew": "the New Event Have been added",
-    "EventUpdate": "the Event Have been Update"
+    "Event": {
+      "AddNew": "the New Event Have been added",
+      "Update": "the Event has been Update",
+      "DeleteOne": "the Event has been Deleted",
+      "DeleteAll": "All Events has been Deleted"
+    }
   },
   "Arabic": "Arabic",
   "English": "English",

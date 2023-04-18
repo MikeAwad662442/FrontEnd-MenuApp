@@ -66,7 +66,7 @@ export class InfoPage implements OnInit {
       .EventsDelete(this.url, this.eventID)
       .subscribe((res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.EventNew', '/events');
+          this.alertServer.showAlert('Alert.Event.DeleteOne', '/events');
           // console.log('IF everything work well ::', res);
           this.eventsService.refreshEvents$.next(res);
         }

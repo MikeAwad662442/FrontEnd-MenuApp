@@ -225,7 +225,8 @@ export class UpdatePage implements OnInit {
       .EventsUpdate(this.url, this.eventID, newForm)
       .subscribe((res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.EventNew', '/events');
+          this.eventUpDate.reset;
+          this.alertServer.showAlert('Alert.Event.AddNew', '/events');
           // console.log('IF everything work well ::', res);
           this.eventsService.refreshEvents$.next(res);
         }

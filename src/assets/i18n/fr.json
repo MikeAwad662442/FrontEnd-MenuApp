@@ -118,8 +118,12 @@
     "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP",
     "QRwifiServer": "les informations QR sont mises à jour",
     "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR",
-    "EventNew": "le nouvel événement a été ajouté",
-    "EventUpdate": "l'événement a été mis à jour"
+    "Event": {
+      "AddNew": "le nouvel événement a été ajouté",
+      "Update": "l'événement a été mis à jour",
+      "DeleteOne": "Tous les événements ont été supprimés",
+      "DeleteAll": "Tous les événements ont été supprimés"
+    }
   },
   "Arabic": "arabe",
   "English": "Anglais",
