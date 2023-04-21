@@ -15,7 +15,7 @@ const defaultMenuArray: MenuArray[] = [
   },
   {
     title: 'MENU.menu',
-    url: '/item-type',
+    url: '/ItemType',
     icon: 'list',
   },
   {

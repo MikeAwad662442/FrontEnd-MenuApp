@@ -9,7 +9,7 @@
 
 <ion-content>
   <!-- data was send from db Server -->
-  <div class="EventsPageAll" *ngIf="eventsAll !== undefined">
+  <div class="PageAll" *ngIf="eventsAll !== undefined">
     <ion-card
       button="true"
       [routerLink]="['/events/info/',events.id]"
@@ -17,8 +17,8 @@
       [ngClass]="events.active !== true ? 'blur': ''"
     >
       <video
-        [src]="imageURL +events.image"
         *ngIf="events?.imgType === 'video'"
+        [src]="imageURL +events.image"
         muted
         controls
       ></video>
@@ -46,16 +46,16 @@
       <ion-tab-bar>
         <ion-tab-button [routerLink]="['/events/update']">
           <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
+          <ion-label>{{ "New" | translate}}</ion-label>
         </ion-tab-button>
         <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
         <ion-tab-button (click)="DeleteEvents()">
           <ion-icon name="trash-outline"></ion-icon>
-          <ion-label>{{ "Events.DeleteEvents" | translate}}</ion-label>
+          <ion-label>{{ "DeleteAll" | translate}}</ion-label>
         </ion-tab-button>
         <ion-tab-button [routerLink]="['/events/orderList']">
           <ion-icon name="list-outline"></ion-icon>
-          <ion-label>{{ "Events.OrderList" | translate}}</ion-label>
+          <ion-label>{{ "OrderList" | translate}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title
-      >{{"OrderList" |translate }} {{"Events.Events" |translate }}</ion-title
-    >
+    <ion-title>{{"OrderList" |translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -11,20 +9,14 @@
 
 <ion-content>
   <!-- data was send from db Server -->
-  <div class="OrderList" *ngIf="eventsAll !== undefined">
+  <div class="OrderList" *ngIf="ItemTypesAll !== undefined">
     <ion-list>
       <ion-reorder-group
         [disabled]="false"
         (ionItemReorder)="handleReorder($any($event))"
       >
-        <ion-item *ngFor="let events of eventsAll">
+        <ion-item *ngFor="let events of ItemTypesAll">
           <div class="thumbnail" slot="start">
-            <video
-              [src]="imageURL +events.image"
-              *ngIf="events?.imgType === 'video'"
-              muted
-              controls
-            ></video>
             <img
               *ngIf="events?.imgType === 'image'"
               [src]="imageURL+events.image"
@@ -42,9 +34,9 @@
   </div>
   <!-- data was send from db Server -->
   <!-- No data was send from db Server -->
-  <div class="null" *ngIf="eventsAll === undefined">
-    <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
-    <ion-button fill="clear" [routerLink]="['/events/update']">
+  <div class="null" *ngIf="ItemTypesAll === undefined">
+    <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
+    <ion-button fill="clear" [routerLink]="['/ItemType/update']">
       <ion-icon name="add-circle-outline"></ion-icon>
       <ion-label>{{ "New" | translate}}</ion-label>
     </ion-button>

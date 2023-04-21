@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
-import { EventsService } from 'src/app/Services/events/events.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 // === Services === //
 // === Models ===== //
-import { AllLanguage, Language } from 'src/app/Model/cPanel/language.model';
+import { Language } from 'src/app/Model/cPanel/language.model';
 import { Events, EventsLanguage } from 'src/app/Model/events/events.model';
-
+import { CRUDService } from 'src/app/Services/Global/crud.service';
 // === Models ===== //
 @Component({
   selector: 'app-update',
@@ -18,10 +17,19 @@ import { Events, EventsLanguage } from 'src/app/Model/events/events.model';
   styleUrls: ['./update.page.scss'],
 })
 export class UpdatePage implements OnInit {
+  fb = inject(FormBuilder);
+  routerURL = inject(ActivatedRoute);
+  CRUDService = inject(CRUDService);
+  urlService = inject(UrlService);
+  languageService = inject(LanguageService);
+  alertServer = inject(AlertService);
   // === URL === //
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
   // === URL === //
+  // === URL For CRUDService === //
+  EventsUpdateURL: string = `${this.url}/events/Update`;
+  // === URL For CRUDService === //
   // === Events === //
   eventID: any;
   /**
@@ -79,24 +87,17 @@ export class UpdatePage implements OnInit {
   };
   // === Quill TEXT Editor === //
 
-  constructor(
-    private fb: FormBuilder,
-    private routerURL: ActivatedRoute,
-    private urlService: UrlService,
-    private eventsService: EventsService,
-    private languageService: LanguageService,
-    private alertServer: AlertService
-  ) {}
-
   async ngOnInit() {
     this.routerURL.paramMap.subscribe((res) => {
       this.eventID = res.get('EventID');
       if (this.eventID !== null) {
-        this.eventsService
-          .EventUpdateID(this.url, this.eventID)
-          .subscribe((res: Events) => {
-            this.ActiveEvent = res;
-          });
+        // this.eventsService.EventUpdateID(this.url, this.eventID);
+        this.CRUDService.UpdateGetID(
+          this.EventsUpdateURL,
+          this.eventID
+        ).subscribe((res: Events) => {
+          this.ActiveEvent = res;
+        });
       }
       this.languageService.langActive(this.url).subscribe((res) => {
         this.ActiveLang = res;
@@ -162,8 +163,8 @@ export class UpdatePage implements OnInit {
       });
       // === Get event Update By ID === //
     }
-    console.log('ActiveLang ::', this.ActiveLang);
-    console.log('ActiveEvent ::', this.ActiveEvent.info);
+    // console.log('ActiveLang ::', this.ActiveLang);
+    // console.log('ActiveEvent ::', this.ActiveEvent.info);
   }
 
   // === Get / Images || Videos / From UpLodFile === //
@@ -221,15 +222,18 @@ export class UpdatePage implements OnInit {
       JSON.stringify(this.eventUpDate.get('infoArray')?.value)
     ); // === Language Group === //
     // === Form Data to Send Value === //
-    this.eventsService
-      .EventsUpdate(this.url, this.eventID, newForm)
-      .subscribe((res: any) => {
-        if (res === true) {
-          this.eventUpDate.reset;
-          this.alertServer.showAlert('Alert.Event.AddNew', '/events');
-          // console.log('IF everything work well ::', res);
-          this.eventsService.refreshEvents$.next(res);
-        }
-      });
+    // this.eventsService.EventsUpdate(this.url, this.eventID, newForm)
+    this.CRUDService.Update(
+      this.EventsUpdateURL,
+      this.eventID,
+      newForm
+    ).subscribe((res: any) => {
+      if (res === true) {
+        this.eventUpDate.reset;
+        this.alertServer.showAlert('Alert.Event.AddNew', '/events');
+        // console.log('IF everything work well ::', res);
+        this.CRUDService.RefreshGlobal$.next(res);
+      }
+    });
   }
 }

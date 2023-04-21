@@ -5,10 +5,12 @@ import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { CRUDService } from 'src/app/Services/Global/crud.service';
+
 // === Services === //
 // === Models ===== //
-import { Events } from 'src/app/Model/events/events.model';
+import { ItemTypes } from 'src/app/Model/items/items.model';
 // === Models ===== //
+
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.page.html',
@@ -24,12 +26,11 @@ export class OrderListPage implements OnInit {
   imageURL: string = this.url + '/gallery/';
   // === URL === //
   // === URL For CRUDService === //
-  EventsGetAllURL: string = `${this.url}/events/view`;
-  EventsOrderListURL: string = `${this.url}/events/OrderList`;
+  ItemTypesGetAllURL: string = `${this.url}/ItemTypes/view`;
+  ItemTypesOrderListURL: string = `${this.url}/ItemTypes/OrderList`;
   // === URL For CRUDService === //
-  // === Events === //
-  eventsAll!: Events[];
-
+  // === ItemTypes === //
+  ItemTypesAll!: ItemTypes[];
   async ngOnInit() {
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe((res) => {
@@ -37,20 +38,20 @@ export class OrderListPage implements OnInit {
       // console.log('New Lang ::', lang);
       this.CRUDService.RefreshGlobal$.subscribe((res) => {
         // === Get All Events from Server === //
-        this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
-          (res: Events[]) => {
+        this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
+          (res: ItemTypes[]) => {
             if (res.length > 0) {
-              this.eventsAll = res;
+              this.ItemTypesAll = res;
             }
           }
         );
         // === Get All Events from Server === //
       });
       // === Get All Events from Server === //
-      this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
-        (res: Events[]) => {
+      this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
+        (res: ItemTypes[]) => {
           if (res.length > 0) {
-            this.eventsAll = res;
+            this.ItemTypesAll = res;
           }
         }
       );
@@ -63,11 +64,11 @@ export class OrderListPage implements OnInit {
     // // console.log('Dragged Event Full info', ev);
     // console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
     // === Move Item to New Location === //
-    const ItemToMove = this.eventsAll.splice(ev.detail.from, 1)[0];
-    this.eventsAll.splice(ev.detail.to, 0, ItemToMove);
+    const ItemToMove = this.ItemTypesAll.splice(ev.detail.from, 1)[0];
+    this.ItemTypesAll.splice(ev.detail.to, 0, ItemToMove);
     // === Move Item to New Location === //
     let Num: number = 1;
-    this.eventsAll.forEach((data: Events) => {
+    this.ItemTypesAll.forEach((data: ItemTypes) => {
       data.listNum = Num;
       return (Num = ++Num);
     });
@@ -78,11 +79,11 @@ export class OrderListPage implements OnInit {
     // console.log('New order List eventsAll Final ::', this.eventsAll);
     // this.eventsService.EventsOrderList(this.url, this.eventsAll)
     this.CRUDService.OrderList(
-      this.EventsOrderListURL,
-      this.eventsAll
+      this.ItemTypesOrderListURL,
+      this.ItemTypesAll
     ).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.Event.AddNew', '/events');
+        this.alertServer.showAlert('Alert.Event.AddNew', '/ItemType');
         // console.log('IF everything work well ::', res);
         this.CRUDService.RefreshGlobal$.next(res);
       }

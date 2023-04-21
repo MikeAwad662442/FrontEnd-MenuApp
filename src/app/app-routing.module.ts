@@ -40,6 +40,13 @@ const routes: Routes = [
             (m) => m.UpdatePageModule
           ),
       },
+      {
+        path: 'orderList',
+        loadChildren: () =>
+          import('./Items/Item/order-list/order-list.module').then(
+            (m) => m.OrderListPageModule
+          ),
+      },
     ],
   },
   // === Item ===== //
@@ -54,18 +61,33 @@ const routes: Routes = [
             (m) => m.AllPageModule
           ),
       },
+
       {
-        path: 'info',
+        path: 'update',
+        loadChildren: () =>
+          import('./Items/ItemType/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+      {
+        path: 'update/:ItemTypeID',
+        loadChildren: () =>
+          import('./Items/ItemType/update/update.module').then(
+            (m) => m.UpdatePageModule
+          ),
+      },
+      {
+        path: 'info/:ItemTypeID',
         loadChildren: () =>
           import('./Items/ItemType/info/info.module').then(
             (m) => m.InfoPageModule
           ),
       },
       {
-        path: 'update',
+        path: 'orderList',
         loadChildren: () =>
-          import('./Items/ItemType/update/update.module').then(
-            (m) => m.UpdatePageModule
+          import('./Items/ItemType/order-list/order-list.module').then(
+            (m) => m.OrderListPageModule
           ),
       },
     ],

@@ -20,7 +20,7 @@
 /**
 * Events
 **/
-.EventsPageAll {
+.PageAll {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -45,7 +45,7 @@
   }
 }
 
-.EventsPageInfo {
+.PageInfo {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
@@ -58,13 +58,30 @@
   ion-card-content {
     grid-column: 2/4;
   }
-
   video,
-  img {
+  img,
+  ion-avatar {
     grid-column: 1/2;
     margin: 2vmax;
     clear: both;
+  }
+  video,
+  img {
     max-width: 100%;
+  }
+
+  ion-avatar {
+    height: 150px;
+    width: 150px;
+    padding: 0px;
+    margin: 5vmax auto;
+    box-shadow: 4px 4px 6px #888888;
+    border-radius: 100%;
+    img {
+      margin: 0px;
+      height: 150px;
+      width: 150px;
+    }
   }
 }
 
@@ -92,9 +109,17 @@
       max-width: 100%;
     }
     ion-avatar {
+      height: 150px;
       width: 150px;
+      padding: 0px;
+      margin: 5vmax auto;
       box-shadow: 4px 4px 6px #888888;
       border-radius: 100%;
+      img {
+        margin: 0px;
+        height: 150px;
+        width: 150px;
+      }
     }
   }
 

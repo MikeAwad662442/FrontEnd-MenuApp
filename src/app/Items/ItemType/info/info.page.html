@@ -1,9 +1,77 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>info</ion-title>
+    <ion-title>{{"ItemTypes.MainList" |translate }}</ion-title>
+    <!-- <ion-title [ngIf]="ItemType !== undefined"
+      >{{ItemType.info[0].name}}</ion-title
+    > -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- data was send from db Server -->
+  <div *ngIf="ItemType !== undefined">
+    <ion-card class="PageInfo" *ngFor="let info  of ItemType.info">
+      <ion-avatar>
+        <img
+          *ngIf="ItemType?.imgType === 'image'"
+          [src]="imageURL+ItemType.image"
+        />
+      </ion-avatar>
 
+      <ion-card-header>
+        <ion-card-title>{{info.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <quill-view [content]="info.description"></quill-view>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <!-- data was send from db Server -->
+  <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
+    <ion-card
+      button="true"
+      [routerLink]="['/ItemType/info/',ItemType.id]"
+      *ngFor="let ItemType of ItemTypesAll"
+      [ngClass]="ItemType.active !== true ? 'blur': ''"
+    >
+      <img
+        *ngIf="ItemType?.imgType === 'image'"
+        [src]="imageURL+ItemType.image"
+      />
+
+      <ion-card-content *ngFor="let info  of ItemType.info">
+        {{info.name}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <!-- No data was send from db Server -->
+  <div class="null" *ngIf="ItemType === undefined">
+    <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
+    <ion-button fill="clear" [routerLink]="['/ItemType/update']">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-label>{{ "ItemTypes.NweList" | translate}}</ion-label>
+    </ion-button>
+  </div>
+  <!-- No data was send from db Server -->
 </ion-content>
+<ion-footer *ngIf="ItemType !== undefined">
+  <!-- <ion-toolbar *ngIf="autAll"> -->
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button [routerLink]="['/ItemType/update',ItemType.id]">
+          <ion-icon name="sync-outline"></ion-icon>
+          <ion-label>{{ "Update" | translate}}</ion-label>
+        </ion-tab-button>
+        <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
+        <ion-tab-button (click)="DeleteItemTypeID()">
+          <ion-icon name="trash-outline"></ion-icon>
+          <ion-label>{{ "Delete" | translate}}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

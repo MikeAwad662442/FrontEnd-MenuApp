@@ -44,10 +44,6 @@
     "Events": "الأحداث والمناسبات",
     "NweEvents": "إضافة حدث جديد",
     "DeleteEvents": "حذف كافة الأحداث",
-    "OrderList": "ترتيب القوائم",
-    "UpEvent": "تحديث",
-    "NewEvent": "جديد",
-    "DeleteEvent": "حذف",
     "UpDatePage": {
       "Name": "اسم الحدث",
       "Image": "صورة الحدث",
@@ -127,5 +123,10 @@
   },
   "Arabic": "عربي",
   "English": "إنجليزي",
-  "French": "فرنسي"
+  "French": "فرنسي",
+  "Update": "تحديث",
+  "New": "جديد",
+  "Delete": "حذف",
+  "DeleteAll": "حذف الكل",
+  "OrderList": "ترتيب القوائم"
 }

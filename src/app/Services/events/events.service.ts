@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, tap } from 'rxjs';
+import { Observable, Subject, catchError } from 'rxjs';
 // === Services === //
 import { SocketService } from 'src/app/Services/Server/socket.service';
-import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { ExpressService } from 'src/app/Services/Server/express.service';
 // === Services === //
 // === Models ===== //
@@ -15,18 +14,18 @@ import { Events } from 'src/app/Model/events/events.model';
 })
 export class EventsService {
   // === Refresh Page === //
-  refreshEvents$ = new Subject();
+  RefreshEvents$ = new Subject();
   // === Refresh Page === //
   constructor(
     private http: HttpClient,
     private socketServer: SocketService,
-    private languageService: LanguageService,
     private expressService: ExpressService
   ) {}
   // === get all Events from V_Events DB === //
   /* === Used in Pages:
    * home
-   * events
+   * events all
+   * events Info
    */
   // === Get all Events from DB === //
   EventsGetAll(url: string, lang: string): Observable<Events[]> {
@@ -37,7 +36,7 @@ export class EventsService {
   // === Get all Events from DB === //
   // === Get Event from DB by ID For INFO Page === //
   /* === Used in Pages:
-   * events
+   * events Info
    */
   EventGet(url: string, lang: string, eventID: string): Observable<Events> {
     // const lang = this.languageService.langUse$.value;
@@ -72,7 +71,7 @@ export class EventsService {
   // === Update Events DB === //
   // === Delete Events DB === //
   EventsDelete(url: string, ID?: string): Observable<Events> {
-    console.log('Event ID ::', ID);
+    // console.log('Event ID ::', ID);
     let link: string;
     if (ID !== undefined) {
       link = `${url}/events/Update/${ID}`;

@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
-import { EventsService } from 'src/app/Services/events/events.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
+import { CRUDService } from 'src/app/Services/Global/crud.service';
 // === Services === //
 // === Models ===== //
 import { Events } from 'src/app/Model/events/events.model';
-
 // === Models ===== //
 @Component({
   selector: 'app-info',
@@ -16,22 +15,23 @@ import { Events } from 'src/app/Model/events/events.model';
   styleUrls: ['./info.page.scss'],
 })
 export class InfoPage implements OnInit {
+  CRUDService = inject(CRUDService);
+  routerURL = inject(ActivatedRoute);
+  urlService = inject(UrlService);
+  languageService = inject(LanguageService);
+  alertServer = inject(AlertService);
   // === URL === //
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
   // === URL === //
-  imageSrc = './assets/icon/favicon.png';
+  // === URL For CRUDService === //
+  EventsGetAllURL: string = `${this.url}/events/view`;
+  EventDeleteURL: string = `${this.url}/events/Update`;
+  // === URL For CRUDService === //
   // === Events === //
   eventID: any;
   event!: Events;
   eventsAll!: Events[];
-  constructor(
-    private routerURL: ActivatedRoute,
-    private urlService: UrlService,
-    private eventsService: EventsService,
-    private languageService: LanguageService,
-    private alertServer: AlertService
-  ) {}
 
   async ngOnInit() {
     // === if Language View is change refresh the info
@@ -40,37 +40,40 @@ export class InfoPage implements OnInit {
       // === Get Event by ID === //
       this.routerURL.paramMap.subscribe((res) => {
         this.eventID = res.get('EventID');
-        // console.log('eventID ::', this.eventID);
-        this.eventsService
-          .EventGet(this.url, lang, this.eventID)
-          .subscribe((res: Events) => {
-            this.event = res;
-            // console.log('this.event ::', this.event);
-          });
+        // this.eventsService.EventGet(this.url, lang, this.eventID)
+        this.CRUDService.GetID(
+          this.EventsGetAllURL,
+          lang,
+          this.eventID
+        ).subscribe((res: Events) => {
+          this.event = res;
+        });
       });
       // === Get Event by ID === //
       // === Get All Events from Server === //
-      this.eventsService
-        .EventsGetAll(this.url, lang)
-        .subscribe((res: Events[]) => {
+      // this.eventsService.EventsGetAll(this.url, lang)
+      this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
+        (res: Events[]) => {
           if (res.length > 0) {
             this.eventsAll = res;
           }
-        });
+        }
+      );
       // === Get All Events from Server === //
     });
   }
   // === Delete Event By ID === //
   DeleteEventID() {
-    this.eventsService
-      .EventsDelete(this.url, this.eventID)
-      .subscribe((res: any) => {
+    // this.eventsService.EventsDelete(this.url, this.eventID)
+    this.CRUDService.Delete(this.EventDeleteURL, this.eventID).subscribe(
+      (res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.Event.DeleteOne', '/events');
+          this.alertServer.showAlert('Alert.Event.DeleteAll', '/events');
           // console.log('IF everything work well ::', res);
-          this.eventsService.refreshEvents$.next(res);
+          this.CRUDService.RefreshGlobal$.next(res);
         }
-      });
+      }
+    );
   }
   // === Delete Event By ID === //
 }

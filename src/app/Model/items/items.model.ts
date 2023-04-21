@@ -1,33 +1,23 @@
-import { AllLanguage } from '../cPanel/language.model';
-
-export { ItemType, AllLanguage, Item };
+export { ItemTypes, ItemTypesLanguage, Item };
 // ======================= //
 // *** Item Type Model *** //
 // ======================= //
-// = Category of Items = //
-// ===================== //
-
-// id             =>  UUID
-// image          =>  Link the image in the Folder
-// imgType        =>  Type of the images
-// active         =>  is this item is active or not
-// name_ar        =>  Name of item
-// description_ar =>  description of item
-// name_en        =>  Name of item
-// description_en =>  description of item
-// name_fr        =>  Name of item
-// description_fr =>  description
-interface ItemType {
+// === ItemTypes DB === //
+interface ItemTypes {
   id: any;
+  listNum: any;
   image: string;
   imgType: string;
   active: boolean;
-  info: [AllLanguage];
+  info: [ItemTypesLanguage];
 }
-// interface AllLanguage {
-//   name: string;
-//   description: string;
-// }
+interface ItemTypesLanguage {
+  id: any;
+  ItemTypeID: any;
+  lang: string;
+  name: string;
+  description: string;
+}
 // ======================= //
 // *** Item Type Model *** //
 // *** Item Model ******** //

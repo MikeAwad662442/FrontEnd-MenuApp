@@ -54,8 +54,3 @@ interface EventsLanguage {
   name: string;
   description: string;
 }
-// interface AllLanguage {
-//   language: string;
-//   name: string;
-//   description: string;
-// }

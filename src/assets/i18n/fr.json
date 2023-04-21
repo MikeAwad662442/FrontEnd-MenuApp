@@ -28,6 +28,7 @@
     "NweList": "Ajouter une nouvelle Liste",
     "FixList": "Liste des correctifs",
     "DeleteLists": "Supprimer toutes les Listes",
+
     "UpDate": {
       "Name": "Nom de la Liste",
       "Image": "Image de la Liste",
@@ -44,7 +45,6 @@
     "Events": "Événements",
     "NweEvents": "Ajouter un nouvel événement",
     "DeleteEvents": "Supprimer tous les événements",
-    "OrderList": "Listes de commandes",
     "UpEvent": "Mettre à jour",
     "NewEvent": "Supprimer",
     "DeleteEvent": "Delete",
@@ -127,5 +127,10 @@
   },
   "Arabic": "arabe",
   "English": "Anglais",
-  "French": "Français"
+  "French": "Français",
+  "Update": "Mise à jour",
+  "New": "Nouveau",
+  "Delete": "Supprimer",
+  "DeleteAll": "Supprimer tout",
+  "OrderList": "Listes de commandes"
 }

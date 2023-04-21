@@ -11,7 +11,7 @@
 <ion-content>
   <!-- data was send from db Server -->
   <div *ngIf="event !== undefined">
-    <ion-card class="EventsPageInfo" *ngFor="let info  of event.info">
+    <ion-card class="PageInfo" *ngFor="let info  of event.info">
       <video
         [src]="imageURL +event.image"
         *ngIf="event?.imgType === 'video'"
@@ -28,7 +28,7 @@
     </ion-card>
   </div>
   <!-- data was send from db Server -->
-  <div class="EventsPageAll" *ngIf="eventsAll !== undefined">
+  <div class="PageAll" *ngIf="eventsAll !== undefined">
     <ion-card
       button="true"
       [routerLink]="['/events/info/',events.id]"
