@@ -30,8 +30,7 @@ export class UpdatePage implements OnInit {
   // === URL For CRUDService === //
   ItemTypeUpdateURL: string = `${this.url}/ItemTypes/Update`;
   // === URL For CRUDService === //
-  // === ItemTypes === //
-  ItemTypeID: any;
+  ItemTypeID: any; // === ItemTypes === //
   /**
    * get Active Languages & Active ItemTypes Language
    * to find if there are not the same
@@ -90,18 +89,17 @@ export class UpdatePage implements OnInit {
   async ngOnInit() {
     this.routerURL.paramMap.subscribe((res) => {
       this.ItemTypeID = res.get('ItemTypeID');
-      if (this.ItemTypeID !== null) {
-        // this.eventsService.ItemTypeUpDateID(this.url, this.eventID);
-        this.CRUDService.UpdateGetID(
-          this.ItemTypeUpdateURL,
-          this.ItemTypeID
-        ).subscribe((res: ItemTypes) => {
-          this.ActiveItemType = res;
-        });
-      }
+      this.CRUDService.UpdateGetID(
+        this.ItemTypeUpdateURL,
+        this.ItemTypeID
+      ).subscribe((res: ItemTypes) => {
+        this.ActiveItemType = res;
+      });
+      // === Get Active Language === //
       this.languageService.langActive(this.url).subscribe((res) => {
         this.ActiveLang = res;
       });
+      // === Get Active Language === //
     });
     /**
      * This method is wrong, but it works for now
@@ -114,7 +112,7 @@ export class UpdatePage implements OnInit {
      **/
   }
   async ItemTypeUpdate() {
-    if (this.ActiveItemType === undefined) {
+    if (this.ActiveItemType === null) {
       // === Get Active Language === //
       this.ActiveLang.forEach((data: Language) => {
         const langID: string = data.id;
@@ -137,7 +135,7 @@ export class UpdatePage implements OnInit {
           this.ActiveLang[i].id !== this.ActiveItemType.info[i].lang
         ) {
           const data = this.ActiveLang[i].id;
-          console.log(data);
+          // console.log(data);
           this.infoArrayS.push(this.arrayFormGroup(null, data));
         } else {
           const data = this.ActiveItemType.info[i];
@@ -182,16 +180,6 @@ export class UpdatePage implements OnInit {
         });
       }
       // === it must to be IMAGE === //
-      // // === No Video include in MENU === //
-      // else if (this.file.type.indexOf('video') > -1) {
-      //   this.fileType = 'video';
-      //   reader.onload = (e) => (this.imageSrc = reader.result);
-      //   this.ItemTypeUpDate.patchValue({
-      //     image: this.file,
-      //     imgType: this.fileType,
-      //   });
-      // }
-      // // === No Video include in MENU === //
       else {
         this.alertServer.errorAlertIMG(
           'Setting.SocialMedia.ERROR.FacilityImageType'

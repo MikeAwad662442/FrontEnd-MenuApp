@@ -21,11 +21,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./Items/Item/all/all.module').then((m) => m.AllPageModule),
       },
-      {
-        path: ':ItemID',
-        loadChildren: () =>
-          import('./Items/Item/info/info.module').then((m) => m.InfoPageModule),
-      },
+
       {
         path: 'update',
         loadChildren: () =>
@@ -39,6 +35,11 @@ const routes: Routes = [
           import('./Items/Item/update/update.module').then(
             (m) => m.UpdatePageModule
           ),
+      },
+      {
+        path: 'info/:ItemID',
+        loadChildren: () =>
+          import('./Items/Item/info/info.module').then((m) => m.InfoPageModule),
       },
       {
         path: 'orderList',

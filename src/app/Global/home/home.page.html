@@ -11,7 +11,56 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="this.newDB === true; else  errorLang"><p>hi</p></div>
+  <div *ngIf="this.newDB === true; else  errorLang">
+    <!-- data was send from db Server -->
+    <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
+      <ion-card
+        button="true"
+        [routerLink]="['/ItemType/info/',ItemTypes.id]"
+        *ngFor="let ItemTypes of ItemTypesAll"
+        [ngClass]="ItemTypes.active !== true ? 'blur': ''"
+      >
+        <video
+          *ngIf="ItemTypes?.imgType === 'video'"
+          [src]="imageURL +ItemTypes.image"
+          muted
+          controls
+        ></video>
+        <img
+          *ngIf="ItemTypes?.imgType === 'image'"
+          [src]="imageURL+ItemTypes.image"
+        />
+        <ion-card-content *ngFor="let info  of ItemTypes.info">
+          {{info.name}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <!-- data was send from db Server -->
+    <!-- data was send from db Server -->
+    <div class="PageAll" *ngIf="eventsAll !== undefined">
+      <ion-card
+        button="true"
+        [routerLink]="['/events/info/',events.id]"
+        *ngFor="let events of eventsAll"
+        [ngClass]="events.active !== true ? 'blur': ''"
+      >
+        <video
+          *ngIf="events?.imgType === 'video'"
+          [src]="imageURL +events.image"
+          muted
+          controls
+        ></video>
+        <img
+          *ngIf="events?.imgType === 'image'"
+          [src]="imageURL+events.image"
+        />
+        <ion-card-content *ngFor="let info  of events.info">
+          {{info.name}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <!-- data was send from db Server -->
+  </div>
 
   <ng-template #errorLang>
     <!-- <div class="noLanguageOnDB"> -->

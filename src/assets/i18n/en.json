@@ -16,6 +16,7 @@
     "AboutUS": "AboutUS"
   },
   "Item": {
+    "NweItem": "Add a New Item",
     "UpDate": {
       "Name": "Name of Item",
       "Image": "Image of Item",
@@ -104,11 +105,7 @@
       }
     }
   },
-  "Language": {
-    "Arabic": "Arabic",
-    "English": "English",
-    "French": "French"
-  },
+
   "Alert": {
     "UpLanguage": "the languages is updated",
     "UpSocialMedia": "the Social Media accounts is updated",

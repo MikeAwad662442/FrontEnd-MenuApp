@@ -1,35 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{"ItemTypes.MainList" |translate }}</ion-title>
-    <!-- <ion-title [ngIf]="ItemType !== undefined"
-      >{{ItemType.info[0].name}}</ion-title
-    > -->
+    <ion-title>{{ItemTypeName}}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- data was send from db Server -->
-  <div *ngIf="ItemType !== undefined">
-    <ion-card class="PageInfo" *ngFor="let info  of ItemType.info">
-      <ion-avatar>
-        <img
-          *ngIf="ItemType?.imgType === 'image'"
-          [src]="imageURL+ItemType.image"
-        />
-      </ion-avatar>
+<ion-content class="background" [ngStyle]="style">
+  <!-- ItemType by ID INFO-->
+  <div *ngIf="ItemTypeDescription !== null">
+    <ion-card class="PageInfo2">
+      <quill-view [content]="ItemTypeDescription"></quill-view>
+    </ion-card>
+  </div>
+  <!-- ItemType by ID INFO-->
+  <!-- All Items belongs to this ItemType ID parent  -->
+  <div class="PageAll" *ngIf="ItemsAll !== undefined">
+    <ion-card
+      button="true"
+      [routerLink]="['/ItemType/info/',Items.id]"
+      *ngFor="let Items of ItemsAll"
+      [ngClass]="Items.active !== true ? 'blur': ''"
+    >
+      <img *ngIf="Items?.imgType === 'image'" [src]="imageURL+Items.image" />
 
-      <ion-card-header>
-        <ion-card-title>{{info.name}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <quill-view [content]="info.description"></quill-view>
+      <ion-card-content *ngFor="let info  of Items.info">
+        {{info.name}}
       </ion-card-content>
     </ion-card>
   </div>
-  <!-- data was send from db Server -->
+  <!-- All Items belongs to this ItemType ID parent  -->
+  <!-- All ItemTypes parent  -->
   <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
     <ion-card
       button="true"
@@ -47,8 +49,8 @@
       </ion-card-content>
     </ion-card>
   </div>
-  <!-- No data was send from db Server -->
-  <div class="null" *ngIf="ItemType === undefined">
+  <!-- All ItemTypes parent  -->
+  <div class="null" *ngIf="ItemTypeName === undefined">
     <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
     <ion-button fill="clear" [routerLink]="['/ItemType/update']">
       <ion-icon name="add-circle-outline"></ion-icon>
@@ -57,12 +59,16 @@
   </div>
   <!-- No data was send from db Server -->
 </ion-content>
-<ion-footer *ngIf="ItemType !== undefined">
+<ion-footer *ngIf="ItemTypeName !== undefined">
   <!-- <ion-toolbar *ngIf="autAll"> -->
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar>
-        <ion-tab-button [routerLink]="['/ItemType/update',ItemType.id]">
+        <ion-tab-button [routerLink]="['/Item/update',ItemTypeID]">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-label>{{ "New" | translate}}</ion-label>
+        </ion-tab-button>
+        <ion-tab-button [routerLink]="['/ItemType/update',ItemTypeID]">
           <ion-icon name="sync-outline"></ion-icon>
           <ion-label>{{ "Update" | translate}}</ion-label>
         </ion-tab-button>

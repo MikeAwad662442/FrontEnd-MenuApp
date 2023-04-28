@@ -16,6 +16,15 @@
     }
   }
 }
+.background {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: -8% 100%;
+  background-size: 300px 300px;
+  /* Use filter to add blur effect */
+  /* Not Work as I hope*/
+  // filter: blur(5px);
+}
 
 /**
 * Events
@@ -26,6 +35,7 @@
   gap: 10px;
   margin: 20px;
   text-align: center;
+
   ion-card {
     --color: var(--ion-color-primary);
     text-align: center;
@@ -84,7 +94,11 @@
     }
   }
 }
-
+.PageInfo2 {
+  font-size: large;
+  font-style: italic;
+  color: #fff;
+}
 /**
 * ItemType + Items
 **/

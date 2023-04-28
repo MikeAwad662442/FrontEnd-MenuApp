@@ -106,11 +106,7 @@
       }
     }
   },
-  "Language": {
-    "Arabic": "arabe",
-    "English": "Anglais",
-    "French": "Français"
-  },
+
   "Alert": {
     "UpLanguage": "les langues sont mises à jour",
     "UpSocialMedia": "les comptes de médias sociaux sont mis à jour",

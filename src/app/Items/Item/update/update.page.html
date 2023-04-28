@@ -1,9 +1,132 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>update</ion-title>
+    <ion-title>{{"Item.NweItem" |translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- <h1>Item value</h1>
+  <p class="LTR">{{ItemUpDate.value | json}}</p> -->
 
+  <form
+    class="PageUpdate"
+    [formGroup]="ItemUpDate"
+    (ngSubmit)="submitForm()"
+    novalidate
+  >
+    <div>
+      <!-- Card Info -->
+      <ion-card>
+        <img *ngIf="ItemUpDate.value.imgType === 'image' " [src]="imageSrc" />
+        <p>Price:{{ItemUpDate.value.price | currency: '':''}}</p>
+      </ion-card>
+      <!-- Card Info -->
+      <!-- Image -->
+      <ion-item>
+        <ion-label> {{"Events.UpDatePage.Image" | translate}} </ion-label>
+        <input
+          name="image"
+          type="file"
+          (change)="onFileChange($event)"
+          #UploadFile
+          class="file-input"
+        />
+        <ion-button slot="end" fill="clear" (click)="UploadFile.click()">
+          <ion-icon name="image-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <p class="error" *ngIf="!ItemUpDate.get('image')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Events.ERROR.ImageType' | translate}}
+      </p>
+      <!-- Image -->
+      <!-- active -->
+      <ion-item>
+        <ion-toggle formControlName="active" [checked]="ItemUpDate.value.active"
+          >{{"Events.UpDatePage.Active" | translate}}
+        </ion-toggle>
+      </ion-item>
+      <!-- active -->
+      <ion-item>
+        <!-- <ion-input
+          label="price"
+          formControlName="price"
+          [name]="ItemUpDate.value.price | number"
+          [value]="ItemUpDate.get('price').valueChanges | async | currency"
+          type="text"
+        ></ion-input> -->
+        <ion-input
+          color="secondary"
+          label="price"
+          formControlName="price"
+          type="text"
+        ></ion-input>
+      </ion-item>
+    </div>
+    <!-- Information by Languages -->
+    <div class="Language" formArrayName="infoArray">
+      <p class="error" *ngIf="!ItemUpDate.get('infoArray')?.valid">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{'Events.ERROR.EventName' | translate}}
+      </p>
+      <div
+        *ngFor="let info of infoArrayS.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <!-- Language -->
+
+        <!-- Name -->
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="assets/icon/{{info.value.lang}}.webp" />
+          </ion-avatar>
+          <!-- Language -->
+          <!-- <ion-label> {{"ItemTypes.UpDate.Name" | translate}} </ion-label> -->
+          <ion-input
+            [label]="'ItemTypes.UpDate.Name' | translate"
+            formControlName="name"
+            [name]="info.value.name"
+            type="text"
+          ></ion-input>
+        </ion-item>
+        <!-- Name -->
+        <!-- Description -->
+        <ion-item>
+          <ion-label>
+            {{"ItemTypes.UpDate.Description" | translate}}
+          </ion-label>
+        </ion-item>
+        <div>
+          <quill-editor
+            [modules]="modules"
+            formControlName="description"
+          ></quill-editor>
+        </div>
+
+        <!-- Description -->
+      </div>
+      <!-- </div> -->
+    </div>
+    <!-- Information by Languages -->
+  </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button
+          (click)="submitForm()"
+          type="submit"
+          clear
+          [disabled]="ItemUpDate.invalid"
+        >
+          <ion-icon name="sync-outline" size="large"></ion-icon>
+          <ion-label>{{"Update" |translate }}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

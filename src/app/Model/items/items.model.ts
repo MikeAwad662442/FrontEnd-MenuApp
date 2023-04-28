@@ -1,4 +1,4 @@
-export { ItemTypes, ItemTypesLanguage, Item };
+export { ItemTypes, ItemTypesLanguage, Items, ItemsLanguage };
 // ======================= //
 // *** Item Type Model *** //
 // ======================= //
@@ -22,20 +22,23 @@ interface ItemTypesLanguage {
 // *** Item Type Model *** //
 // *** Item Model ******** //
 // ======================= //
-interface Item {
+// === ItemTypes DB === //
+interface Items {
   id: any;
-  typeID: any;
-  image: any;
+  ItemTypeID: any;
+  listNum: any;
+  image: string;
   imgType: string;
   active: boolean;
   price: number;
-  priceView: boolean;
-  arN: string;
-  arD: string;
-  enN: string;
-  enD: string;
-  frN: string;
-  frD: string;
+  info: [ItemsLanguage];
+}
+interface ItemsLanguage {
+  id: any;
+  ItemID: any;
+  lang: string;
+  name: string;
+  description: string;
 }
 // ======================= //
 // *** Item Model ******** //

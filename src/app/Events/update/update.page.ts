@@ -90,15 +90,13 @@ export class UpdatePage implements OnInit {
   async ngOnInit() {
     this.routerURL.paramMap.subscribe((res) => {
       this.eventID = res.get('EventID');
-      if (this.eventID !== null) {
-        // this.eventsService.EventUpdateID(this.url, this.eventID);
-        this.CRUDService.UpdateGetID(
-          this.EventsUpdateURL,
-          this.eventID
-        ).subscribe((res: Events) => {
-          this.ActiveEvent = res;
-        });
-      }
+      this.CRUDService.UpdateGetID(
+        this.EventsUpdateURL,
+        this.eventID
+      ).subscribe((res: Events) => {
+        this.ActiveEvent = res;
+      });
+
       this.languageService.langActive(this.url).subscribe((res) => {
         this.ActiveLang = res;
       });
@@ -115,7 +113,7 @@ export class UpdatePage implements OnInit {
     // this.eventGetActiveLang();
   }
   async eventUpdate() {
-    if (this.ActiveEvent === undefined) {
+    if (this.ActiveEvent === null) {
       // === Get Active Language === //
       this.ActiveLang.forEach((data: Language) => {
         const langID: string = data.id;
@@ -212,13 +210,13 @@ export class UpdatePage implements OnInit {
      */
     // === Form Data to Send Value === //
     if (this.eventUpDate.get('id')?.value !== null) {
-      newForm.append('EventsID', this.eventUpDate.get('id')?.value);
+      newForm.append('ID', this.eventUpDate.get('id')?.value);
     }
     newForm.append('File', this.eventUpDate.get('image')?.value);
-    newForm.append('EventsImageType', this.eventUpDate.get('imgType')?.value);
-    newForm.append('EventsActive', this.eventUpDate.get('active')?.value);
+    newForm.append('ImageType', this.eventUpDate.get('imgType')?.value);
+    newForm.append('Active', this.eventUpDate.get('active')?.value);
     newForm.append(
-      'EventsInfoArray',
+      'InfoArray',
       JSON.stringify(this.eventUpDate.get('infoArray')?.value)
     ); // === Language Group === //
     // === Form Data to Send Value === //

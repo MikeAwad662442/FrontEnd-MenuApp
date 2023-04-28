@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
-import { ItemtypeService } from 'src/app/Services/items/itemtype.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { CRUDService } from 'src/app/Services/Global/crud.service';
@@ -30,7 +29,6 @@ export class AllPage implements OnInit {
   // === URL For CRUDService === //
   // === ItemTypes === //
   ItemTypesAll!: ItemTypes[];
-  constructor(private itemtypeService: ItemtypeService) {}
 
   ngOnInit() {
     // === if Language View is change refresh the info
@@ -63,8 +61,12 @@ export class AllPage implements OnInit {
     this.CRUDService.Delete(this.ItemTypesDeleteAllURL).subscribe(
       (res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.Event.DeleteAll', '/ItemType');
+          console.log(res);
           this.CRUDService.RefreshGlobal$.next(res);
+          this.alertServer.showAlert('Alert.Event.DeleteAll', '/ItemType');
+          this.ItemTypesAll = [];
+          console.log(this.ItemTypesAll);
+          // window.location.reload();
         }
       }
     );

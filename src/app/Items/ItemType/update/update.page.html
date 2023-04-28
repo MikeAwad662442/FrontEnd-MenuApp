@@ -11,8 +11,6 @@
   <!-- <h1>ItemType value</h1>
   <p class="LTR">{{ItemTypeUpDate.value | json}}</p> -->
 
-  <!-- Card Info -->
-
   <form
     class="PageUpdate"
     [formGroup]="ItemTypeUpDate"
@@ -20,10 +18,12 @@
     novalidate
   >
     <div>
+      <!-- Card Info -->
       <ion-card>
-        <ion-avatar *ngIf="ItemTypeUpDate.value.imgType === 'image' ">
-          <img [src]="imageSrc" />
-        </ion-avatar>
+        <img
+          *ngIf="ItemTypeUpDate.value.imgType === 'image' "
+          [src]="imageSrc"
+        />
       </ion-card>
       <!-- Card Info -->
       <!-- Image -->

@@ -16,12 +16,6 @@
       *ngFor="let ItemTypes of ItemTypesAll"
       [ngClass]="ItemTypes.active !== true ? 'blur': ''"
     >
-      <video
-        *ngIf="ItemTypes?.imgType === 'video'"
-        [src]="imageURL +ItemTypes.image"
-        muted
-        controls
-      ></video>
       <img
         *ngIf="ItemTypes?.imgType === 'image'"
         [src]="imageURL+ItemTypes.image"

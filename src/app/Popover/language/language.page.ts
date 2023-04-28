@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { Component, OnInit, inject } from '@angular/core';
+import { MenuController, PopoverController } from '@ionic/angular';
 
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
@@ -15,15 +14,19 @@ import { Language, defaultLanguage } from 'src/app/Model/cPanel/language.model';
   styleUrls: ['./language.page.scss'],
 })
 export class LanguagePage implements OnInit {
+  popoverCtrl = inject(PopoverController);
+  languageService = inject(LanguageService);
+  urlService = inject(UrlService);
+  menu = inject(MenuController);
   langUS = '';
   langActive: Language[] = [];
   url: string = this.urlService.url;
-  constructor(
-    private popoverCtrl: PopoverController,
-    private languageService: LanguageService,
-    private urlService: UrlService,
-    private routerURL: ActivatedRoute
-  ) {}
+  // constructor(
+  //   private popoverCtrl: PopoverController,
+  //   private languageService: LanguageService,
+  //   private urlService: UrlService,
+  //   private routerURL: ActivatedRoute
+  // ) {}
 
   async ngOnInit() {
     await this.getLangActiveS();
@@ -48,6 +51,7 @@ export class LanguagePage implements OnInit {
     // this.languageService.langStorageSetItem(event);
     this.languageService.saveLanguage(event.direction, event.id);
     this.popoverCtrl.dismiss();
+    this.menu.close(); // to Close Menu
     // console.log('langChange langUS:', event);
   }
 }

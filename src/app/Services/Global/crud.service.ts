@@ -63,6 +63,7 @@ export class CRUDService {
     } else {
       link = `${url}`;
     }
+    console.log(link);
     return this.http
       .put<any>(link, data)
       .pipe(catchError(this.expressService.handleError));
@@ -77,6 +78,7 @@ export class CRUDService {
     } else {
       link = `${url}`;
     }
+    console.log(link);
     return this.http
       .delete<any>(link)
       .pipe(catchError(this.expressService.handleError));
