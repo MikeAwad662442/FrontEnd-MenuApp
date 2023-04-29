@@ -28,3 +28,36 @@
     color: #fff;
   }
 }
+// ======================== //
+// === If no DATA found === //
+// ======================== //
+.null {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  justify-items: center;
+  img {
+    grid-column: 1 / 13;
+    margin: 100px auto 20px;
+    height: 100px;
+    width: 100px;
+  }
+  ion-text {
+    grid-column: 2 / 11;
+    margin: 2px 0px;
+    font-size: 0.7em;
+  }
+  ion-button {
+    // margin: 2px 30px;
+    // padding: 0px;
+    ion-label,
+    ion-icon {
+      font-size: 1em;
+      margin: -2px 4px 0px 0px;
+    }
+  }
+}
+
+// ======================== //
+// === If no DATA found === //
+// ======================== //

@@ -16,11 +16,11 @@ const routes: Routes = [
   {
     path: 'Item',
     children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./Items/Item/all/all.module').then((m) => m.AllPageModule),
-      },
+      // {
+      //   path: '',
+      //   loadChildren: () =>
+      //     import('./Items/Item/all/all.module').then((m) => m.AllPageModule),
+      // },
 
       {
         path: 'update',

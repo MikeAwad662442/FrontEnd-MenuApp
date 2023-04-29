@@ -28,20 +28,20 @@
   },
 
   "Item": {
-    "NweItem": "Add a New Item",
-    "NoItems": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+    "NewItem": "Add a New Item",
+    "NoItems": "Hi there, there is No Main List add yet, would you like to add a new one. <br /> press the add list button"
   },
 
   "ItemTypes": {
     "MainList": "Main List",
-    "NweList": "Add a New List",
-    "NoItemTypes": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+    "NewList": "Add a New List",
+    "NoItemTypes": "Hi there, there is No Main List add yet, would you like to add a new one. <br /> press the New button"
   },
 
   "Events": {
     "Events": "Events",
     "NewEvents": "Add a New Events",
-    "NoEvents": "Hi there, there is No Events add yet,<br /> would you like to add a new one. <br /> press the add list button<br />",
+    "NoEvents": "Hi there, there is No Events add yet, would you like to add a new one. <br /> press the New button",
     "Alert": {
       "AddNew": "the New Event Have been added",
       "Update": "the Event has been Update",
@@ -59,6 +59,7 @@
     "Note": {
       "ImageVideo": "you can include Image or Video",
       "JustImage": "You can only include Image",
+      "Active": "Active button is used<br />To show or hide the content from the user because it is not available or to pause it without the need to delete it",
       "NameDescription": "You must add the Name and the Description <br /> Name must be at least 2 characters long.",
       "JustName": "You can add Just the Name and no need to add Description <br /> Name must be at least 2 characters long."
     },

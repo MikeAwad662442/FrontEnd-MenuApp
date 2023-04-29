@@ -4,13 +4,14 @@
   gap: 20px;
   margin: 20px;
   text-align: center;
+
   div {
     background-color: var(--ion-color-step-50);
-    p {
-      direction: ltr;
-      text-align: left;
-      margin-left: 20px;
-    }
+    // p {
+    //   direction: ltr;
+    //   text-align: left;
+    //   margin-left: 20px;
+    // }
     ion-card {
       text-align: center;
       video,
@@ -32,14 +33,16 @@
     }
   }
   .Language {
-    p {
-      margin: 10px auto;
-    }
+    // p {
+    //   margin: 10px auto;
+    // }
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
     padding: 10px;
     .ql-toolbar {
+      color: var(--ion-color-primary);
+      // background-color: var(--ion-color-primary);
       .ql-formats {
         margin: 0px;
       }
@@ -47,5 +50,19 @@
   }
   @media screen and (max-width: 760px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+.Note {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  gap: 10px;
+  margin: 5px;
+  // text-align: center;
+  ion-icon {
+    justify-self: end;
+    align-self: center;
+  }
+  p {
+    text-align: justify !important;
   }
 }

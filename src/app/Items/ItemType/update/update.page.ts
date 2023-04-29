@@ -222,7 +222,7 @@ export class UpdatePage implements OnInit {
     ).subscribe((res: any) => {
       if (res === true) {
         this.ItemTypeUpDate.reset;
-        this.alertServer.showAlert('Alert.Event.AddNew', '/ItemType');
+        this.alertServer.showAlert('insert.AlertStander', '/ItemType');
         // console.log('IF everything work well ::', res);
         this.CRUDService.RefreshGlobal$.next(res);
       }

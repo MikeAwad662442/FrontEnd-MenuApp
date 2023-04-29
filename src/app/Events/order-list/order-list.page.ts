@@ -82,7 +82,7 @@ export class OrderListPage implements OnInit {
       this.eventsAll
     ).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.Event.AddNew', '/events');
+        this.alertServer.showAlert('insert.AlertStander', '/events');
         // console.log('IF everything work well ::', res);
         this.CRUDService.RefreshGlobal$.next(res);
       }

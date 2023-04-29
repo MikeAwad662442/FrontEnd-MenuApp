@@ -42,7 +42,7 @@
       <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
       <ion-button fill="clear" [routerLink]="['/ItemType/update']">
         <ion-icon name="add-circle-outline"></ion-icon>
-        <ion-label>{{ "ItemTypes.NweList" | translate}}</ion-label>
+        <ion-label>{{ "New" | translate}}</ion-label>
       </ion-button>
     </div>
     <!-- No data was send from db Server -->
@@ -82,14 +82,15 @@
     <!-- No data was send from db Server -->
   </div>
 
-  <ng-template #errorLang>
+  <ng-template class="null" #errorLang>
     <!-- <div class="noLanguageOnDB"> -->
+    <img src="assets/icon/favicon.png" />
     <ion-text [innerHTML]="'Alert.FIRSTisFIRST' | translate"> </ion-text>
     <ion-button
       slot="end"
       [routerLink]="['/cpanel/language']"
       color="primary-contrast"
-      fill="“clear”"
+      fill="clear"
     >
       <ion-icon color="primary" name="add-circle-outline"></ion-icon>
     </ion-button>

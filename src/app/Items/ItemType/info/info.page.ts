@@ -48,7 +48,6 @@ export class InfoPage implements OnInit {
   ItemTypeName!: string;
   ItemTypeImage: any;
   ItemTypeDescription!: string;
-
   // === ItemTypes === //
   async ngOnInit() {
     // === Get ItemTypeID === //
@@ -65,6 +64,7 @@ export class InfoPage implements OnInit {
         lang,
         this.ItemTypeID
       ).subscribe(async (res: ItemTypes) => {
+        console.log('ItemTypes ::', res);
         this.ItemType = res;
         // console.log('ItemTypesINFO', this.ItemType);
         this.ItemTypeImage = this.imageURL + res.image;

@@ -109,6 +109,7 @@ export class UpdatePage implements OnInit {
       this.CRUDService.UpdateGetID(this.ItemUpdateURL, this.ItemID).subscribe(
         (res: Items) => {
           this.ActiveItem = res;
+          console.log('ActiveItem ::', this.ActiveItem);
         }
       );
     });
@@ -221,7 +222,8 @@ export class UpdatePage implements OnInit {
      * If there is a picture,
      * it is preferable to send the information separately
      */
-    console.log(this.ItemID);
+    // console.log(this.ItemID);
+    this.ItemTypeID = this.ItemUpDate.get('ItemTypeID')?.value;
     // === Form Data to Send Value === //
     if (this.ItemUpDate.get('id')?.value !== null) {
       newForm.append('ID', this.ItemUpDate.get('id')?.value);
@@ -240,12 +242,13 @@ export class UpdatePage implements OnInit {
     this.CRUDService.Update(this.ItemUpdateURL, this.ItemID, newForm).subscribe(
       (res: any) => {
         if (res === true) {
+          // console.log('ItemTypeID ::', this.ItemTypeID);
           this.ItemUpDate.reset;
           this.alertServer.showAlert(
-            'Alert.Event.AddNew',
+            'insert.AlertStander',
             `/ItemType/info/${this.ItemTypeID}`
           );
-          console.log('IF everything work well ::', res);
+          // console.log('IF everything work well ::', res);
           this.CRUDService.RefreshGlobal$.next(res);
         }
       }

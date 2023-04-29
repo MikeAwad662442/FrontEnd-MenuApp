@@ -68,7 +68,7 @@ export class InfoPage implements OnInit {
     this.CRUDService.Delete(this.EventDeleteURL, this.eventID).subscribe(
       (res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.Event.DeleteAll', '/events');
+          this.alertServer.showAlert('insert.AlertStander', '/events');
           // console.log('IF everything work well ::', res);
           this.CRUDService.RefreshGlobal$.next(res);
         }

@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>info</ion-title>
+    <ion-title>{{ItemName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card class="PageInfo">
+    <img [src]="ItemImage" />
+    <ion-card-header>
+      <ion-card-title>{{ItemName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <quill-view [content]="ItemDescription"></quill-view>
+    </ion-card-content>
+  </ion-card>
+  <!-- All Items belongs to this ItemType ID parent  -->
+  <div class="PageAll" *ngIf="ItemsAll !== undefined">
+    <ion-card
+      button="true"
+      [routerLink]="['/Item/info/',Items.id]"
+      *ngFor="let Items of ItemsAll"
+      [ngClass]="Items.active !== true ? 'blur': ''"
+    >
+      <img [src]="imageURL+Items.image" />
 
+      <ion-card-content *ngFor="let info  of Items.info">
+        {{info.name}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <!-- All Items belongs to this ItemType ID parent  -->
 </ion-content>
+<ion-footer *ngIf="ItemName !== undefined">
+  <!-- <ion-toolbar *ngIf="autAll"> -->
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button [routerLink]="['/Item/update',ItemID]">
+          <ion-icon name="sync-outline"></ion-icon>
+          <ion-label>{{ "Update" | translate}}</ion-label>
+        </ion-tab-button>
+        <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
+        <ion-tab-button (click)="DeleteItemID()">
+          <ion-icon name="trash-outline"></ion-icon>
+          <ion-label>{{ "Delete" | translate}}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

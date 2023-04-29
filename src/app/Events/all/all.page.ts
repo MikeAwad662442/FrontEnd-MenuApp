@@ -29,14 +29,14 @@ export class AllPage implements OnInit {
   // === URL For CRUDService === //
   // === Events === //
   eventsAll!: Events[];
-
+  lang!: string;
   async ngOnInit() {
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe((res) => {
-      const lang = res;
+      this.lang = res;
       this.CRUDService.RefreshGlobal$.subscribe(() => {
         // === Get All Events from Server === //
-        this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
+        this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
           (res: Events[]) => {
             if (res.length > 0) {
               this.eventsAll = res;
@@ -46,7 +46,7 @@ export class AllPage implements OnInit {
         // === Get All Events from Server === //
       });
       // === Get All Events from Server === //
-      this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
+      this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
         (res: Events[]) => {
           if (res.length > 0) {
             this.eventsAll = res;
@@ -61,7 +61,7 @@ export class AllPage implements OnInit {
     // this.eventsService.EventsDelete(this.url)
     this.CRUDService.Delete(this.EventsDeleteAllURL).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.Event.DeleteAll', '/events');
+        this.alertServer.showAlert('insert.AlertStander', '/events');
         this.CRUDService.RefreshGlobal$.next(res);
       }
     });

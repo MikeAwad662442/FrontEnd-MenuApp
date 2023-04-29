@@ -19,7 +19,7 @@
   <div class="PageAll" *ngIf="ItemsAll !== undefined">
     <ion-card
       button="true"
-      [routerLink]="['/ItemType/info/',Items.id]"
+      [routerLink]="['/Item/info/',Items.id]"
       *ngFor="let Items of ItemsAll"
       [ngClass]="Items.active !== true ? 'blur': ''"
     >
@@ -67,7 +67,7 @@
       <ion-tab-bar>
         <ion-tab-button [routerLink]="['/Item/update',ItemTypeID]">
           <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>{{ "New" | translate}}</ion-label>
+          <ion-label>{{ "Item.NewItem" | translate}}</ion-label>
         </ion-tab-button>
         <ion-tab-button [routerLink]="['/ItemType/update',ItemTypeID]">
           <ion-icon name="sync-outline"></ion-icon>

@@ -63,7 +63,7 @@ export class CRUDService {
     } else {
       link = `${url}`;
     }
-    console.log(link);
+    // console.log(link);
     return this.http
       .put<any>(link, data)
       .pipe(catchError(this.expressService.handleError));

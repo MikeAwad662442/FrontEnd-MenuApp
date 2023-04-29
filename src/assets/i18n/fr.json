@@ -28,20 +28,20 @@
   },
 
   "Item": {
-    "NweItem": "Ajouter un nouvel élément",
+    "NewItem": "Ajouter un nouvel élément",
     "NoItems": "Bonjour, il n'y a pas encore d'éléments ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
   },
 
   "ItemTypes": {
     "MainList": "Liste principale",
-    "NweList": "Ajouter une nouvelle Liste",
+    "NewList": "Ajouter une nouvelle Liste",
     "NoItemTypes": "Bonjour, il n'y a pas encore d'ajout de liste principale,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton d'ajout de liste<br />"
   },
 
   "Events": {
     "Events": "Événements",
-    "NweEvents": "Ajouter un nouvel événement",
-    "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />",
+    "NewEvents": "Ajouter un nouvel événement",
+    "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés, souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Nouveau",
     "Alert": {
       "AddNew": "le nouvel événement a été ajouté",
       "Update": "l'événement a été mis à jour",
@@ -59,6 +59,7 @@
     "Note": {
       "ImageVideo": "vous pouvez inclure une image ou une vidéo",
       "JustImage": "Vous ne pouvez inclure Image",
+      "Active": "Le bouton Actif est utilisé<br />Pour afficher ou masquer le contenu à l'utilisateur car il n'est pas disponible ou pour le mettre en pause sans avoir besoin de le supprimer",
       "NameDescription": "Vous devez ajouter le Nom et la Description <br /> Le nom doit comporter au moins 2 caractères.",
       "JustName": "Vous pouvez ajouter juste le nom et pas besoin d'ajouter la description <br /> Le nom doit comporter au moins 2 caractères."
     },

@@ -51,10 +51,11 @@
   </div>
   <!-- No data was send from db Server -->
   <div class="null" *ngIf="event === undefined">
+    <img src="assets/icon/favicon.png" />
     <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
     <ion-button fill="clear" [routerLink]="['/events/update']">
       <ion-icon name="add-circle-outline"></ion-icon>
-      <ion-label>{{ "Events.NweEvents" | translate}}</ion-label>
+      <ion-label>{{ "New" | translate}}</ion-label>
     </ion-button>
   </div>
   <!-- No data was send from db Server -->
@@ -66,12 +67,12 @@
       <ion-tab-bar>
         <ion-tab-button [routerLink]="['/events/update',event.id]">
           <ion-icon name="sync-outline"></ion-icon>
-          <ion-label>{{ "Events.UpEvent" | translate}}</ion-label>
+          <ion-label>{{ "Update" | translate}}</ion-label>
         </ion-tab-button>
         <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
         <ion-tab-button (click)="DeleteEventID()">
           <ion-icon name="trash-outline"></ion-icon>
-          <ion-label>{{ "Events.DeleteEvent" | translate}}</ion-label>
+          <ion-label>{{ "Delete" | translate}}</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

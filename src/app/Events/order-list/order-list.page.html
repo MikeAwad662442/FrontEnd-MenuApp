@@ -43,6 +43,7 @@
   <!-- data was send from db Server -->
   <!-- No data was send from db Server -->
   <div class="null" *ngIf="eventsAll === undefined">
+    <img src="assets/icon/favicon.png" />
     <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
     <ion-button fill="clear" [routerLink]="['/events/update']">
       <ion-icon name="add-circle-outline"></ion-icon>

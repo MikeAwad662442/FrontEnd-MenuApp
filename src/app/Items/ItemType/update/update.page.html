@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{"ItemTypes.NweList" |translate }}</ion-title>
+    <ion-title>{{"ItemTypes.NewList" |translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -28,7 +28,7 @@
       <!-- Card Info -->
       <!-- Image -->
       <ion-item>
-        <ion-label> {{"Events.UpDatePage.Image" | translate}} </ion-label>
+        <ion-label> {{"insert.Image" | translate}} </ion-label>
         <input
           name="image"
           type="file"
@@ -40,27 +40,35 @@
           <ion-icon name="image-outline" size="large"></ion-icon>
         </ion-button>
       </ion-item>
-      <p class="error" *ngIf="!ItemTypeUpDate.get('image')?.valid">
+      <div class="Note" *ngIf="!ItemTypeUpDate.get('image')?.valid">
         <ion-icon name="alert-circle-outline"></ion-icon>
-        {{'Events.ERROR.ImageType' | translate}}
-      </p>
+        <p class="error">{{'insert.Note.JustImage' | translate}}</p>
+      </div>
       <!-- Image -->
       <!-- active -->
       <ion-item>
         <ion-toggle
           formControlName="active"
           [checked]="ItemTypeUpDate.value.active"
-          >{{"Events.UpDatePage.Active" | translate}}
+          >{{"insert.Active" | translate}}
         </ion-toggle>
       </ion-item>
+      <div class="Note">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <p class="error" [innerHTML]="'insert.Note.Active' | translate"></p>
+      </div>
       <!-- active -->
     </div>
     <!-- Information by Languages -->
     <div class="Language" formArrayName="infoArray">
-      <p class="error" *ngIf="!ItemTypeUpDate.get('infoArray')?.valid">
-        <ion-icon name="alert-circle-outline"></ion-icon>
-        {{'Events.ERROR.EventName' | translate}}
-      </p>
+      <div class="Note" *ngIf="!ItemTypeUpDate.get('infoArray')?.valid">
+        <ion-icon
+          name="alert-circle-outline"
+          size="large"
+          slot="start"
+        ></ion-icon>
+        <p class="error" [innerHTML]="'insert.Note.JustName' | translate"></p>
+      </div>
       <div
         *ngFor="let info of infoArrayS.controls; let i = index"
         [formGroupName]="i"
@@ -75,7 +83,7 @@
           <!-- Language -->
           <!-- <ion-label> {{"ItemTypes.UpDate.Name" | translate}} </ion-label> -->
           <ion-input
-            [label]="'ItemTypes.UpDate.Name' | translate"
+            [label]="'insert.Name' | translate"
             formControlName="name"
             [name]="info.value.name"
             type="text"
@@ -84,9 +92,7 @@
         <!-- Name -->
         <!-- Description -->
         <ion-item>
-          <ion-label>
-            {{"ItemTypes.UpDate.Description" | translate}}
-          </ion-label>
+          <ion-label> {{"insert.Description" | translate}} </ion-label>
         </ion-item>
         <div>
           <quill-editor
