@@ -1,9 +1,20 @@
 {
+  "Arabic": "arabe",
+  "English": "Anglais",
+  "French": "Français",
+
+  "Update": "Mise à jour",
+  "New": "Nouveau",
+  "Delete": "Supprimer",
+  "DeleteAll": "Supprimer tout",
+  "OrderList": "Listes de commandes",
+
   "HOME": {
     "title": "Bienvenue dans {{appName}}",
     "MainList": "Liste principale",
     "Events": "Événements"
   },
+
   "MENU": {
     "home": "Page d'accueil",
     "menu": "MENU",
@@ -15,53 +26,48 @@
     "VersionFree": "Cette version est gratuite",
     "AboutUS": "À propos de nous"
   },
+
   "Item": {
-    "UpDate": {
-      "Name": "Nom de l'article",
-      "Image": "Image de l'article",
-      "Description": "Description de l'article"
-    },
+    "NweItem": "Ajouter un nouvel élément",
     "NoItems": "Bonjour, il n'y a pas encore d'éléments ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
   },
+
   "ItemTypes": {
     "MainList": "Liste principale",
     "NweList": "Ajouter une nouvelle Liste",
-    "FixList": "Liste des correctifs",
-    "DeleteLists": "Supprimer toutes les Listes",
-
-    "UpDate": {
-      "Name": "Nom de la Liste",
-      "Image": "Image de la Liste",
-      "Active": "Liste Active",
-      "Description": "Description de la Liste"
-    },
-    "ERROR": {
-      "Name": "Le nom de la liste est requis",
-      "Image": "L'image de la liste est requise"
-    },
     "NoItemTypes": "Bonjour, il n'y a pas encore d'ajout de liste principale,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton d'ajout de liste<br />"
   },
+
   "Events": {
     "Events": "Événements",
     "NweEvents": "Ajouter un nouvel événement",
-    "DeleteEvents": "Supprimer tous les événements",
-    "UpEvent": "Mettre à jour",
-    "NewEvent": "Supprimer",
-    "DeleteEvent": "Delete",
-    "UpDatePage": {
-      "Name": "Nom de l'événement",
-      "Image": "Image de l'événement",
-      "Active": "Événement actif",
-      "Description": "Description de l'événement"
-    },
-    "ERROR": {
-      "ImageType": "vous pouvez insérer une image ou une vidéo",
-      "EventName": "Le nom doit comporter au moins 2 caractères."
-    },
-    "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
+    "NoEvents": "Bonjour, il n'y a pas encore d'événements ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />",
+    "Alert": {
+      "AddNew": "le nouvel événement a été ajouté",
+      "Update": "l'événement a été mis à jour",
+      "DeleteOne": "Tous les événements ont été supprimés",
+      "DeleteAll": "Tous les événements ont été supprimés"
+    }
   },
+
+  "insert": {
+    "Name": "Nom",
+    "Image": "Image",
+    "Description": "Description",
+    "Active": "Actif",
+    "Price": "Prix",
+    "Note": {
+      "ImageVideo": "vous pouvez inclure une image ou une vidéo",
+      "JustImage": "Vous ne pouvez inclure Image",
+      "NameDescription": "Vous devez ajouter le Nom et la Description <br /> Le nom doit comporter au moins 2 caractères.",
+      "JustName": "Vous pouvez ajouter juste le nom et pas besoin d'ajouter la description <br /> Le nom doit comporter au moins 2 caractères."
+    },
+    "AlertStander": "Votre demande est en cours de traitement, veuillez patienter..."
+  },
+
   "Setting": {
     "Setting": "Paramètre",
+
     "Language": {
       "Name": "Langues",
       "ActiveLang": "Langue active",
@@ -69,13 +75,9 @@
       "DefaultLangAPP": "Définir les langues par défaut pour APP",
       "UsedLangAPP": "Langues utilisées dans l'APP",
       "language": "Langue",
-      "Active": "actif",
-      "UpLang": "Mettre à jour",
-      "ERROR": {
-        "FacilityName": "Le nom de l'établissement est requis.",
-        "FacilityImageType": "Le type d'entrée doit être Image."
-      }
+      "AlertLanguage": "les langues sont mises à jour"
     },
+
     "SocialMedia": {
       "Name": "Informations sur l'établissement",
       "Personal": "Informations personnelles",
@@ -84,16 +86,19 @@
       "FacilityImage": "LOGO de l'établissement",
       "Icon": "Icônes",
       "Link": "Lien ou numéro",
-      "Active": "Actif",
-      "UpSocial": "Mettre à jour"
+      "ERROR": {
+        "FacilityName": "Le nom de l'établissement est requis.",
+        "FacilityImageType": "Le Type d'entrée doit être Image."
+      },
+      "AlertSocialMedia": "les comptes de médias sociaux sont mis à jour"
     },
+
     "QR": {
       "wifiName": "Nom du réseau (SSID)",
       "wifiPass": "Mot de passe réseau",
       "wifiType": "Authentification WPA",
       "wifiHidden": "Réseau caché",
       "serverURL": "MENU URL du serveur",
-      "UpQR": "Mettre à jour",
       "print": "Imprimer",
       "PrintPage": {
         "Info": "Veuillez choisir la méthode d'impression du QR,<br />où il peut être imprimé sur une page A4, puis 10 ensembles peuvent être imprimés ensemble, <br /> ou par une imprimante thermique, puis uniquement un exemplaire sera imprimé"
@@ -103,30 +108,16 @@
         "wifiPass": "Le mot de passe doit comporter au moins 8 caractères.",
         "wifiType": "Vous devez choisir le type de connexion",
         "wifiHidden": "Le réseau est-il masqué ?"
+      },
+      "Alert": {
+        "QRwifiServer": "les informations QR sont mises à jour",
+        "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR"
       }
     }
   },
 
   "Alert": {
-    "UpLanguage": "les langues sont mises à jour",
-    "UpSocialMedia": "les comptes de médias sociaux sont mis à jour",
     "ServerNotConnect": "bienvenue dans l'application MENU <br /> veuillez vérifier votre connexion au serveur il y a quelque chose qui ne va pas <br /> peut-être que le serveur est fermé ou que vous ne vous connectez pas au bon WIFI <br />",
-    "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP",
-    "QRwifiServer": "les informations QR sont mises à jour",
-    "QRurlServer": "Le lien du serveur dans la base de données est ancienne ou vide, veuillez mettre à jour la base de données QR",
-    "Event": {
-      "AddNew": "le nouvel événement a été ajouté",
-      "Update": "l'événement a été mis à jour",
-      "DeleteOne": "Tous les événements ont été supprimés",
-      "DeleteAll": "Tous les événements ont été supprimés"
-    }
-  },
-  "Arabic": "arabe",
-  "English": "Anglais",
-  "French": "Français",
-  "Update": "Mise à jour",
-  "New": "Nouveau",
-  "Delete": "Supprimer",
-  "DeleteAll": "Supprimer tout",
-  "OrderList": "Listes de commandes"
+    "FIRSTisFIRST": "Bonjour, ajoutons d'abord votre langue préférée à l'APP"
+  }
 }

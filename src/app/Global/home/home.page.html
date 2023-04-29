@@ -12,6 +12,7 @@
 
 <ion-content>
   <div *ngIf="this.newDB === true; else  errorLang">
+    <h1>{{ "HOME.MainList" | translate }}</h1>
     <!-- data was send from db Server -->
     <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
       <ion-card
@@ -36,6 +37,16 @@
       </ion-card>
     </div>
     <!-- data was send from db Server -->
+    <!-- No data was send from db Server -->
+    <div class="null" *ngIf="ItemTypesAll === undefined">
+      <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
+      <ion-button fill="clear" [routerLink]="['/ItemType/update']">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-label>{{ "ItemTypes.NweList" | translate}}</ion-label>
+      </ion-button>
+    </div>
+    <!-- No data was send from db Server -->
+    <h1>{{ "HOME.Events" | translate }}</h1>
     <!-- data was send from db Server -->
     <div class="PageAll" *ngIf="eventsAll !== undefined">
       <ion-card
@@ -60,6 +71,15 @@
       </ion-card>
     </div>
     <!-- data was send from db Server -->
+    <!-- No data was send from db Server -->
+    <div class="null" *ngIf="eventsAll === undefined">
+      <ion-text [innerHTML]="'Events.NoEvents' | translate"> </ion-text>
+      <ion-button fill="clear" [routerLink]="['/events/update']">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-label>{{ "New" | translate}}</ion-label>
+      </ion-button>
+    </div>
+    <!-- No data was send from db Server -->
   </div>
 
   <ng-template #errorLang>

@@ -50,6 +50,7 @@
     </ion-card>
   </div>
   <!-- All ItemTypes parent  -->
+  <!-- No data was send from db Server -->
   <div class="null" *ngIf="ItemTypeName === undefined">
     <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
     <ion-button fill="clear" [routerLink]="['/ItemType/update']">

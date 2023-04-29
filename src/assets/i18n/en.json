@@ -1,9 +1,20 @@
 {
+  "Arabic": "Arabic",
+  "English": "English",
+  "French": "French",
+
+  "Update": "Update",
+  "New": "New",
+  "Delete": "Delete",
+  "DeleteAll": "Delete All",
+  "OrderList": "Order List",
+
   "HOME": {
     "title": "Welcome to {{appName}}",
     "MainList": "Main List",
     "Events": "Events"
   },
+
   "MENU": {
     "home": "Home Page",
     "menu": "MENU",
@@ -15,48 +26,48 @@
     "VersionFree": "This version is free",
     "AboutUS": "AboutUS"
   },
+
   "Item": {
     "NweItem": "Add a New Item",
-    "UpDate": {
-      "Name": "Name of Item",
-      "Image": "Image of Item",
-      "Description": "Description of Item"
-    },
     "NoItems": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
   },
+
   "ItemTypes": {
     "MainList": "Main List",
     "NweList": "Add a New List",
-    "FixList": "Fix List",
-    "DeleteLists": "Delete All Lists",
-    "UpDate": {
-      "Name": "Name of List",
-      "Image": "Image of List",
-      "Active": "Active List",
-      "Description": "Description of List"
-    },
-    "ERROR": {
-      "Name": "Name of List is required",
-      "Image": "Image of List is required"
-    },
     "NoItemTypes": "Hi there, there is No Main List add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
   },
+
   "Events": {
     "Events": "Events",
-    "UpDatePage": {
-      "Name": "Name of Event",
-      "Image": "Image of Event",
-      "Active": "Active Event",
-      "Description": "Description of Event"
-    },
-    "ERROR": {
-      "ImageType": "you can insert Image or Video",
-      "EventName": "Name must be at least 2 characters long."
-    },
-    "NoEvents": "Hi there, there is No Events add yet,<br /> would you like to add a new one. <br /> press the add list button<br />"
+    "NewEvents": "Add a New Events",
+    "NoEvents": "Hi there, there is No Events add yet,<br /> would you like to add a new one. <br /> press the add list button<br />",
+    "Alert": {
+      "AddNew": "the New Event Have been added",
+      "Update": "the Event has been Update",
+      "DeleteOne": "the Event has been Deleted",
+      "DeleteAll": "All Events has been Deleted"
+    }
   },
+
+  "insert": {
+    "Name": "Name",
+    "Image": "Image",
+    "Description": "Description",
+    "Active": "Active",
+    "Price": "Price",
+    "Note": {
+      "ImageVideo": "you can include Image or Video",
+      "JustImage": "You can only include Image",
+      "NameDescription": "You must add the Name and the Description <br /> Name must be at least 2 characters long.",
+      "JustName": "You can add Just the Name and no need to add Description <br /> Name must be at least 2 characters long."
+    },
+    "AlertStander": "Your request is being processed, please wait..."
+  },
+
   "Setting": {
     "Setting": "Setting",
+
     "Language": {
       "Name": "Languages",
       "ActiveLang": "Active Language",
@@ -64,13 +75,9 @@
       "DefaultLangAPP": "Set default Languages for APP",
       "UsedLangAPP": "Languages used in the APP",
       "language": "language",
-      "Active": "active",
-      "UpLang": "Update",
-      "ERROR": {
-        "FacilityName": "Facility Name is required.",
-        "FacilityImageType": "The input type must be Image."
-      }
+      "AlertLanguage": "the languages is updated"
     },
+
     "SocialMedia": {
       "Name": "Facility Info",
       "Personal": "Personal Info",
@@ -79,20 +86,19 @@
       "FacilityImage": "Facility LOGO",
       "Icon": "Icons",
       "Link": "Link or Number",
-      "Active": "Active",
-      "UpSocial": "Update",
       "ERROR": {
         "FacilityName": "Facility name is required.",
         "FacilityImageType": "The Input Type must to be Image."
-      }
+      },
+      "AlertSocialMedia": "the Social Media accounts is updated"
     },
+
     "QR": {
       "wifiName": "Network Name (SSID)",
       "wifiPass": "Network Password",
       "wifiType": "WPA Authentication",
       "wifiHidden": "Hidden Network",
       "serverURL": "MENU Server url",
-      "UpQR": "Update",
       "print": "Print",
       "PrintPage": {
         "Info": "Please choose the method of printing the QR,<br />where it can be printed on an A4 page, and then 10 sets can be printed together,  <br /> or by a thermal printer, and then only one copy will be printed"
@@ -102,30 +108,15 @@
         "wifiPass": "Password must be at least 8 characters long.",
         "wifiType": "You must choose the type of connection",
         "wifiHidden": "Is the network hidden ?"
+      },
+      "Alert": {
+        "QRwifiServer": "the QR info is Update",
+        "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase"
       }
     }
   },
-
   "Alert": {
-    "UpLanguage": "the languages is updated",
-    "UpSocialMedia": "the Social Media accounts is updated",
     "ServerNotConnect": "welcome to MENU app <br /> please check your connection to the Server there is something Wrong <br /> maybe the Server is closed or you not connect to the right WIFI <br />",
-    "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first",
-    "QRwifiServer": "the QR info is Update",
-    "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase",
-    "Event": {
-      "AddNew": "the New Event Have been added",
-      "Update": "the Event has been Update",
-      "DeleteOne": "the Event has been Deleted",
-      "DeleteAll": "All Events has been Deleted"
-    }
-  },
-  "Arabic": "Arabic",
-  "English": "English",
-  "French": "French",
-  "Update": "Update",
-  "New": "New",
-  "Delete": "Delete",
-  "DeleteAll": "Delete All",
-  "OrderList": "Order List"
+    "FIRSTisFIRST": "Hello there let's add your favorite Language to the APP first"
+  }
 }
