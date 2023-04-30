@@ -20,9 +20,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // == NGX Translate == //
 // == Add Popovers === //
 import { LanguagePageModule } from './Popover/language/language.module';
+import { ItemTypePageModule } from './Popover/item-type/item-type.module';
 // == Add Popovers === //
 // == TEXT Editor ==== //
 import { QuillModule } from 'ngx-quill';
+
 // == TEXT Editor ==== //
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +45,7 @@ import { QuillModule } from 'ngx-quill';
     // == NGX Translate == //
     // == Add Popovers === //
     LanguagePageModule,
+    ItemTypePageModule,
     // == Add Popovers === //
     // == TEXT Editor ==== //
     QuillModule.forRoot(),

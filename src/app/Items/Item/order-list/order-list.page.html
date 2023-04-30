@@ -1,9 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>orderList</ion-title>
+    <ion-title>{{"OrderList" |translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <!-- data was send from db Server -->
+  <div class="OrderList" *ngIf="ItemsAll !== undefined">
+    <ion-list>
+      <ion-reorder-group
+        [disabled]="false"
+        (ionItemReorder)="handleReorder($any($event))"
+      >
+        <ion-item *ngFor="let events of ItemsAll">
+          <div class="thumbnail" slot="start">
+            <img
+              *ngIf="events?.imgType === 'image'"
+              [src]="imageURL+events.image"
+            />
+          </div>
+          <ion-label *ngFor="let info  of events.info">
+            {{info.name}}
+          </ion-label>
+          <ion-reorder slot="end">
+            <ion-icon name="swap-vertical-outline"></ion-icon>
+          </ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </div>
+  <!-- data was send from db Server -->
+  <!-- No data was send from db Server -->
+  <div class="null" *ngIf="ItemsAll === undefined">
+    <ion-text [innerHTML]="'ItemTypes.NoItemTypes' | translate"> </ion-text>
+    <ion-button fill="clear" [routerLink]="['/ItemType/update']">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-label>{{ "New" | translate}}</ion-label>
+    </ion-button>
+  </div>
+  <!-- No data was send from db Server -->
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar>
+        <ion-tab-button (click)="submitOrder()" type="submit">
+          <ion-icon name="sync-outline" size="large"></ion-icon>
+          <ion-label>{{"Update" |translate }}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

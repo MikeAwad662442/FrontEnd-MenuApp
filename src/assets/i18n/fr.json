@@ -29,12 +29,14 @@
 
   "Item": {
     "NewItem": "Ajouter un nouvel élément",
+    "OrderList": "Ordre des sous-menus",
     "NoItems": "Bonjour, il n'y a pas encore d'éléments ajoutés,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton Ajouter une liste<br />"
   },
 
   "ItemTypes": {
     "MainList": "Liste principale",
     "NewList": "Ajouter une nouvelle Liste",
+    "Update": "Mise à jour du menu principal",
     "NoItemTypes": "Bonjour, il n'y a pas encore d'ajout de liste principale,<br /> souhaitez-vous en ajouter un nouveau. <br /> appuyez sur le bouton d'ajout de liste<br />"
   },
 

@@ -1,0 +1,15 @@
+<ion-list>
+  <ion-item
+    button=""
+    *ngFor="let ItemTypes of ItemTypesAll"
+    (click)="ItemTypesChange(ItemTypes)"
+    detail="false"
+    [routerLink]="['/ItemType/info/',ItemTypes.id]"
+  >
+    <ion-avatar slot="start">
+      <img [src]="imageURL+ItemTypes.image" />
+    </ion-avatar>
+    <ion-label *ngFor="let info  of ItemTypes.info"> {{info.name}}</ion-label>
+    <!-- <ion-icon slot="end" name="checkmark" *ngIf="ItemTypesUsed === ItemTypes.id"></ion-icon> -->
+  </ion-item>
+</ion-list>

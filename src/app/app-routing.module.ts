@@ -21,7 +21,6 @@ const routes: Routes = [
       //   loadChildren: () =>
       //     import('./Items/Item/all/all.module').then((m) => m.AllPageModule),
       // },
-
       {
         path: 'update',
         loadChildren: () =>
@@ -42,7 +41,7 @@ const routes: Routes = [
           import('./Items/Item/info/info.module').then((m) => m.InfoPageModule),
       },
       {
-        path: 'orderList',
+        path: 'orderList/:ItemTypeID',
         loadChildren: () =>
           import('./Items/Item/order-list/order-list.module').then(
             (m) => m.OrderListPageModule
@@ -132,13 +131,6 @@ const routes: Routes = [
     ],
   },
   // === Events === //
-  // {
-  //   path: 'language',
-  //   loadChildren: () =>
-  //     import('./Popover/language/language.module').then(
-  //       (m) => m.LanguagePageModule
-  //     ),
-  // },
   {
     path: 'cpanel',
     children: [
@@ -184,6 +176,20 @@ const routes: Routes = [
       },
     ],
   },
+  // {
+  //   path: 'item-type',
+  //   loadChildren: () =>
+  //     import('./Popover/item-type/item-type.module').then(
+  //       (m) => m.ItemTypePageModule
+  //     ),
+  // },
+  // {
+  //   path: 'language',
+  //   loadChildren: () =>
+  //     import('./Popover/language/language.module').then(
+  //       (m) => m.LanguagePageModule
+  //     ),
+  // },
 ];
 
 @NgModule({

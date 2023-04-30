@@ -1,39 +1,36 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { MenuController, PopoverController } from '@ionic/angular';
+
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
-import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { CRUDService } from 'src/app/Services/Global/crud.service';
-import { ItemTypePage } from 'src/app/Popover/item-type/item-type.page';
 // === Services === //
 // === Models ===== //
 import { ItemTypes } from 'src/app/Model/items/items.model';
-
 // === Models ===== //
 
 @Component({
-  selector: 'app-all',
-  templateUrl: './all.page.html',
-  styleUrls: ['./all.page.scss'],
+  selector: 'app-item-type',
+  templateUrl: './item-type.page.html',
+  styleUrls: ['./item-type.page.scss'],
 })
-export class AllPage implements OnInit {
+export class ItemTypePage implements OnInit {
   popoverCtrl = inject(PopoverController);
+  menu = inject(MenuController);
   CRUDService = inject(CRUDService);
   urlService = inject(UrlService);
   languageService = inject(LanguageService);
-  alertServer = inject(AlertService);
   // === URL === //
   url: string = this.urlService.url;
   imageURL: string = this.url + '/gallery/';
   // === URL === //
   // === URL For CRUDService === //
   ItemTypesGetAllURL: string = `${this.url}/ItemTypes/view`;
-  ItemTypesDeleteAllURL: string = `${this.url}/ItemTypes/Update`;
   // === URL For CRUDService === //
   // === ItemTypes === //
   ItemTypesAll!: ItemTypes[];
-
+  ItemTypesUsed = '';
   async ngOnInit() {
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe((res) => {
@@ -60,33 +57,11 @@ export class AllPage implements OnInit {
       // === Get All ItemTypes from Server === //
     });
   }
-  // === Delete All temTypes === //
-  DeleteItemTypes() {
-    this.CRUDService.Delete(this.ItemTypesDeleteAllURL).subscribe(
-      (res: any) => {
-        if (res === true) {
-          console.log(res);
-          this.CRUDService.RefreshGlobal$.next(res);
-          this.alertServer.showAlert('Alert.Event.DeleteAll', '/ItemType');
-          this.ItemTypesAll = [];
-          console.log(this.ItemTypesAll);
-          // window.location.reload();
-        }
-      }
-    );
+  ItemTypesChange(event: ItemTypes) {
+    // // this.languageService.langStorageSetItem(event);
+    // this.languageService.saveLanguage(event.direction, event.id);
+    this.popoverCtrl.dismiss();
+    // this.menu.close(); // to Close Menu
+    console.log('ItemTypesUsed ::', event);
   }
-  // === Delete All temTypes === //
-  // === ItemTypes Popover === //
-  /**
-   * Get All Items Type to see in the page and Works on it
-   **/
-  async ItemTypesPopover(ev: any) {
-    const popover = await this.popoverCtrl.create({
-      component: ItemTypePage,
-      event: ev,
-    });
-    await popover.present();
-    // console.log('langPopover:', ev.detail.value);
-  }
-  // === ItemTypes Popover === //
 }

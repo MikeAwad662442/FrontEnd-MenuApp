@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 // === Page === //
-import { OrderListPage } from './order-list.page';
-import { OrderListPageRoutingModule } from './order-list-routing.module';
+import { ItemTypePage } from './item-type.page';
+import { ItemTypePageRoutingModule } from './item-type-routing.module';
 // === Page === //
 // == plugins = //
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,9 +13,9 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     IonicModule,
-    OrderListPageRoutingModule,
+    ItemTypePageRoutingModule,
     TranslateModule,
   ],
-  declarations: [OrderListPage],
+  declarations: [ItemTypePage],
 })
-export class OrderListPageModule {}
+export class ItemTypePageModule {}

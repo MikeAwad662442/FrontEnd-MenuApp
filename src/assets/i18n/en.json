@@ -29,12 +29,14 @@
 
   "Item": {
     "NewItem": "Add a New Item",
+    "OrderList": "Submenu order",
     "NoItems": "Hi there, there is No Main List add yet, would you like to add a new one. <br /> press the add list button"
   },
 
   "ItemTypes": {
     "MainList": "Main List",
     "NewList": "Add a New List",
+    "Update": "Main menu update",
     "NoItemTypes": "Hi there, there is No Main List add yet, would you like to add a new one. <br /> press the New button"
   },
 

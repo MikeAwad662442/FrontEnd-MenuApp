@@ -7,11 +7,13 @@
 
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PopoverController } from '@ionic/angular';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { CRUDService } from 'src/app/Services/Global/crud.service';
+import { ItemTypePage } from 'src/app/Popover/item-type/item-type.page';
 // === Services === //
 // === Models ===== //
 import {
@@ -26,6 +28,7 @@ import {
   styleUrls: ['./info.page.scss'],
 })
 export class InfoPage implements OnInit {
+  popoverCtrl = inject(PopoverController);
   CRUDService = inject(CRUDService);
   routerURL = inject(ActivatedRoute);
   urlService = inject(UrlService);
@@ -64,7 +67,7 @@ export class InfoPage implements OnInit {
         lang,
         this.ItemTypeID
       ).subscribe(async (res: ItemTypes) => {
-        console.log('ItemTypes ::', res);
+        // console.log('ItemTypes ::', res);
         this.ItemType = res;
         // console.log('ItemTypesINFO', this.ItemType);
         this.ItemTypeImage = this.imageURL + res.image;
@@ -86,15 +89,15 @@ export class InfoPage implements OnInit {
         }
       });
       // === Get All Items from Server === //
-      // === Get All ItemTypes from Server === //
-      this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-        (res: ItemTypes[]) => {
-          if (res.length > 0) {
-            this.ItemTypesAll = res;
-          }
-        }
-      );
-      // === Get All ItemTypes from Server === //
+      // // === Get All ItemTypes from Server === //
+      // this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
+      //   (res: ItemTypes[]) => {
+      //     if (res.length > 0) {
+      //       this.ItemTypesAll = res;
+      //     }
+      //   }
+      // );
+      // // === Get All ItemTypes from Server === //
     });
   }
   get style() {
@@ -118,4 +121,17 @@ export class InfoPage implements OnInit {
     );
   }
   // === Delete Event By ID === //
+  // === ItemTypes Popover === //
+  /**
+   * Get All Items Type to see in the page and Works on it
+   **/
+  async ItemTypesPopover(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ItemTypePage,
+      event: ev,
+    });
+    await popover.present();
+    // console.log('langPopover:', ev.detail.value);
+  }
+  // === ItemTypes Popover === //
 }

@@ -4,6 +4,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="ItemTypesPopover($event)">
+        {{"ItemTypes.MainList" |translate }}
+        <ion-icon name="list" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -32,7 +38,7 @@
   </div>
   <!-- All Items belongs to this ItemType ID parent  -->
   <!-- All ItemTypes parent  -->
-  <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
+  <!-- <div class="PageAll" *ngIf="ItemTypesAll !== undefined">
     <ion-card
       button="true"
       [routerLink]="['/ItemType/info/',ItemType.id]"
@@ -48,7 +54,7 @@
         {{info.name}}
       </ion-card-content>
     </ion-card>
-  </div>
+  </div> -->
   <!-- All ItemTypes parent  -->
   <!-- No data was send from db Server -->
   <div class="null" *ngIf="ItemTypeName === undefined">
@@ -69,9 +75,13 @@
           <ion-icon name="add-circle-outline"></ion-icon>
           <ion-label>{{ "Item.NewItem" | translate}}</ion-label>
         </ion-tab-button>
+        <ion-tab-button [routerLink]="['/Item/orderList',ItemTypeID]">
+          <ion-icon name="list-outline"></ion-icon>
+          <ion-label>{{ "Item.OrderList" | translate}}</ion-label>
+        </ion-tab-button>
         <ion-tab-button [routerLink]="['/ItemType/update',ItemTypeID]">
           <ion-icon name="sync-outline"></ion-icon>
-          <ion-label>{{ "Update" | translate}}</ion-label>
+          <ion-label>{{ "ItemTypes.Update" | translate}}</ion-label>
         </ion-tab-button>
         <!-- <ion-tab-button *ngIf="master" (click)="deleteAllTypes()"> -->
         <ion-tab-button (click)="DeleteItemTypeID()">

@@ -61,9 +61,14 @@
   gap: 5px;
   margin: 20px;
   text-align: center;
+  color: #fff;
   ion-card-header {
     grid-column: 1/4;
     grid-row: 1;
+    ion-card-title {
+      font-size: 1.5em;
+      font-style: italic;
+    }
   }
   ion-card-content {
     grid-column: 2/4;
@@ -93,6 +98,9 @@
       width: 150px;
     }
   }
+  // .ql-editor {
+  //   color: #fff;
+  // }
 }
 .PageInfo2 {
   font-size: large;

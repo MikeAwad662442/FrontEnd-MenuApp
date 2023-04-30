@@ -4,6 +4,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="ItemTypesPopover($event)">
+        {{"ItemTypes.MainList" |translate }}
+        <ion-icon name="list" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

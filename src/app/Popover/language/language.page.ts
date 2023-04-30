@@ -15,12 +15,14 @@ import { Language, defaultLanguage } from 'src/app/Model/cPanel/language.model';
 })
 export class LanguagePage implements OnInit {
   popoverCtrl = inject(PopoverController);
+  menu = inject(MenuController);
   languageService = inject(LanguageService);
   urlService = inject(UrlService);
-  menu = inject(MenuController);
-  langUS = '';
-  langActive: Language[] = [];
+  // === URL === //
   url: string = this.urlService.url;
+  // === URL === //
+  langUsed = '';
+  langActive: Language[] = [];
   // constructor(
   //   private popoverCtrl: PopoverController,
   //   private languageService: LanguageService,
@@ -29,11 +31,6 @@ export class LanguagePage implements OnInit {
   // ) {}
 
   async ngOnInit() {
-    await this.getLangActiveS();
-    // console.log('URL:', this.url);
-  }
-
-  async getLangActiveS() {
     this.languageService.langActive(this.url).subscribe((res) => {
       // console.log('Popover Languages :', res.length);
       if (res.length === 0) {
@@ -44,9 +41,26 @@ export class LanguagePage implements OnInit {
         // console.log('langActive:', this.langActive);
       }
     });
-    this.langUS = this.languageService.langUse$.value;
+    this.langUsed = this.languageService.langUse$.value;
     // console.log('langUS:', this.langUS);
+    // await this.getLangActiveS();
+    // console.log('URL:', this.url);
   }
+
+  // async getLangActiveS() {
+  //   this.languageService.langActive(this.url).subscribe((res) => {
+  //     // console.log('Popover Languages :', res.length);
+  //     if (res.length === 0) {
+  //       this.langActive = defaultLanguage;
+  //       // console.log('langActive:', this.langActive);
+  //     } else {
+  //       this.langActive = res;
+  //       // console.log('langActive:', this.langActive);
+  //     }
+  //   });
+  //   this.langUS = this.languageService.langUse$.value;
+  //   // console.log('langUS:', this.langUS);
+  // }
   langChange(event: Language) {
     // this.languageService.langStorageSetItem(event);
     this.languageService.saveLanguage(event.direction, event.id);

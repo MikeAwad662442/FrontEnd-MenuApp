@@ -5,7 +5,6 @@ import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
 import { AlertService } from 'src/app/Services/Alert/alert.service';
 import { CRUDService } from 'src/app/Services/Global/crud.service';
-
 // === Services === //
 // === Models ===== //
 import { ItemTypes } from 'src/app/Model/items/items.model';
@@ -37,7 +36,7 @@ export class OrderListPage implements OnInit {
       const lang = res;
       // console.log('New Lang ::', lang);
       this.CRUDService.RefreshGlobal$.subscribe((res) => {
-        // === Get All Events from Server === //
+        // === Get All ItemTypes from Server === //
         this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
           (res: ItemTypes[]) => {
             if (res.length > 0) {
@@ -45,9 +44,9 @@ export class OrderListPage implements OnInit {
             }
           }
         );
-        // === Get All Events from Server === //
+        // === Get All ItemTypes from Server === //
       });
-      // === Get All Events from Server === //
+      // === Get All ItemTypes from Server === //
       this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
         (res: ItemTypes[]) => {
           if (res.length > 0) {
@@ -55,7 +54,7 @@ export class OrderListPage implements OnInit {
           }
         }
       );
-      // === Get All Events from Server === //
+      // === Get All ItemTypes from Server === //
     });
   }
   handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
@@ -83,7 +82,7 @@ export class OrderListPage implements OnInit {
       this.ItemTypesAll
     ).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.Event.AddNew', '/ItemType');
+        this.alertServer.showAlert('insert.AlertStander', '/ItemType');
         // console.log('IF everything work well ::', res);
         this.CRUDService.RefreshGlobal$.next(res);
       }
