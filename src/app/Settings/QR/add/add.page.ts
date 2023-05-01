@@ -98,7 +98,7 @@ export class AddPage implements OnInit {
             serverURL: data.serverURL,
           });
         } else {
-          this.alertServer.errorAlertIMG('Alert.QRurlServer');
+          this.alertServer.errorAlertIMG('Setting.QR.Alert.QRurlServer');
           this.qrNetWork.patchValue({
             serverURL: this.url,
           });
@@ -150,7 +150,7 @@ export class AddPage implements OnInit {
     console.log('newForm ::', newForm);
     this.qrService.qrUpdate(this.url, newForm).subscribe((res: any) => {
       if (res === true) {
-        this.alertServer.showAlert('Alert.QRwifiServer', '/cpanel');
+        this.alertServer.showAlert('insert.AlertStander', '/cpanel');
       }
       // console.log('IF everything work well', res);
     });

@@ -97,7 +97,7 @@ export class LanguagePage implements OnInit {
     this.languageService.langUpdate(this.url, res).subscribe((res: any) => {
       if (res === true) {
         // this.alertServer.showAlert('the language update', '/cpanel');
-        this.alertServer.showAlert('Alert.UpLanguage', '/cpanel');
+        this.alertServer.showAlert('insert.AlertStander', '/cpanel');
       }
       // console.log(res);
       // this.ngOnDestroy(); // === No need i us http

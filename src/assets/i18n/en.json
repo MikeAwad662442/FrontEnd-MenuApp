@@ -77,8 +77,7 @@
       "Default": "Default Language",
       "DefaultLangAPP": "Set default Languages for APP",
       "UsedLangAPP": "Languages used in the APP",
-      "language": "language",
-      "AlertLanguage": "the languages is updated"
+      "language": "language"
     },
 
     "SocialMedia": {
@@ -92,8 +91,7 @@
       "ERROR": {
         "FacilityName": "Facility name is required.",
         "FacilityImageType": "The Input Type must to be Image."
-      },
-      "AlertSocialMedia": "the Social Media accounts is updated"
+      }
     },
 
     "QR": {
@@ -113,7 +111,6 @@
         "wifiHidden": "Is the network hidden ?"
       },
       "Alert": {
-        "QRwifiServer": "the QR info is Update",
         "QRurlServer": "the Server link in DataBase is old or empty , please Update the QR DataBase"
       }
     }

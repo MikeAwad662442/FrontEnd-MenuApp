@@ -33,44 +33,39 @@ export class AllPage implements OnInit {
   // === URL For CRUDService === //
   // === ItemTypes === //
   ItemTypesAll!: ItemTypes[];
-
+  lang!: string;
   async ngOnInit() {
     // === if Language View is change refresh the info
-    this.languageService.langUse$.subscribe((res) => {
-      const lang = res;
-      this.CRUDService.RefreshGlobal$.subscribe(() => {
-        // === Get All ItemTypes from Server === //
-        this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-          (res: ItemTypes[]) => {
-            if (res.length > 0) {
-              this.ItemTypesAll = res;
-            }
-          }
-        );
-        // === Get All ItemTypes from Server === //
-      });
-      // === Get All ItemTypes from Server === //
-      this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-        (res: ItemTypes[]) => {
-          if (res.length > 0) {
-            this.ItemTypesAll = res;
-          }
-        }
-      );
-      // === Get All ItemTypes from Server === //
+    this.languageService.langUse$.subscribe(async (res) => {
+      this.lang = res;
+      await this.GetALL();
     });
+    this.CRUDService.RefreshGlobal$.subscribe(async () => {
+      await this.GetALL();
+    });
+    await this.GetALL();
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get All ItemTypes from Server === //
+    this.CRUDService.GetAll(this.ItemTypesGetAllURL, this.lang).subscribe(
+      (res: ItemTypes[]) => {
+        if (res.length > 0) {
+          this.ItemTypesAll = res;
+        }
+      }
+    );
+    // === Get All ItemTypes from Server === //
+  }
+  // === repeat Get All === //
   // === Delete All temTypes === //
   DeleteItemTypes() {
     this.CRUDService.Delete(this.ItemTypesDeleteAllURL).subscribe(
       (res: any) => {
         if (res === true) {
-          console.log(res);
           this.CRUDService.RefreshGlobal$.next(res);
           this.alertServer.showAlert('Alert.Event.DeleteAll', '/ItemType');
-          this.ItemTypesAll = [];
-          console.log(this.ItemTypesAll);
-          // window.location.reload();
+          location.reload();
         }
       }
     );

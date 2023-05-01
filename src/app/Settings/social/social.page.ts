@@ -182,7 +182,7 @@ export class SocialPage implements OnInit {
       .socialMediaUpdate(this.url, newForm)
       .subscribe((res: any) => {
         if (res === true) {
-          this.alertServer.showAlert('Alert.UpSocialMedia', '/cpanel');
+          this.alertServer.showAlert('insert.AlertStander', '/cpanel');
           console.log('IF everything work well ::', res);
         }
       });

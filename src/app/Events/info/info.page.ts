@@ -32,36 +32,41 @@ export class InfoPage implements OnInit {
   eventID: any;
   event!: Events;
   eventsAll!: Events[];
-
+  lang!: string;
   async ngOnInit() {
-    // === if Language View is change refresh the info
-    this.languageService.langUse$.subscribe((res) => {
-      const lang = res;
-      // === Get Event by ID === //
-      this.routerURL.paramMap.subscribe((res) => {
-        this.eventID = res.get('EventID');
-        // this.eventsService.EventGet(this.url, lang, this.eventID)
-        this.CRUDService.GetID(
-          this.EventsGetAllURL,
-          lang,
-          this.eventID
-        ).subscribe((res: Events) => {
-          this.event = res;
-        });
-      });
-      // === Get Event by ID === //
-      // === Get All Events from Server === //
-      // this.eventsService.EventsGetAll(this.url, lang)
-      this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
-        (res: Events[]) => {
-          if (res.length > 0) {
-            this.eventsAll = res;
-          }
-        }
-      );
-      // === Get All Events from Server === //
+    this.routerURL.paramMap.subscribe((res) => {
+      this.eventID = res.get('EventID');
     });
+    // === if Language View is change refresh the info
+    this.languageService.langUse$.subscribe(async (res) => {
+      this.lang = res;
+      await this.GetALL();
+    });
+    await this.GetALL();
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get Event by ID === //
+    this.CRUDService.GetID(
+      this.EventsGetAllURL,
+      this.lang,
+      this.eventID
+    ).subscribe((res: Events) => {
+      this.event = res;
+    });
+
+    // === Get Event by ID === //
+    // === Get All Events from Server === //
+    this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
+      (res: Events[]) => {
+        if (res.length > 0) {
+          this.eventsAll = res;
+        }
+      }
+    );
+    // === Get All Events from Server === //
+  }
+  // === repeat Get All === //
   // === Delete Event By ID === //
   DeleteEventID() {
     // this.eventsService.EventsDelete(this.url, this.eventID)

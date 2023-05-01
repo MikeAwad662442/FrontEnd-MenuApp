@@ -78,7 +78,7 @@ export class CRUDService {
     } else {
       link = `${url}`;
     }
-    console.log(link);
+    // console.log(link);
     return this.http
       .delete<any>(link)
       .pipe(catchError(this.expressService.handleError));

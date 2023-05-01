@@ -52,6 +52,7 @@ export class InfoPage implements OnInit {
   ItemPrice!: number;
   ItemName!: string;
   ItemDescription!: string;
+  lang!: string;
   // === Item INFO === //
   // === Item by ID && All Items === //
   ngOnInit() {
@@ -62,43 +63,49 @@ export class InfoPage implements OnInit {
     // === Get ItemID === //
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe(async (res) => {
-      const lang = res;
-      // === Get All Items && ItemID from Server === //
-      this.CRUDService.GetID(this.ItemsGetAllURL, lang, this.ItemID).subscribe(
-        async (res: Items) => {
-          // console.log('Items ::', res);
-          // === Get ItemID from Server === //
-
-          this.ItemTypeID = res.ItemTypeID;
-          // console.log('ItemTypesINFO', this.ItemType);
-          this.ItemImage = this.imageURL + res.image;
-          this.ItemImgType = res.imgType;
-          this.ItemPrice = res.price;
-          res.info.forEach(async (info: ItemsLanguage) => {
-            this.ItemName = info.name;
-            this.ItemDescription = info.description;
-          });
-
-          // === Get ItemID from Server === //
-          // === Get All Items from Server === //
-          // console.log('ItemTypeID ::', this.ItemTypeID);
-          this.CRUDService.GetID(
-            this.ItemsGetAllURL,
-            lang,
-            this.ItemTypeID
-          ).subscribe((res: Items[]) => {
-            if (res.length > 0) {
-              this.ItemsAll = res;
-              // console.log('ItemsAll ::', this.ItemsAll);
-            }
-          });
-          // === Get All Items from Server === //
-        }
-      );
-      // === Get All Items && ItemID from Server === //
+      this.lang = res;
+      await this.GetALL();
     });
     // === if Language View is change refresh the info
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get All Items && ItemID from Server === //
+    this.CRUDService.GetID(
+      this.ItemsGetAllURL,
+      this.lang,
+      this.ItemID
+    ).subscribe(async (res: Items) => {
+      // console.log('Items ::', res);
+      // === Get ItemID from Server === //
+
+      this.ItemTypeID = res.ItemTypeID;
+      // console.log('ItemTypesINFO', this.ItemType);
+      this.ItemImage = this.imageURL + res.image;
+      this.ItemImgType = res.imgType;
+      this.ItemPrice = res.price;
+      res.info.forEach(async (info: ItemsLanguage) => {
+        this.ItemName = info.name;
+        this.ItemDescription = info.description;
+      });
+
+      // === Get ItemID from Server === //
+      // === Get All Items from Server === //
+      this.CRUDService.GetID(
+        this.ItemsGetAllURL,
+        this.lang,
+        this.ItemTypeID
+      ).subscribe((res: Items[]) => {
+        if (res.length > 0) {
+          this.ItemsAll = res;
+          // console.log('ItemsAll ::', this.ItemsAll);
+        }
+      });
+      // === Get All Items from Server === //
+    });
+    // === Get All Items && ItemID from Server === //
+  }
+  // === repeat Get All === //
   // === Delete Event By ID === //
   DeleteItemID() {
     // this.eventsService.EventsDelete(this.url, this.eventID)

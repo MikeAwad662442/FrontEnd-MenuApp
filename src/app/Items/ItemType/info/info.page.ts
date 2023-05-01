@@ -51,6 +51,7 @@ export class InfoPage implements OnInit {
   ItemTypeName!: string;
   ItemTypeImage: any;
   ItemTypeDescription!: string;
+  lang!: string;
   // === ItemTypes === //
   async ngOnInit() {
     // === Get ItemTypeID === //
@@ -60,46 +61,52 @@ export class InfoPage implements OnInit {
     // === Get ItemTypeID === //
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe(async (res) => {
-      const lang = res;
-      // === Get All ItemTypesID from Server === //
-      this.CRUDService.GetID(
-        this.ItemTypesGetAllURL,
-        lang,
-        this.ItemTypeID
-      ).subscribe(async (res: ItemTypes) => {
-        // console.log('ItemTypes ::', res);
-        this.ItemType = res;
-        // console.log('ItemTypesINFO', this.ItemType);
-        this.ItemTypeImage = this.imageURL + res.image;
-        res.info.forEach(async (info: ItemTypesLanguage) => {
-          this.ItemTypeName = info.name;
-          this.ItemTypeDescription = info.description;
-        });
-      });
-      // === Get All ItemTypesID from Server === //
-      // === Get All Items from Server === //
-      this.CRUDService.GetID(
-        this.ItemsGetAllURL,
-        lang,
-        this.ItemTypeID
-      ).subscribe((res: Items[]) => {
-        if (res.length > 0) {
-          this.ItemsAll = res;
-          // console.log('ItemsAll ::', this.ItemsAll);
-        }
-      });
-      // === Get All Items from Server === //
-      // // === Get All ItemTypes from Server === //
-      // this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-      //   (res: ItemTypes[]) => {
-      //     if (res.length > 0) {
-      //       this.ItemTypesAll = res;
-      //     }
-      //   }
-      // );
-      // // === Get All ItemTypes from Server === //
+      this.lang = res;
+      await this.GetALL();
     });
+    await this.GetALL();
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get All ItemTypesID from Server === //
+    this.CRUDService.GetID(
+      this.ItemTypesGetAllURL,
+      this.lang,
+      this.ItemTypeID
+    ).subscribe(async (res: ItemTypes) => {
+      // console.log('ItemTypes ::', res);
+      this.ItemType = res;
+      // console.log('ItemTypesINFO', this.ItemType);
+      this.ItemTypeImage = this.imageURL + res.image;
+      res.info.forEach(async (info: ItemTypesLanguage) => {
+        this.ItemTypeName = info.name;
+        this.ItemTypeDescription = info.description;
+      });
+    });
+    // === Get All ItemTypesID from Server === //
+    // === Get All Items from Server === //
+    this.CRUDService.GetID(
+      this.ItemsGetAllURL,
+      this.lang,
+      this.ItemTypeID
+    ).subscribe((res: Items[]) => {
+      if (res.length > 0) {
+        this.ItemsAll = res;
+        // console.log('ItemsAll ::', this.ItemsAll);
+      }
+    });
+    // === Get All Items from Server === //
+    // // === Get All ItemTypes from Server === //
+    // this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
+    //   (res: ItemTypes[]) => {
+    //     if (res.length > 0) {
+    //       this.ItemTypesAll = res;
+    //     }
+    //   }
+    // );
+    // // === Get All ItemTypes from Server === //
+  }
+  // === repeat Get All === //
   get style() {
     return {
       backgroundImage: ` url(${this.ItemTypeImage})`,
@@ -114,7 +121,7 @@ export class InfoPage implements OnInit {
       (res: any) => {
         if (res === true) {
           this.CRUDService.RefreshGlobal$.next(res);
-          this.alertServer.showAlert('Alert.Event.DeleteAll', '/ItemType');
+          this.alertServer.showAlert('insert.AlertStander', '/ItemType');
           // console.log('IF everything work well ::', res);
         }
       }

@@ -58,10 +58,6 @@ export class ItemTypePage implements OnInit {
     });
   }
   ItemTypesChange(event: ItemTypes) {
-    // // this.languageService.langStorageSetItem(event);
-    // this.languageService.saveLanguage(event.direction, event.id);
     this.popoverCtrl.dismiss();
-    // this.menu.close(); // to Close Menu
-    console.log('ItemTypesUsed ::', event);
   }
 }

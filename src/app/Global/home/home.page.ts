@@ -35,64 +35,49 @@ export class HomePage implements OnInit {
   ItemTypesAll!: ItemTypes[]; // === ItemTypes === //
   newDB: boolean = false;
   imageSrc: string = './assets/icon/favicon.png';
+  lang!: string;
   params = {
     appName: 'MENU app',
   };
-  // constructor(
-  //   private urlService: UrlService,
-
-  //   private languageService: LanguageService,
-  //   private socialService: SocialService,
-  //   private itemTypeService: ItemtypeService,
-  //   private eventsService: EventsService
-  // ) {}
-
-  ngOnInit() {
+  async ngOnInit() {
     this.firstIsFirst();
     // console.log(this.newDB);
     // === if Language View is change refresh the info
-    this.languageService.langUse$.subscribe((res) => {
-      const lang = res;
-      this.CRUDService.RefreshGlobal$.subscribe(() => {
-        // === Get All ItemTypes from Server === //
-        this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-          (res: ItemTypes[]) => {
-            if (res.length > 0) {
-              this.ItemTypesAll = res;
-            }
-          }
-        );
-        // === Get All ItemTypes from Server === //
-        // === Get All Events from Server === //
-        this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
-          (res: Events[]) => {
-            if (res.length > 0) {
-              this.eventsAll = res;
-            }
-          }
-        );
-        // === Get All Events from Server === //
-      });
-      // === Get All ItemTypes from Server === //
-      this.CRUDService.GetAll(this.ItemTypesGetAllURL, lang).subscribe(
-        (res: ItemTypes[]) => {
-          if (res.length > 0) {
-            this.ItemTypesAll = res;
-          }
-        }
-      );
-      // === Get All ItemTypes from Server === //
-      // === Get All Events from Server === //
-      this.CRUDService.GetAll(this.EventsGetAllURL, lang).subscribe(
-        (res: Events[]) => {
-          if (res.length > 0) {
-            this.eventsAll = res;
-          }
-        }
-      );
-      // === Get All Events from Server === //
+    this.languageService.langUse$.subscribe(async (res) => {
+      this.lang = res;
+      await this.GetALL();
     });
+    this.CRUDService.RefreshGlobal$.subscribe(async () => {
+      await this.GetALL();
+    });
+    await this.GetALL();
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get All ItemTypes from Server === //
+    this.CRUDService.GetAll(this.ItemTypesGetAllURL, this.lang).subscribe(
+      (res: ItemTypes[]) => {
+        if (res.length > 0) {
+          this.ItemTypesAll = res;
+        }
+      }
+    );
+    // === Get All ItemTypes from Server === //
+    // === Get All Events from Server === //
+    this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
+      (res: Events[]) => {
+        if (res.length > 0) {
+          this.eventsAll = res;
+        }
+      }
+    );
+    // === Get All Events from Server === //
+  }
+  // === repeat Get All === //
+  /**
+   * To know if server DB have set Language
+   * and User start us the APP
+   **/
   firstIsFirst() {
     this.languageService.langGetAll(this.url).subscribe((res: Language[]) => {
       if (res.length !== 0) {

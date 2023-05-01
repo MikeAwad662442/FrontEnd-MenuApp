@@ -32,37 +32,36 @@ export class AllPage implements OnInit {
   lang!: string;
   async ngOnInit() {
     // === if Language View is change refresh the info
-    this.languageService.langUse$.subscribe((res) => {
+    this.languageService.langUse$.subscribe(async (res) => {
       this.lang = res;
-      this.CRUDService.RefreshGlobal$.subscribe(() => {
-        // === Get All Events from Server === //
-        this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
-          (res: Events[]) => {
-            if (res.length > 0) {
-              this.eventsAll = res;
-            }
-          }
-        );
-        // === Get All Events from Server === //
-      });
-      // === Get All Events from Server === //
-      this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
-        (res: Events[]) => {
-          if (res.length > 0) {
-            this.eventsAll = res;
-          }
-        }
-      );
-      // === Get All Events from Server === //
+      await this.GetALL();
     });
+    this.CRUDService.RefreshGlobal$.subscribe(async () => {
+      await this.GetALL();
+    });
+    await this.GetALL();
   }
+  // === repeat Get All === //
+  async GetALL() {
+    // === Get All Events from Server === //
+    this.CRUDService.GetAll(this.EventsGetAllURL, this.lang).subscribe(
+      (res: Events[]) => {
+        if (res.length > 0) {
+          this.eventsAll = res;
+        }
+      }
+    );
+    // === Get All Events from Server === //
+  }
+  // === repeat Get All === //
   // === Delete All Events === //
   DeleteEvents() {
     // this.eventsService.EventsDelete(this.url)
     this.CRUDService.Delete(this.EventsDeleteAllURL).subscribe((res: any) => {
       if (res === true) {
+        // this.CRUDService.RefreshGlobal$.next(res);
         this.alertServer.showAlert('insert.AlertStander', '/events');
-        this.CRUDService.RefreshGlobal$.next(res);
+        location.reload();
       }
     });
   }
