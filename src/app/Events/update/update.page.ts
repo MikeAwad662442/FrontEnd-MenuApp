@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 // === Services === //
@@ -16,7 +16,7 @@ import { CRUDService } from 'src/app/Services/Global/crud.service';
   templateUrl: './update.page.html',
   styleUrls: ['./update.page.scss'],
 })
-export class UpdatePage implements OnInit {
+export class UpdatePage implements OnInit, OnDestroy {
   fb = inject(FormBuilder);
   routerURL = inject(ActivatedRoute);
   CRUDService = inject(CRUDService);
@@ -233,5 +233,8 @@ export class UpdatePage implements OnInit {
         this.CRUDService.RefreshGlobal$.next(res);
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.eventUpDate.reset;
   }
 }

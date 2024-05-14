@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, inject, LOCALE_ID, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 // === Insert Pipe In TS === //
@@ -23,7 +23,7 @@ import { Items, ItemsLanguage } from 'src/app/Model/items/items.model';
   templateUrl: './update.page.html',
   styleUrls: ['./update.page.scss'],
 })
-export class UpdatePage implements OnInit {
+export class UpdatePage implements OnInit, OnDestroy {
   fb = inject(FormBuilder);
   routerURL = inject(ActivatedRoute);
   CRUDService = inject(CRUDService);
@@ -253,5 +253,8 @@ export class UpdatePage implements OnInit {
         }
       }
     );
+  }
+  ngOnDestroy(): void {
+    this.ItemUpDate.reset;
   }
 }

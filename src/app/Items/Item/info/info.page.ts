@@ -55,7 +55,7 @@ export class InfoPage implements OnInit {
   lang!: string;
   // === Item INFO === //
   // === Item by ID && All Items === //
-  ngOnInit() {
+  async ngOnInit() {
     // === Get ItemID === //
     this.routerURL.paramMap.subscribe(async (res) => {
       this.ItemID = res.get('ItemID');
@@ -67,6 +67,10 @@ export class InfoPage implements OnInit {
       await this.GetALL();
     });
     // === if Language View is change refresh the info
+    this.CRUDService.RefreshGlobal$.subscribe(async () => {
+      await this.GetALL();
+    });
+    await this.GetALL();
   }
   // === repeat Get All === //
   async GetALL() {

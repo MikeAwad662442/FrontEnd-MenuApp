@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 // === Services === //
 import { UrlService } from 'src/app/Services/Server/url.service';
 import { LanguageService } from 'src/app/Services/cPanel/language.service';
@@ -17,7 +18,8 @@ import { ItemTypes } from 'src/app/Model/items/items.model';
   templateUrl: './all.page.html',
   styleUrls: ['./all.page.scss'],
 })
-export class AllPage implements OnInit {
+export class AllPage implements OnInit, OnDestroy {
+  routerURL = inject(ActivatedRoute);
   popoverCtrl = inject(PopoverController);
   CRUDService = inject(CRUDService);
   urlService = inject(UrlService);
@@ -35,6 +37,10 @@ export class AllPage implements OnInit {
   ItemTypesAll!: ItemTypes[];
   lang!: string;
   async ngOnInit() {
+    // === تحدث الصفحة كلما دخلت عليها === //
+    this.routerURL.paramMap.subscribe(async () => {
+      await this.GetALL();
+    });
     // === if Language View is change refresh the info
     this.languageService.langUse$.subscribe(async (res) => {
       this.lang = res;
@@ -43,7 +49,6 @@ export class AllPage implements OnInit {
     this.CRUDService.RefreshGlobal$.subscribe(async () => {
       await this.GetALL();
     });
-    await this.GetALL();
   }
   // === repeat Get All === //
   async GetALL() {
@@ -84,4 +89,7 @@ export class AllPage implements OnInit {
     // console.log('langPopover:', ev.detail.value);
   }
   // === ItemTypes Popover === //
+  ngOnDestroy(): void {
+    this.ItemTypesAll.length = 0;
+  }
 }

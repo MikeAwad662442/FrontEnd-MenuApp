@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 // === Services === //
@@ -16,7 +16,7 @@ import { ItemTypes, ItemTypesLanguage } from 'src/app/Model/items/items.model';
   templateUrl: './update.page.html',
   styleUrls: ['./update.page.scss'],
 })
-export class UpdatePage implements OnInit {
+export class UpdatePage implements OnInit, OnDestroy {
   fb = inject(FormBuilder);
   routerURL = inject(ActivatedRoute);
   CRUDService = inject(CRUDService);
@@ -87,20 +87,22 @@ export class UpdatePage implements OnInit {
   // === Quill TEXT Editor === //
 
   async ngOnInit() {
+    this.ItemTypeUpDate.reset;
     this.routerURL.paramMap.subscribe((res) => {
       this.ItemTypeID = res.get('ItemTypeID');
-      this.CRUDService.UpdateGetID(
-        this.ItemTypeUpdateURL,
-        this.ItemTypeID
-      ).subscribe((res: ItemTypes) => {
-        this.ActiveItemType = res;
-      });
-      // === Get Active Language === //
-      this.languageService.langActive(this.url).subscribe((res) => {
-        this.ActiveLang = res;
-      });
-      // === Get Active Language === //
     });
+    // === Get Active Language === //
+    this.languageService.langActive(this.url).subscribe((res) => {
+      this.ActiveLang = res;
+    });
+    // === Get Active Language === //
+    this.CRUDService.UpdateGetID(
+      this.ItemTypeUpdateURL,
+      this.ItemTypeID
+    ).subscribe((res: ItemTypes) => {
+      this.ActiveItemType = res;
+    });
+
     /**
      * This method is wrong, but it works for now
      **/
@@ -227,5 +229,8 @@ export class UpdatePage implements OnInit {
         this.CRUDService.RefreshGlobal$.next(res);
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.ItemTypeUpDate.reset;
   }
 }
